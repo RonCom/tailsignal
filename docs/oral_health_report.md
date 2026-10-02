@@ -4,7 +4,7 @@
 
 ## Headlines
 
-1. **About 1 in 11 dogs seen by a vet is diagnosed with dental disease each year** (9.4%, 95% CI 9.1–9.8%). Cats: 10.0%.
+1. **Nearly 1 in 5 dogs seen by a vet is diagnosed with dental disease each year** (18.1% on the calibrated clinical record layer; Banfield reports 18.2% over five years, VetCompass 12.5% a year). The uncalibrated platform layer, which the breed and treatment figures below use, gives 9.4% (95% CI 9.1–9.8%); cats 10.0%. See [Re-run on the clinical record layer](#re-run-on-the-clinical-record-layer).
 2. **Toy breeds carry 2.5 times the odds** of larger dogs after adjusting for age (OR 2.49, 95% CI 2.17–2.85). Yorkshire Terriers (19%), Chihuahuas (18%), and Shih Tzus (17%) top the breed list.
 3. **Risk climbs steadily with age**: from 4% of dogs under 2 to 15% of dogs 12 and older (adjusted OR 2.9 vs. age 2–4).
 4. **Fewer than half of diagnosed dogs get a cleaning the same year** (46%). At an average of $783 per cleaning, raising that to 60% across this network would add about 80 cleanings and roughly $63,000 a year (illustrative).
@@ -82,7 +82,7 @@ The simulator extension ([results](simulator_extension_results.md)) added a dent
 | 3. Detection at exams | Partly closed: disease present at a wellness exam is recorded 76% of the time vs. 61% at other visits, but raw prevalence is still lower in exam years (17.7% vs. 20.2%) because exam-free years are sick-visit years |
 | 4. Clinic differences | Closed: the funnel flags both planted under-charting clinics low; rank correlation with planted thoroughness 0.69 |
 
-Two changes for the sold report follow. Dog prevalence on the record layer, 18.1%, sits between Banfield's 5-year figure and VetCompass's annual figure, so the 9.4% headline above understates disease by about half and a buyer sizing a market from it would undercount. And the "exams find disease" effect only shows up after conditioning on true disease, which a real dataset doesn't have; in real data the raw exam comparison will mislead the same way, so the report should compare clinics on charting rate at wellness exams, not on raw prevalence.
+Two changes for the sold report follow. Dog prevalence on the record layer, 18.1%, sits between Banfield's 5-year figure and VetCompass's annual figure, so the platform layer's 9.4% understates disease by about half and a buyer sizing a market from it would undercount. And the "exams find disease" effect only shows up after conditioning on true disease, which a real dataset doesn't have; in real data the raw exam comparison will mislead the same way, so the report should compare clinics on charting rate at wellness exams, not on raw prevalence.
 
 ## Methods
 

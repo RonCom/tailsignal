@@ -85,7 +85,7 @@ The isoxazoline (2018 FDA alert) control was **not** detected before the alert a
 
 **Clinic quality benchmarks** ([results](docs/clinic_benchmarks_results.md)): risk-adjusted anesthesia, dental-charting, and antibiotic-stewardship scorecards with funnel plots, shrinkage, and rank ranges. Complication benchmarks work at current clinic volume (rank correlation with planted quality 0.97); death rates need ~5,000 procedures per clinic before they can rank clinics.
 
-**Oral health insights** ([report](docs/oral_health_report.md)): 9.4% of dogs diagnosed per year; toy breeds 2.5× the odds; fewer than half of diagnosed dogs get a cleaning the same year. Compared against published Banfield (US) and VetCompass (UK) studies, which exposed four simulator gaps. Re-run on the clinical record layer, two are closed and two partly closed, and dog prevalence moves from 9.4% to 18.1%. Roadmap: [docs/roadmap.md](docs/roadmap.md).
+**Oral health insights** ([report](docs/oral_health_report.md)): 18.1% of dogs diagnosed per year on the calibrated clinical record layer (9.4% on the uncalibrated platform layer); toy breeds 2.5× the odds; fewer than half of diagnosed dogs get a cleaning the same year. Compared against published Banfield (US) and VetCompass (UK) studies, which exposed four simulator gaps. Re-run on the clinical record layer, two are closed and two partly closed. Roadmap: [docs/roadmap.md](docs/roadmap.md).
 
 ## Architecture
 
