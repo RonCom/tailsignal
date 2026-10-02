@@ -1,0 +1,115 @@
+{
+  "since": "2020-01-01",
+  "predictions": {
+    "P1_dog_class_seizure_tremor": {
+      "n": 14393,
+      "E": 9524.3,
+      "ebgm": 1.511,
+      "eb05": 1.491,
+      "prr": 2.479,
+      "pass": false
+    },
+    "P2_dog_products_top10": {
+      "products": {
+        "fluralaner": {
+          "reports": 1869,
+          "eligible": true,
+          "product_terms": 442,
+          "n": 153,
+          "eb05": 0.994,
+          "rank_by": {
+            "prr": 369,
+            "ror_lo": 214,
+            "eb05": 201
+          },
+          "pass": false
+        },
+        "afoxolaner": {
+          "reports": 23218,
+          "eligible": true,
+          "product_terms": 1022,
+          "n": 2495,
+          "eb05": 1.441,
+          "rank_by": {
+            "prr": 212,
+            "ror_lo": 61,
+            "eb05": 66
+          },
+          "pass": false
+        },
+        "sarolaner": {
+          "reports": 9177,
+          "eligible": true,
+          "product_terms": 748,
+          "n": 2293,
+          "eb05": 3.363,
+          "rank_by": {
+            "prr": 38,
+            "ror_lo": 10,
+            "eb05": 9
+          },
+          "pass": true
+        },
+        "lotilaner": {
+          "reports": 9434,
+          "eligible": true,
+          "product_terms": 818,
+          "n": 846,
+          "eb05": 1.176,
+          "rank_by": {
+            "prr": 407,
+            "ror_lo": 156,
+            "eb05": 143
+          },
+          "pass": false
+        }
+      },
+      "pass": false
+    },
+    "P4_dog_mdr1_excess": {
+      "mdr1_high": {
+        "n": 413,
+        "h_ratio_mean": 1.122,
+        "h_ratio05": 1.05,
+        "int_ror_lo": 1.163
+      },
+      "mdr1_low": {
+        "n": 410,
+        "h_ratio_mean": 0.931,
+        "h_ratio05": 0.863,
+        "int_ror_lo": 0.729
+      },
+      "other_purebred": {
+        "n": 4699,
+        "h_ratio_mean": 0.997,
+        "h_ratio05": 0.987,
+        "int_ror_lo": 0.849
+      },
+      "mixed_unknown": {
+        "n": 2175,
+        "h_ratio_mean": 1.004,
+        "h_ratio05": 0.987,
+        "int_ror_lo": 1.056
+      },
+      "pass": true
+    },
+    "P5_dog_mgps_false_signals_per_1000": {
+      "mgps": 0.0,
+      "prr": 18.979,
+      "ror": 32.107,
+      "breed_excess_hier": 0.0,
+      "breed_excess_unpooled": 5.433,
+      "pass": true
+    },
+    "P3_cat_class_seizure_tremor": {
+      "n": 1357,
+      "E": 971.4,
+      "ebgm": 1.397,
+      "eb05": 1.335,
+      "prr": 1.804,
+      "pass": false
+    }
+  },
+  "dog_reports": 305744,
+  "cat_reports": 58902
+}

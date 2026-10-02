@@ -1,0 +1,8 @@
+{
+  "demo-admin": {"role": "admin", "name": "TailSignal internal"},
+  "demo-insurer": {"role": "insurer", "name": "Example pet insurer"},
+  "demo-pharma": {"role": "pharma", "name": "Example animal-health manufacturer"},
+  "demo-agency": {"role": "public_health", "name": "Example public-health agency"},
+  "clinic-PHL-VET1": {"role": "clinic", "clinic": "PHL-VET1", "name": "PHL-VET1"},
+  "clinic-AUS-VET2": {"role": "clinic", "clinic": "AUS-VET2", "name": "AUS-VET2"}
+}

@@ -1,0 +1,1238 @@
+{
+  "isolates": {
+    "E. coli": 12958,
+    "S. pseudintermedius": 13438,
+    "Salmonella": 231,
+    "Klebsiella spp": 365
+  },
+  "years": [
+    2017,
+    2024
+  ],
+  "states": 30,
+  "test_results": 500268,
+  "eligibility": [
+    {
+      "organism": "E. coli",
+      "source": "Other sites",
+      "reason": "breakpoint below wild type",
+      "combos": 2
+    },
+    {
+      "organism": "E. coli",
+      "source": "Other sites",
+      "reason": "eligible",
+      "combos": 9
+    },
+    {
+      "organism": "E. coli",
+      "source": "Other sites",
+      "reason": "selective testing",
+      "combos": 26
+    },
+    {
+      "organism": "E. coli",
+      "source": "UTI",
+      "reason": "eligible",
+      "combos": 12
+    },
+    {
+      "organism": "E. coli",
+      "source": "UTI",
+      "reason": "selective testing",
+      "combos": 31
+    },
+    {
+      "organism": "S. pseudintermedius",
+      "source": "Other sites",
+      "reason": "eligible",
+      "combos": 13
+    },
+    {
+      "organism": "S. pseudintermedius",
+      "source": "Other sites",
+      "reason": "selective testing",
+      "combos": 29
+    },
+    {
+      "organism": "S. pseudintermedius",
+      "source": "UTI",
+      "reason": "eligible",
+      "combos": 6
+    },
+    {
+      "organism": "S. pseudintermedius",
+      "source": "UTI",
+      "reason": "selective testing",
+      "combos": 24
+    }
+  ],
+  "trends_pooled_prereg": {
+    "tested_pairs": 42,
+    "rising": 19,
+    "falling": 10
+  },
+  "trends": {
+    "tested_pairs": 40,
+    "rising": 16,
+    "falling": 7,
+    "rising_pairs": [
+      {
+        "organism": "S. pseudintermedius",
+        "source": "Other sites",
+        "drug": "Ampicillin",
+        "n": 10548,
+        "or_per_year": 1.106,
+        "pct_first": 0.498,
+        "pct_last": 0.677
+      },
+      {
+        "organism": "S. pseudintermedius",
+        "source": "Other sites",
+        "drug": "Penicillin",
+        "n": 10596,
+        "or_per_year": 1.081,
+        "pct_first": 0.665,
+        "pct_last": 0.785
+      },
+      {
+        "organism": "S. pseudintermedius",
+        "source": "Other sites",
+        "drug": "Amoxicillin/Clavulanic Acid",
+        "n": 10641,
+        "or_per_year": 1.083,
+        "pct_first": 0.149,
+        "pct_last": 0.264
+      },
+      {
+        "organism": "S. pseudintermedius",
+        "source": "Other sites",
+        "drug": "Cefazolin",
+        "n": 10644,
+        "or_per_year": 1.097,
+        "pct_first": 0.065,
+        "pct_last": 0.126
+      },
+      {
+        "organism": "S. pseudintermedius",
+        "source": "Other sites",
+        "drug": "Cefovecin",
+        "n": 10753,
+        "or_per_year": 1.055,
+        "pct_first": 0.277,
+        "pct_last": 0.368
+      },
+      {
+        "organism": "S. pseudintermedius",
+        "source": "Other sites",
+        "drug": "Cefpodoxime",
+        "n": 10692,
+        "or_per_year": 1.06,
+        "pct_first": 0.166,
+        "pct_last": 0.262
+      },
+      {
+        "organism": "S. pseudintermedius",
+        "source": "Other sites",
+        "drug": "Enrofloxacin",
+        "n": 10743,
+        "or_per_year": 1.047,
+        "pct_first": 0.358,
+        "pct_last": 0.485
+      },
+      {
+        "organism": "S. pseudintermedius",
+        "source": "Other sites",
+        "drug": "Cephalothin",
+        "n": 10780,
+        "or_per_year": 1.089,
+        "pct_first": 0.051,
+        "pct_last": 0.097
+      },
+      {
+        "organism": "S. pseudintermedius",
+        "source": "Other sites",
+        "drug": "Gentamicin",
+        "n": 10826,
+        "or_per_year": 1.053,
+        "pct_first": 0.134,
+        "pct_last": 0.22
+      },
+      {
+        "organism": "S. pseudintermedius",
+        "source": "Other sites",
+        "drug": "Clindamycin",
+        "n": 10788,
+        "or_per_year": 1.042,
+        "pct_first": 0.306,
+        "pct_last": 0.43
+      },
+      {
+        "organism": "S. pseudintermedius",
+        "source": "Other sites",
+        "drug": "Erythromycin",
+        "n": 10796,
+        "or_per_year": 1.04,
+        "pct_first": 0.319,
+        "pct_last": 0.435
+      },
+      {
+        "organism": "S. pseudintermedius",
+        "source": "Other sites",
+        "drug": "Trimethoprim/Sulfamethoxazole",
+        "n": 10658,
+        "or_per_year": 1.039,
+        "pct_first": 0.295,
+        "pct_last": 0.39
+      },
+      {
+        "organism": "S. pseudintermedius",
+        "source": "UTI",
+        "drug": "Penicillin",
+        "n": 2514,
+        "or_per_year": 1.113,
+        "pct_first": 0.546,
+        "pct_last": 0.721
+      },
+      {
+        "organism": "S. pseudintermedius",
+        "source": "UTI",
+        "drug": "Cefazolin",
+        "n": 2535,
+        "or_per_year": 1.177,
+        "pct_first": 0.048,
+        "pct_last": 0.122
+      },
+      {
+        "organism": "S. pseudintermedius",
+        "source": "UTI",
+        "drug": "Enrofloxacin",
+        "n": 2612,
+        "or_per_year": 1.075,
+        "pct_first": 0.234,
+        "pct_last": 0.405
+      },
+      {
+        "organism": "S. pseudintermedius",
+        "source": "UTI",
+        "drug": "Trimethoprim/Sulfamethoxazole",
+        "n": 2549,
+        "or_per_year": 1.071,
+        "pct_first": 0.231,
+        "pct_last": 0.347
+      }
+    ],
+    "falling_pairs": [
+      {
+        "organism": "E. coli",
+        "source": "Other sites",
+        "drug": "Trimethoprim/Sulfamethoxazole",
+        "n": 4128,
+        "or_per_year": 0.889,
+        "pct_first": 0.243,
+        "pct_last": 0.102
+      },
+      {
+        "organism": "E. coli",
+        "source": "Other sites",
+        "drug": "Gentamicin",
+        "n": 4175,
+        "or_per_year": 0.881,
+        "pct_first": 0.118,
+        "pct_last": 0.063
+      },
+      {
+        "organism": "E. coli",
+        "source": "Other sites",
+        "drug": "Marbofloxacin",
+        "n": 4124,
+        "or_per_year": 0.958,
+        "pct_first": 0.198,
+        "pct_last": 0.167
+      },
+      {
+        "organism": "E. coli",
+        "source": "UTI",
+        "drug": "Ampicillin",
+        "n": 8716,
+        "or_per_year": 0.778,
+        "pct_first": 0.053,
+        "pct_last": 0.008
+      },
+      {
+        "organism": "E. coli",
+        "source": "UTI",
+        "drug": "Amoxicillin/Clavulanic Acid",
+        "n": 8782,
+        "or_per_year": 0.712,
+        "pct_first": 0.032,
+        "pct_last": 0.002
+      },
+      {
+        "organism": "E. coli",
+        "source": "UTI",
+        "drug": "Trimethoprim/Sulfamethoxazole",
+        "n": 8590,
+        "or_per_year": 0.935,
+        "pct_first": 0.128,
+        "pct_last": 0.096
+      },
+      {
+        "organism": "E. coli",
+        "source": "UTI",
+        "drug": "Marbofloxacin",
+        "n": 8537,
+        "or_per_year": 0.952,
+        "pct_first": 0.146,
+        "pct_last": 0.153
+      }
+    ]
+  },
+  "mdr": {
+    "E. coli": [
+      "Aminoglycosides",
+      "Beta-lactam + inhibitor",
+      "Carbapenems",
+      "Cephalosporins",
+      "Fluoroquinolones",
+      "Folate pathway inhibitors",
+      "Phenicols"
+    ],
+    "E. coli_trend_or_per_year": [
+      0.947,
+      0.925,
+      0.97,
+      9.054040478888038e-06
+    ],
+    "E. coli_overall_pct_mdr": 0.1423,
+    "S. pseudintermedius": [
+      "Aminoglycosides",
+      "Beta-lactam + inhibitor",
+      "Cephalosporins",
+      "Fluoroquinolones",
+      "Folate pathway inhibitors",
+      "Penicillins",
+      "Rifamycins"
+    ],
+    "S. pseudintermedius_trend_or_per_year": [
+      1.052,
+      1.034,
+      1.07,
+      6.159787423942904e-09
+    ],
+    "S. pseudintermedius_overall_pct_mdr": 0.3676
+  },
+  "mdr_by_year": [
+    {
+      "year": 2017,
+      "n": 556,
+      "mdr_isolates": 97,
+      "pct_mdr": 0.1745,
+      "organism": "E. coli"
+    },
+    {
+      "year": 2018,
+      "n": 1129,
+      "mdr_isolates": 201,
+      "pct_mdr": 0.178,
+      "organism": "E. coli"
+    },
+    {
+      "year": 2019,
+      "n": 1735,
+      "mdr_isolates": 262,
+      "pct_mdr": 0.151,
+      "organism": "E. coli"
+    },
+    {
+      "year": 2020,
+      "n": 1816,
+      "mdr_isolates": 257,
+      "pct_mdr": 0.1415,
+      "organism": "E. coli"
+    },
+    {
+      "year": 2021,
+      "n": 1922,
+      "mdr_isolates": 273,
+      "pct_mdr": 0.142,
+      "organism": "E. coli"
+    },
+    {
+      "year": 2022,
+      "n": 1990,
+      "mdr_isolates": 262,
+      "pct_mdr": 0.1317,
+      "organism": "E. coli"
+    },
+    {
+      "year": 2023,
+      "n": 1948,
+      "mdr_isolates": 246,
+      "pct_mdr": 0.1263,
+      "organism": "E. coli"
+    },
+    {
+      "year": 2024,
+      "n": 1862,
+      "mdr_isolates": 246,
+      "pct_mdr": 0.1321,
+      "organism": "E. coli"
+    },
+    {
+      "year": 2017,
+      "n": 604,
+      "mdr_isolates": 171,
+      "pct_mdr": 0.2831,
+      "organism": "S. pseudintermedius"
+    },
+    {
+      "year": 2018,
+      "n": 1207,
+      "mdr_isolates": 407,
+      "pct_mdr": 0.3372,
+      "organism": "S. pseudintermedius"
+    },
+    {
+      "year": 2019,
+      "n": 1863,
+      "mdr_isolates": 702,
+      "pct_mdr": 0.3768,
+      "organism": "S. pseudintermedius"
+    },
+    {
+      "year": 2020,
+      "n": 1889,
+      "mdr_isolates": 653,
+      "pct_mdr": 0.3457,
+      "organism": "S. pseudintermedius"
+    },
+    {
+      "year": 2021,
+      "n": 1915,
+      "mdr_isolates": 673,
+      "pct_mdr": 0.3514,
+      "organism": "S. pseudintermedius"
+    },
+    {
+      "year": 2022,
+      "n": 1962,
+      "mdr_isolates": 742,
+      "pct_mdr": 0.3782,
+      "organism": "S. pseudintermedius"
+    },
+    {
+      "year": 2023,
+      "n": 2058,
+      "mdr_isolates": 794,
+      "pct_mdr": 0.3858,
+      "organism": "S. pseudintermedius"
+    },
+    {
+      "year": 2024,
+      "n": 1939,
+      "mdr_isolates": 798,
+      "pct_mdr": 0.4116,
+      "organism": "S. pseudintermedius"
+    }
+  ],
+  "mrsp": {
+    "isolates": 13267,
+    "overall_pct": 0.3653,
+    "by_year": [
+      {
+        "year": 2017,
+        "n": 538,
+        "resistant": 156,
+        "pct_resistant": 0.29,
+        "ci_lo": 0.2532,
+        "ci_hi": 0.3297,
+        "reported": true
+      },
+      {
+        "year": 2018,
+        "n": 1183,
+        "resistant": 372,
+        "pct_resistant": 0.3145,
+        "ci_lo": 0.2886,
+        "ci_hi": 0.3415,
+        "reported": true
+      },
+      {
+        "year": 2019,
+        "n": 1848,
+        "resistant": 674,
+        "pct_resistant": 0.3647,
+        "ci_lo": 0.3431,
+        "ci_hi": 0.3869,
+        "reported": true
+      },
+      {
+        "year": 2020,
+        "n": 1901,
+        "resistant": 656,
+        "pct_resistant": 0.3451,
+        "ci_lo": 0.324,
+        "ci_hi": 0.3667,
+        "reported": true
+      },
+      {
+        "year": 2021,
+        "n": 1912,
+        "resistant": 669,
+        "pct_resistant": 0.3499,
+        "ci_lo": 0.3288,
+        "ci_hi": 0.3716,
+        "reported": true
+      },
+      {
+        "year": 2022,
+        "n": 1952,
+        "resistant": 720,
+        "pct_resistant": 0.3689,
+        "ci_lo": 0.3477,
+        "ci_hi": 0.3905,
+        "reported": true
+      },
+      {
+        "year": 2023,
+        "n": 2026,
+        "resistant": 824,
+        "pct_resistant": 0.4067,
+        "ci_lo": 0.3855,
+        "ci_hi": 0.4283,
+        "reported": true
+      },
+      {
+        "year": 2024,
+        "n": 1907,
+        "resistant": 775,
+        "pct_resistant": 0.4064,
+        "ci_lo": 0.3846,
+        "ci_hi": 0.4286,
+        "reported": true
+      }
+    ],
+    "by_year_and_site": [
+      {
+        "source": "Other sites",
+        "year": 2017,
+        "n": 431,
+        "resistant": 135,
+        "pct_resistant": 0.3132,
+        "ci_lo": 0.2712,
+        "ci_hi": 0.3585,
+        "reported": true
+      },
+      {
+        "source": "Other sites",
+        "year": 2018,
+        "n": 996,
+        "resistant": 336,
+        "pct_resistant": 0.3373,
+        "ci_lo": 0.3087,
+        "ci_hi": 0.3673,
+        "reported": true
+      },
+      {
+        "source": "Other sites",
+        "year": 2019,
+        "n": 1501,
+        "resistant": 593,
+        "pct_resistant": 0.3951,
+        "ci_lo": 0.3706,
+        "ci_hi": 0.42,
+        "reported": true
+      },
+      {
+        "source": "Other sites",
+        "year": 2020,
+        "n": 1519,
+        "resistant": 561,
+        "pct_resistant": 0.3693,
+        "ci_lo": 0.3454,
+        "ci_hi": 0.3939,
+        "reported": true
+      },
+      {
+        "source": "Other sites",
+        "year": 2021,
+        "n": 1576,
+        "resistant": 588,
+        "pct_resistant": 0.3731,
+        "ci_lo": 0.3496,
+        "ci_hi": 0.3973,
+        "reported": true
+      },
+      {
+        "source": "Other sites",
+        "year": 2022,
+        "n": 1587,
+        "resistant": 624,
+        "pct_resistant": 0.3932,
+        "ci_lo": 0.3694,
+        "ci_hi": 0.4175,
+        "reported": true
+      },
+      {
+        "source": "Other sites",
+        "year": 2023,
+        "n": 1652,
+        "resistant": 708,
+        "pct_resistant": 0.4286,
+        "ci_lo": 0.4049,
+        "ci_hi": 0.4526,
+        "reported": true
+      },
+      {
+        "source": "Other sites",
+        "year": 2024,
+        "n": 1490,
+        "resistant": 640,
+        "pct_resistant": 0.4295,
+        "ci_lo": 0.4046,
+        "ci_hi": 0.4548,
+        "reported": true
+      },
+      {
+        "source": "UTI",
+        "year": 2017,
+        "n": 107,
+        "resistant": 21,
+        "pct_resistant": 0.1963,
+        "ci_lo": 0.1321,
+        "ci_hi": 0.2815,
+        "reported": true
+      },
+      {
+        "source": "UTI",
+        "year": 2018,
+        "n": 187,
+        "resistant": 36,
+        "pct_resistant": 0.1925,
+        "ci_lo": 0.1424,
+        "ci_hi": 0.255,
+        "reported": true
+      },
+      {
+        "source": "UTI",
+        "year": 2019,
+        "n": 347,
+        "resistant": 81,
+        "pct_resistant": 0.2334,
+        "ci_lo": 0.192,
+        "ci_hi": 0.2807,
+        "reported": true
+      },
+      {
+        "source": "UTI",
+        "year": 2020,
+        "n": 382,
+        "resistant": 95,
+        "pct_resistant": 0.2487,
+        "ci_lo": 0.208,
+        "ci_hi": 0.2944,
+        "reported": true
+      },
+      {
+        "source": "UTI",
+        "year": 2021,
+        "n": 336,
+        "resistant": 81,
+        "pct_resistant": 0.2411,
+        "ci_lo": 0.1984,
+        "ci_hi": 0.2896,
+        "reported": true
+      },
+      {
+        "source": "UTI",
+        "year": 2022,
+        "n": 365,
+        "resistant": 96,
+        "pct_resistant": 0.263,
+        "ci_lo": 0.2205,
+        "ci_hi": 0.3105,
+        "reported": true
+      },
+      {
+        "source": "UTI",
+        "year": 2023,
+        "n": 374,
+        "resistant": 116,
+        "pct_resistant": 0.3102,
+        "ci_lo": 0.2654,
+        "ci_hi": 0.3588,
+        "reported": true
+      },
+      {
+        "source": "UTI",
+        "year": 2024,
+        "n": 417,
+        "resistant": 135,
+        "pct_resistant": 0.3237,
+        "ci_lo": 0.2806,
+        "ci_hi": 0.3701,
+        "reported": true
+      }
+    ],
+    "by_region": [
+      {
+        "region": "Canada",
+        "n": 245,
+        "resistant": 50,
+        "pct_resistant": 0.2041,
+        "ci_lo": 0.1584,
+        "ci_hi": 0.2589,
+        "reported": true
+      },
+      {
+        "region": "Midwest",
+        "n": 5383,
+        "resistant": 1755,
+        "pct_resistant": 0.326,
+        "ci_lo": 0.3136,
+        "ci_hi": 0.3387,
+        "reported": true
+      },
+      {
+        "region": "Northeast",
+        "n": 985,
+        "resistant": 412,
+        "pct_resistant": 0.4183,
+        "ci_lo": 0.3878,
+        "ci_hi": 0.4493,
+        "reported": true
+      },
+      {
+        "region": "South",
+        "n": 5843,
+        "resistant": 2383,
+        "pct_resistant": 0.4078,
+        "ci_lo": 0.3953,
+        "ci_hi": 0.4205,
+        "reported": true
+      },
+      {
+        "region": "West",
+        "n": 811,
+        "resistant": 246,
+        "pct_resistant": 0.3033,
+        "ci_lo": 0.2727,
+        "ci_hi": 0.3358,
+        "reported": true
+      }
+    ],
+    "adjusted_or_per_year": [
+      1.073,
+      1.054,
+      1.092
+    ],
+    "p_trend": 3.4596643928256223e-15
+  },
+  "region_source_models": [
+    {
+      "organism": "E. coli",
+      "drug": "Enrofloxacin",
+      "n": 12709,
+      "odds_ratios": {
+        "C(region, Treatment('Midwest'))[T.Northeast]": 1.279,
+        "C(region, Treatment('Midwest'))[T.South]": 1.374,
+        "C(region, Treatment('Midwest'))[T.West]": 0.706,
+        "C(source)[T.UTI]": 0.821,
+        "I(year - 2017)": 0.975
+      },
+      "p_values": {
+        "Intercept": 0.0,
+        "C(region, Treatment('Midwest'))[T.Northeast]": 0.008,
+        "C(region, Treatment('Midwest'))[T.South]": 0.0,
+        "C(region, Treatment('Midwest'))[T.West]": 0.0016,
+        "C(source)[T.UTI]": 0.0002,
+        "I(year - 2017)": 0.032
+      }
+    },
+    {
+      "organism": "E. coli",
+      "drug": "Amoxicillin/Clavulanic Acid",
+      "n": 8600,
+      "odds_ratios": {
+        "C(region, Treatment('Midwest'))[T.Northeast]": 26.551,
+        "C(region, Treatment('Midwest'))[T.South]": 0.262,
+        "C(region, Treatment('Midwest'))[T.West]": 0.0,
+        "I(year - 2017)": 0.629
+      },
+      "p_values": {
+        "Intercept": 0.0,
+        "C(region, Treatment('Midwest'))[T.Northeast]": 0.0,
+        "C(region, Treatment('Midwest'))[T.South]": 0.017,
+        "C(region, Treatment('Midwest'))[T.West]": 0.9965,
+        "I(year - 2017)": 0.0
+      }
+    },
+    {
+      "organism": "E. coli",
+      "drug": "Trimethoprim/Sulfamethoxazole",
+      "n": 12466,
+      "odds_ratios": {
+        "C(region, Treatment('Midwest'))[T.Northeast]": 0.819,
+        "C(region, Treatment('Midwest'))[T.South]": 1.16,
+        "C(region, Treatment('Midwest'))[T.West]": 0.788,
+        "C(source)[T.UTI]": 0.701,
+        "I(year - 2017)": 0.92
+      },
+      "p_values": {
+        "Intercept": 0.0,
+        "C(region, Treatment('Midwest'))[T.Northeast]": 0.1182,
+        "C(region, Treatment('Midwest'))[T.South]": 0.0177,
+        "C(region, Treatment('Midwest'))[T.West]": 0.0474,
+        "C(source)[T.UTI]": 0.0,
+        "I(year - 2017)": 0.0
+      }
+    },
+    {
+      "organism": "E. coli",
+      "drug": "Cefpodoxime",
+      "n": 12303,
+      "odds_ratios": {
+        "C(region, Treatment('Midwest'))[T.Northeast]": 1.276,
+        "C(region, Treatment('Midwest'))[T.South]": 1.389,
+        "C(region, Treatment('Midwest'))[T.West]": 0.861,
+        "C(source)[T.UTI]": 0.651,
+        "I(year - 2017)": 1.006
+      },
+      "p_values": {
+        "Intercept": 0.0,
+        "C(region, Treatment('Midwest'))[T.Northeast]": 0.0111,
+        "C(region, Treatment('Midwest'))[T.South]": 0.0,
+        "C(region, Treatment('Midwest'))[T.West]": 0.1279,
+        "C(source)[T.UTI]": 0.0,
+        "I(year - 2017)": 0.6238
+      }
+    },
+    {
+      "organism": "S. pseudintermedius",
+      "drug": "Clindamycin",
+      "n": 10588,
+      "odds_ratios": {
+        "C(region, Treatment('Midwest'))[T.Northeast]": 1.433,
+        "C(region, Treatment('Midwest'))[T.South]": 1.278,
+        "C(region, Treatment('Midwest'))[T.West]": 1.099,
+        "I(year - 2017)": 1.046
+      },
+      "p_values": {
+        "Intercept": 0.0,
+        "C(region, Treatment('Midwest'))[T.Northeast]": 0.0,
+        "C(region, Treatment('Midwest'))[T.South]": 0.0,
+        "C(region, Treatment('Midwest'))[T.West]": 0.2949,
+        "I(year - 2017)": 0.0
+      }
+    },
+    {
+      "organism": "S. pseudintermedius",
+      "drug": "Trimethoprim/Sulfamethoxazole",
+      "n": 12962,
+      "odds_ratios": {
+        "C(region, Treatment('Midwest'))[T.Northeast]": 1.308,
+        "C(region, Treatment('Midwest'))[T.South]": 1.323,
+        "C(region, Treatment('Midwest'))[T.West]": 0.848,
+        "C(source)[T.UTI]": 0.661,
+        "I(year - 2017)": 1.05
+      },
+      "p_values": {
+        "Intercept": 0.0,
+        "C(region, Treatment('Midwest'))[T.Northeast]": 0.0004,
+        "C(region, Treatment('Midwest'))[T.South]": 0.0,
+        "C(region, Treatment('Midwest'))[T.West]": 0.0508,
+        "C(source)[T.UTI]": 0.0,
+        "I(year - 2017)": 0.0
+      }
+    }
+  ],
+  "regional_uti_antibiogram": [
+    {
+      "region": "Canada",
+      "drug": "Amoxicillin/Clavulanic Acid",
+      "n": 108,
+      "resistant": 0,
+      "pct_resistant": 0.0,
+      "ci_lo": 0.0,
+      "ci_hi": 0.034,
+      "reported": true,
+      "pct_susceptible": 1.0
+    },
+    {
+      "region": "Canada",
+      "drug": "Ampicillin",
+      "n": 108,
+      "resistant": 0,
+      "pct_resistant": 0.0,
+      "ci_lo": 0.0,
+      "ci_hi": 0.034,
+      "reported": true,
+      "pct_susceptible": 1.0
+    },
+    {
+      "region": "Canada",
+      "drug": "Cefazolin",
+      "n": 108,
+      "resistant": 9,
+      "pct_resistant": 0.083,
+      "ci_lo": 0.044,
+      "ci_hi": 0.151,
+      "reported": true,
+      "pct_susceptible": 0.917
+    },
+    {
+      "region": "Canada",
+      "drug": "Cefpodoxime",
+      "n": 108,
+      "resistant": 8,
+      "pct_resistant": 0.074,
+      "ci_lo": 0.038,
+      "ci_hi": 0.139,
+      "reported": true,
+      "pct_susceptible": 0.926
+    },
+    {
+      "region": "Canada",
+      "drug": "Enrofloxacin",
+      "n": 108,
+      "resistant": 5,
+      "pct_resistant": 0.046,
+      "ci_lo": 0.02,
+      "ci_hi": 0.104,
+      "reported": true,
+      "pct_susceptible": 0.954
+    },
+    {
+      "region": "Canada",
+      "drug": "Marbofloxacin",
+      "n": 108,
+      "resistant": 6,
+      "pct_resistant": 0.056,
+      "ci_lo": 0.026,
+      "ci_hi": 0.116,
+      "reported": true,
+      "pct_susceptible": 0.944
+    },
+    {
+      "region": "Canada",
+      "drug": "Trimethoprim/Sulfamethoxazole",
+      "n": 108,
+      "resistant": 8,
+      "pct_resistant": 0.074,
+      "ci_lo": 0.038,
+      "ci_hi": 0.139,
+      "reported": true,
+      "pct_susceptible": 0.926
+    },
+    {
+      "region": "Midwest",
+      "drug": "Amoxicillin/Clavulanic Acid",
+      "n": 1918,
+      "resistant": 0,
+      "pct_resistant": 0.0,
+      "ci_lo": 0.0,
+      "ci_hi": 0.002,
+      "reported": true,
+      "pct_susceptible": 1.0
+    },
+    {
+      "region": "Midwest",
+      "drug": "Ampicillin",
+      "n": 1918,
+      "resistant": 0,
+      "pct_resistant": 0.0,
+      "ci_lo": 0.0,
+      "ci_hi": 0.002,
+      "reported": true,
+      "pct_susceptible": 1.0
+    },
+    {
+      "region": "Midwest",
+      "drug": "Cefazolin",
+      "n": 1918,
+      "resistant": 225,
+      "pct_resistant": 0.117,
+      "ci_lo": 0.104,
+      "ci_hi": 0.132,
+      "reported": true,
+      "pct_susceptible": 0.883
+    },
+    {
+      "region": "Midwest",
+      "drug": "Cefpodoxime",
+      "n": 1811,
+      "resistant": 230,
+      "pct_resistant": 0.127,
+      "ci_lo": 0.112,
+      "ci_hi": 0.143,
+      "reported": true,
+      "pct_susceptible": 0.873
+    },
+    {
+      "region": "Midwest",
+      "drug": "Enrofloxacin",
+      "n": 1918,
+      "resistant": 224,
+      "pct_resistant": 0.117,
+      "ci_lo": 0.103,
+      "ci_hi": 0.132,
+      "reported": true,
+      "pct_susceptible": 0.883
+    },
+    {
+      "region": "Midwest",
+      "drug": "Marbofloxacin",
+      "n": 1917,
+      "resistant": 240,
+      "pct_resistant": 0.125,
+      "ci_lo": 0.111,
+      "ci_hi": 0.141,
+      "reported": true,
+      "pct_susceptible": 0.875
+    },
+    {
+      "region": "Midwest",
+      "drug": "Trimethoprim/Sulfamethoxazole",
+      "n": 1918,
+      "resistant": 166,
+      "pct_resistant": 0.087,
+      "ci_lo": 0.075,
+      "ci_hi": 0.1,
+      "reported": true,
+      "pct_susceptible": 0.913
+    },
+    {
+      "region": "Northeast",
+      "drug": "Amoxicillin/Clavulanic Acid",
+      "n": 233,
+      "resistant": 8,
+      "pct_resistant": 0.034,
+      "ci_lo": 0.017,
+      "ci_hi": 0.066,
+      "reported": true,
+      "pct_susceptible": 0.966
+    },
+    {
+      "region": "Northeast",
+      "drug": "Ampicillin",
+      "n": 233,
+      "resistant": 29,
+      "pct_resistant": 0.124,
+      "ci_lo": 0.088,
+      "ci_hi": 0.173,
+      "reported": true,
+      "pct_susceptible": 0.876
+    },
+    {
+      "region": "Northeast",
+      "drug": "Cefazolin",
+      "n": 127,
+      "resistant": 23,
+      "pct_resistant": 0.181,
+      "ci_lo": 0.124,
+      "ci_hi": 0.257,
+      "reported": true,
+      "pct_susceptible": 0.819
+    },
+    {
+      "region": "Northeast",
+      "drug": "Cefpodoxime",
+      "n": 127,
+      "resistant": 22,
+      "pct_resistant": 0.173,
+      "ci_lo": 0.117,
+      "ci_hi": 0.248,
+      "reported": true,
+      "pct_susceptible": 0.827
+    },
+    {
+      "region": "Northeast",
+      "drug": "Enrofloxacin",
+      "n": 233,
+      "resistant": 30,
+      "pct_resistant": 0.129,
+      "ci_lo": 0.092,
+      "ci_hi": 0.178,
+      "reported": true,
+      "pct_susceptible": 0.871
+    },
+    {
+      "region": "Northeast",
+      "drug": "Marbofloxacin",
+      "n": 127,
+      "resistant": 22,
+      "pct_resistant": 0.173,
+      "ci_lo": 0.117,
+      "ci_hi": 0.248,
+      "reported": true,
+      "pct_susceptible": 0.827
+    },
+    {
+      "region": "Northeast",
+      "drug": "Trimethoprim/Sulfamethoxazole",
+      "n": 146,
+      "resistant": 13,
+      "pct_resistant": 0.089,
+      "ci_lo": 0.053,
+      "ci_hi": 0.146,
+      "reported": true,
+      "pct_susceptible": 0.911
+    },
+    {
+      "region": "South",
+      "drug": "Amoxicillin/Clavulanic Acid",
+      "n": 1443,
+      "resistant": 1,
+      "pct_resistant": 0.001,
+      "ci_lo": 0.0,
+      "ci_hi": 0.004,
+      "reported": true,
+      "pct_susceptible": 0.999
+    },
+    {
+      "region": "South",
+      "drug": "Ampicillin",
+      "n": 1443,
+      "resistant": 2,
+      "pct_resistant": 0.001,
+      "ci_lo": 0.0,
+      "ci_hi": 0.005,
+      "reported": true,
+      "pct_susceptible": 0.999
+    },
+    {
+      "region": "South",
+      "drug": "Cefazolin",
+      "n": 1443,
+      "resistant": 268,
+      "pct_resistant": 0.186,
+      "ci_lo": 0.167,
+      "ci_hi": 0.207,
+      "reported": true,
+      "pct_susceptible": 0.814
+    },
+    {
+      "region": "South",
+      "drug": "Cefpodoxime",
+      "n": 1443,
+      "resistant": 300,
+      "pct_resistant": 0.208,
+      "ci_lo": 0.188,
+      "ci_hi": 0.23,
+      "reported": true,
+      "pct_susceptible": 0.792
+    },
+    {
+      "region": "South",
+      "drug": "Enrofloxacin",
+      "n": 1439,
+      "resistant": 250,
+      "pct_resistant": 0.174,
+      "ci_lo": 0.155,
+      "ci_hi": 0.194,
+      "reported": true,
+      "pct_susceptible": 0.826
+    },
+    {
+      "region": "South",
+      "drug": "Marbofloxacin",
+      "n": 1441,
+      "resistant": 266,
+      "pct_resistant": 0.185,
+      "ci_lo": 0.165,
+      "ci_hi": 0.205,
+      "reported": true,
+      "pct_susceptible": 0.815
+    },
+    {
+      "region": "South",
+      "drug": "Trimethoprim/Sulfamethoxazole",
+      "n": 1410,
+      "resistant": 133,
+      "pct_resistant": 0.094,
+      "ci_lo": 0.08,
+      "ci_hi": 0.111,
+      "reported": true,
+      "pct_susceptible": 0.906
+    },
+    {
+      "region": "West",
+      "drug": "Amoxicillin/Clavulanic Acid",
+      "n": 267,
+      "resistant": 0,
+      "pct_resistant": 0.0,
+      "ci_lo": 0.0,
+      "ci_hi": 0.014,
+      "reported": true,
+      "pct_susceptible": 1.0
+    },
+    {
+      "region": "West",
+      "drug": "Ampicillin",
+      "n": 267,
+      "resistant": 0,
+      "pct_resistant": 0.0,
+      "ci_lo": 0.0,
+      "ci_hi": 0.014,
+      "reported": true,
+      "pct_susceptible": 1.0
+    },
+    {
+      "region": "West",
+      "drug": "Cefazolin",
+      "n": 267,
+      "resistant": 31,
+      "pct_resistant": 0.116,
+      "ci_lo": 0.083,
+      "ci_hi": 0.16,
+      "reported": true,
+      "pct_susceptible": 0.884
+    },
+    {
+      "region": "West",
+      "drug": "Cefpodoxime",
+      "n": 267,
+      "resistant": 31,
+      "pct_resistant": 0.116,
+      "ci_lo": 0.083,
+      "ci_hi": 0.16,
+      "reported": true,
+      "pct_susceptible": 0.884
+    },
+    {
+      "region": "West",
+      "drug": "Enrofloxacin",
+      "n": 266,
+      "resistant": 23,
+      "pct_resistant": 0.086,
+      "ci_lo": 0.058,
+      "ci_hi": 0.126,
+      "reported": true,
+      "pct_susceptible": 0.914
+    },
+    {
+      "region": "West",
+      "drug": "Marbofloxacin",
+      "n": 266,
+      "resistant": 24,
+      "pct_resistant": 0.09,
+      "ci_lo": 0.061,
+      "ci_hi": 0.131,
+      "reported": true,
+      "pct_susceptible": 0.91
+    },
+    {
+      "region": "West",
+      "drug": "Trimethoprim/Sulfamethoxazole",
+      "n": 267,
+      "resistant": 14,
+      "pct_resistant": 0.052,
+      "ci_lo": 0.031,
+      "ci_hi": 0.086,
+      "reported": true,
+      "pct_susceptible": 0.948
+    }
+  ],
+  "prereg_expectation_mrsp_present_and_not_declining": true
+}

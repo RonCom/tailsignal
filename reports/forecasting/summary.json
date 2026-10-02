@@ -1,0 +1,130 @@
+{
+  "series": 43,
+  "bottom_series": 27,
+  "origins": 12,
+  "horizon_weeks": 13,
+  "accuracy": {
+    "SNaive": {
+      "mean_mase_bottom": 0.889,
+      "median_mase_bottom": 0.922,
+      "coverage_80": 0.847
+    },
+    "MSTL (base)": {
+      "mean_mase_bottom": 0.838,
+      "median_mase_bottom": 0.867,
+      "coverage_80": 0.637
+    },
+    "MSTL + bottom-up": {
+      "mean_mase_bottom": 0.838,
+      "median_mase_bottom": 0.867,
+      "coverage_80": 0.637
+    },
+    "MSTL + MinT shrink": {
+      "mean_mase_bottom": 0.828,
+      "median_mase_bottom": 0.851,
+      "coverage_80": 0.642
+    },
+    "Combo + MinT shrink (exploratory)": {
+      "mean_mase_bottom": 0.811,
+      "median_mase_bottom": 0.817,
+      "coverage_80": 0.791
+    }
+  },
+  "mase_by_service": {
+    "daycare": {
+      "SNaive": 0.772,
+      "MSTL (base)": 0.714,
+      "MSTL + bottom-up": 0.714,
+      "MSTL + MinT shrink": 0.703,
+      "Combo + MinT shrink (exploratory)": 0.682
+    },
+    "boarding": {
+      "SNaive": 0.98,
+      "MSTL (base)": 0.905,
+      "MSTL + bottom-up": 0.905,
+      "MSTL + MinT shrink": 0.909,
+      "Combo + MinT shrink (exploratory)": 0.9
+    },
+    "grooming": {
+      "SNaive": 0.97,
+      "MSTL (base)": 0.834,
+      "MSTL + bottom-up": 0.834,
+      "MSTL + MinT shrink": 0.833,
+      "Combo + MinT shrink (exploratory)": 0.856
+    },
+    "vet": {
+      "SNaive": 0.854,
+      "MSTL (base)": 0.88,
+      "MSTL + bottom-up": 0.88,
+      "MSTL + MinT shrink": 0.855,
+      "Combo + MinT shrink (exploratory)": 0.808
+    }
+  },
+  "H8_pass": false,
+  "staffing_backtest": {
+    "SNaive | point": {
+      "handler_days": 41035.0,
+      "overstaff_cost": 240800.0,
+      "turned_away_dog_days": 2314.0,
+      "turned_away_cost": 92560.0,
+      "total_cost": 333360.0
+    },
+    "SNaive | upper80": {
+      "handler_days": 50590.0,
+      "overstaff_cost": 1689600.0,
+      "turned_away_dog_days": 0.0,
+      "turned_away_cost": 0.0,
+      "total_cost": 1689600.0
+    },
+    "MSTL + MinT | point": {
+      "handler_days": 40210.0,
+      "overstaff_cost": 195200.0,
+      "turned_away_dog_days": 4633.0,
+      "turned_away_cost": 185320.0,
+      "total_cost": 380520.0
+    },
+    "MSTL + MinT | upper80": {
+      "handler_days": 43125.0,
+      "overstaff_cost": 520000.0,
+      "turned_away_dog_days": 702.0,
+      "turned_away_cost": 28080.0,
+      "total_cost": 548080.0
+    },
+    "Combo + MinT | point": {
+      "handler_days": 40630.0,
+      "overstaff_cost": 202400.0,
+      "turned_away_dog_days": 2726.0,
+      "turned_away_cost": 109040.0,
+      "total_cost": 311440.0
+    },
+    "Combo + MinT | upper80": {
+      "handler_days": 46375.0,
+      "overstaff_cost": 1020000.0,
+      "turned_away_dog_days": 148.0,
+      "turned_away_cost": 5920.0,
+      "total_cost": 1025920.0
+    },
+    "assumptions": {
+      "dogs_per_handler": 15,
+      "handler_day_cost": 160.0,
+      "turned_away_cost_per_dog_day": 40.0,
+      "note": "illustrative"
+    }
+  },
+  "staffing_plan_weeks": [
+    "2025-12-29",
+    "2026-01-05",
+    "2026-01-12",
+    "2026-01-19",
+    "2026-01-26",
+    "2026-02-02",
+    "2026-02-09",
+    "2026-02-16",
+    "2026-02-23",
+    "2026-03-02",
+    "2026-03-09",
+    "2026-03-16",
+    "2026-03-23"
+  ],
+  "staffing_rule_used_for_plan": "Combo + MinT | point"
+}

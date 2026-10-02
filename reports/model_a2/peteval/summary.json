@@ -1,0 +1,28 @@
+{
+  "records": 4999,
+  "stage1_hits": 95,
+  "stage2_hits": 96,
+  "stage3_frozen": {
+    "flagged": 60,
+    "true": 18,
+    "uncertain": 3,
+    "false": 39,
+    "precision_strict": 0.3,
+    "precision_incl_uncertain": 0.35
+  },
+  "stage3_v2_posthoc": {
+    "flagged": 28,
+    "true": 18,
+    "uncertain": 3,
+    "false": 7,
+    "precision_strict": 0.643,
+    "precision_incl_uncertain": 0.75
+  },
+  "false_positives_from_fit": 37,
+  "true_positives_lost_by_v2": 0,
+  "unreviewed_ids": [],
+  "v2_on_synthetic": {
+    "precision": 0.754,
+    "recall": 0.717
+  }
+}

@@ -1,0 +1,21 @@
+source_service,channel,service_code,service_family
+Wellness exam,vet,wellness_exam,preventive
+Sick visit exam,vet,sick_visit,clinical
+Recheck exam,vet,recheck,clinical
+Diagnostics/treatment,vet,diagnostics_treatment,clinical
+Dental cleaning under anesthesia,vet,dental_procedure,clinical
+Vaccine - Rabies,vet,vaccine_rabies,preventive
+Vaccine - DHPP,vet,vaccine_dhpp,preventive
+Vaccine - Bordetella,vet,vaccine_bordetella,preventive
+Vaccine - Leptospirosis,vet,vaccine_lepto,preventive
+Vaccine - FVRCP,vet,vaccine_fvrcp,preventive
+Vaccine - FeLV,vet,vaccine_felv,preventive
+Full Day,daycare,daycare_full_day,care
+Half Day,daycare,daycare_half_day,care
+Standard,boarding,boarding_standard,care
+Suite,boarding,boarding_suite,care
+Cat Condo,boarding,boarding_cat,care
+Full Groom,grooming,groom_full,grooming
+Bath & Brush,grooming,groom_bath,grooming
+Nail Trim,grooming,nail_trim,grooming
+Lion Cut,grooming,groom_full,grooming

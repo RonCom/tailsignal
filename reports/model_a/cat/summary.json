@@ -1,0 +1,883 @@
+{
+  "data": {
+    "reports": "144967",
+    "first_date": "1987-01-08 00:00:00",
+    "last_date": "2026-03-27 00:00:00",
+    "drugs": "5902",
+    "events": "2419"
+  },
+  "strata": [
+    {
+      "stratum": "mixed_unknown",
+      "n": 126272
+    },
+    {
+      "stratum": "other_purebred",
+      "n": 18695
+    }
+  ],
+  "prior": {
+    "a1": 0.02616261899685023,
+    "b1": 0.01959693720464371,
+    "a2": 0.9205579412029853,
+    "b2": 0.6596899003259803,
+    "p": 0.2440799873611742
+  },
+  "strata_priors": {
+    "mixed_unknown": {
+      "a1": 0.0006709509327444413,
+      "b1": 0.019657407404036816,
+      "a2": 0.9172078847570921,
+      "b2": 0.6643806489225447,
+      "p": 0.9237989670109257
+    },
+    "other_purebred": {
+      "a1": 0.12406466437961167,
+      "b1": 0.040086956519000586,
+      "a2": 1.1439345361241786,
+      "b2": 0.940433310267219,
+      "p": 0.12681909185112913
+    }
+  },
+  "hier_priors": {
+    "mixed_unknown": {
+      "a_c": 22174.878949439517,
+      "a_d": 148.4131591025766,
+      "pi": 0.9998766054240121
+    },
+    "other_purebred": {
+      "a_c": 214.623711633867,
+      "a_d": 4.863713511250832,
+      "pi": 0.9913291684628736
+    }
+  },
+  "targets_current": [
+    {
+      "drug": "class:macrocyclic_lactones",
+      "event": "NEUROLOGIC",
+      "n": 5459,
+      "E": 5686.2646497827,
+      "a_b": 45870,
+      "a_c": 17688,
+      "N": 144967,
+      "prr": 0.9643927044,
+      "chi2": 5.6105311035,
+      "ror": 0.9595826224,
+      "ror_lo": 0.9274896219,
+      "sig_prr": false,
+      "sig_ror": false,
+      "ebgm": 0.9599941856,
+      "post_mean": 0.9600821055,
+      "eb05": 0.9388106303,
+      "sig_mgps": false
+    },
+    {
+      "drug": "moxidectin",
+      "event": "NEUROLOGIC",
+      "n": 1035,
+      "E": 954.8748088121,
+      "a_b": 7892,
+      "a_c": 17688,
+      "N": 144967,
+      "prr": 1.0794910494,
+      "chi2": 6.4067317804,
+      "ror": 1.0914894796,
+      "ror_lo": 1.0204098884,
+      "sig_prr": false,
+      "sig_ror": true,
+      "ebgm": 1.0835989991,
+      "post_mean": 1.0841222324,
+      "eb05": 1.0293188657,
+      "sig_mgps": false
+    },
+    {
+      "drug": "sarolaner",
+      "event": "NEUROLOGIC",
+      "n": 187,
+      "E": 36.1728723284,
+      "a_b": 348,
+      "a_c": 17688,
+      "N": 144967,
+      "prr": 4.4404281988,
+      "chi2": 557.8640696662,
+      "ror": 8.4364534981,
+      "ror_lo": 6.8294715112,
+      "sig_prr": true,
+      "sig_ror": true,
+      "ebgm": 5.0929309307,
+      "post_mean": 5.1065430737,
+      "eb05": 4.5090551266,
+      "sig_mgps": true
+    },
+    {
+      "drug": "fluralaner",
+      "event": "NEUROLOGIC",
+      "n": 29,
+      "E": 18.6572806922,
+      "a_b": 182,
+      "a_c": 17688,
+      "N": 144967,
+      "prr": 1.3064237705,
+      "chi2": 2.0340211926,
+      "ror": 1.364504093,
+      "ror_lo": 0.9171528195,
+      "sig_prr": false,
+      "sig_ror": false,
+      "ebgm": 1.5232084606,
+      "post_mean": 1.5490383321,
+      "eb05": 1.1143319215,
+      "sig_mgps": false
+    },
+    {
+      "drug": "afoxolaner",
+      "event": "NEUROLOGIC",
+      "n": 5,
+      "E": 7.2746640195,
+      "a_b": 72,
+      "a_c": 17688,
+      "N": 144967,
+      "prr": 0.5690297335,
+      "chi2": 1.3997757757,
+      "ror": 0.5368677733,
+      "ror_lo": 0.2163632717,
+      "sig_prr": false,
+      "sig_ror": false,
+      "ebgm": 0.6823813328,
+      "post_mean": 0.7446549643,
+      "eb05": 0.3210411587,
+      "sig_mgps": false
+    },
+    {
+      "drug": "class:macrocyclic_lactones",
+      "event": "Seizure NOS",
+      "n": 810,
+      "E": 741.0718091964,
+      "a_b": 45870,
+      "a_c": 2416,
+      "N": 144967,
+      "prr": 1.0896104129,
+      "chi2": 3.9471922812,
+      "ror": 1.0912212525,
+      "ror_lo": 1.0020975342,
+      "sig_prr": false,
+      "sig_ror": true,
+      "ebgm": 1.0926007181,
+      "post_mean": 1.0932747605,
+      "eb05": 1.0309005524,
+      "sig_mgps": false
+    },
+    {
+      "drug": "ivermectin",
+      "event": "Seizure NOS",
+      "n": 8,
+      "E": 7.8594260905,
+      "a_b": 959,
+      "a_c": 2416,
+      "N": 144967,
+      "prr": 0.4988862291,
+      "chi2": 3.5862092475,
+      "ror": 0.494670761,
+      "ror_lo": 0.2463749054,
+      "sig_prr": false,
+      "sig_ror": false,
+      "ebgm": 0.9882313282,
+      "post_mean": 1.0464637032,
+      "eb05": 0.5434570362,
+      "sig_mgps": false
+    },
+    {
+      "drug": "moxidectin",
+      "event": "Seizure NOS",
+      "n": 118,
+      "E": 131.6659557919,
+      "a_b": 7892,
+      "a_c": 2416,
+      "N": 144967,
+      "prr": 0.8918732965,
+      "chi2": 1.3876583446,
+      "ror": 0.8902320627,
+      "ror_lo": 0.738829977,
+      "sig_prr": false,
+      "sig_ror": false,
+      "ebgm": 0.8948643067,
+      "post_mean": 0.8986406995,
+      "eb05": 0.7675128052,
+      "sig_mgps": false
+    },
+    {
+      "drug": "fluralaner",
+      "event": "Seizure NOS",
+      "n": 8,
+      "E": 4.077163446,
+      "a_b": 182,
+      "a_c": 2416,
+      "N": 144967,
+      "prr": 2.6429301595,
+      "chi2": 6.6979340566,
+      "ror": 2.7184671784,
+      "ror_lo": 1.3367064253,
+      "sig_prr": true,
+      "sig_ror": true,
+      "ebgm": 1.7800905335,
+      "post_mean": 1.8850057322,
+      "eb05": 0.9790376401,
+      "sig_mgps": false
+    },
+    {
+      "drug": "afoxolaner",
+      "event": "Seizure NOS",
+      "n": 2,
+      "E": 1.5542741776,
+      "a_b": 72,
+      "a_c": 2416,
+      "N": 144967,
+      "prr": 1.6672995489,
+      "chi2": 0.076342191,
+      "ror": 1.6863652503,
+      "ror_lo": 0.4132969505,
+      "sig_prr": false,
+      "sig_ror": false,
+      "ebgm": 1.097789912,
+      "post_mean": 1.3183368223,
+      "eb05": 0.3470989244,
+      "sig_mgps": false
+    },
+    {
+      "drug": "lotilaner",
+      "event": "NEUROLOGIC",
+      "n": 123,
+      "E": 82.3176002115,
+      "a_b": 819,
+      "a_c": 17688,
+      "N": 144967,
+      "prr": 1.2324850972,
+      "chi2": 5.8393416446,
+      "ror": 1.2735708256,
+      "ror_lo": 1.0507118486,
+      "sig_prr": false,
+      "sig_ror": true,
+      "ebgm": 1.4874206398,
+      "post_mean": 1.4934433166,
+      "eb05": 1.2798176686,
+      "sig_mgps": false
+    },
+    {
+      "drug": "class:isoxazolines",
+      "event": "Seizure NOS",
+      "n": 727,
+      "E": 567.8223905417,
+      "a_b": 25236,
+      "a_c": 2416,
+      "N": 144967,
+      "prr": 2.0421651111,
+      "chi2": 273.9868679194,
+      "ror": 2.0730784098,
+      "ror_lo": 1.8984014978,
+      "sig_prr": true,
+      "sig_ror": true,
+      "ebgm": 1.2795812493,
+      "post_mean": 1.2804607049,
+      "eb05": 1.2034083444,
+      "sig_mgps": false
+    },
+    {
+      "drug": "eprinomectin",
+      "event": "Seizure NOS",
+      "n": 125,
+      "E": 73.1491772445,
+      "a_b": 3510,
+      "a_c": 2416,
+      "N": 144967,
+      "prr": 2.1988836535,
+      "chi2": 77.6128698214,
+      "ror": 2.2431555757,
+      "ror_lo": 1.8676046267,
+      "sig_prr": true,
+      "sig_ror": true,
+      "ebgm": 1.6993230859,
+      "post_mean": 1.7060941648,
+      "eb05": 1.4639301613,
+      "sig_mgps": false
+    },
+    {
+      "drug": "doramectin",
+      "event": "Seizure NOS",
+      "n": 1,
+      "E": 0.115924737,
+      "a_b": 27,
+      "a_c": 2416,
+      "N": 144967,
+      "prr": 2.2228356721,
+      "chi2": 0.005655951,
+      "ror": 2.2698678133,
+      "ror_lo": 0.3078877507,
+      "sig_prr": false,
+      "sig_ror": false,
+      "ebgm": 1.9548366508,
+      "post_mean": 2.7553116971,
+      "eb05": 0.4175744197,
+      "sig_mgps": false
+    },
+    {
+      "drug": "ivermectin",
+      "event": "NEUROLOGIC",
+      "n": 403,
+      "E": 158.2124690764,
+      "a_b": 959,
+      "a_c": 17688,
+      "N": 144967,
+      "prr": 3.5010932164,
+      "chi2": 798.6275326073,
+      "ror": 5.3139359614,
+      "ror_lo": 4.6698450528,
+      "sig_prr": true,
+      "sig_ror": true,
+      "ebgm": 2.5393973533,
+      "post_mean": 2.5425443207,
+      "eb05": 2.3380867827,
+      "sig_mgps": true
+    },
+    {
+      "drug": "doramectin",
+      "event": "NEUROLOGIC",
+      "n": 15,
+      "E": 4.6279643434,
+      "a_b": 27,
+      "a_c": 17688,
+      "N": 144967,
+      "prr": 4.5562282704,
+      "chi2": 43.4202117529,
+      "ror": 9.0015136083,
+      "ror_lo": 4.212789281,
+      "sig_prr": true,
+      "sig_ror": true,
+      "ebgm": 2.9232525878,
+      "post_mean": 3.0179309539,
+      "eb05": 1.8888403915,
+      "sig_mgps": false
+    },
+    {
+      "drug": "sarolaner",
+      "event": "Seizure NOS",
+      "n": 102,
+      "E": 7.9358247271,
+      "a_b": 348,
+      "a_c": 2416,
+      "N": 144967,
+      "prr": 18.3182055256,
+      "chi2": 1609.763499525,
+      "ror": 25.4989248899,
+      "ror_lo": 20.1698248464,
+      "sig_prr": true,
+      "sig_ror": true,
+      "ebgm": 12.569182831,
+      "post_mean": 12.6359874181,
+      "eb05": 10.5721529219,
+      "sig_mgps": true
+    },
+    {
+      "drug": "class:isoxazolines",
+      "event": "NEUROLOGIC",
+      "n": 2653,
+      "E": 2584.8887088356,
+      "a_b": 25236,
+      "a_c": 17688,
+      "N": 144967,
+      "prr": 0.837182051,
+      "chi2": 81.140798624,
+      "ror": 0.8180545649,
+      "ror_lo": 0.7830696645,
+      "sig_prr": false,
+      "sig_ror": false,
+      "ebgm": 1.0262485695,
+      "post_mean": 1.0264419471,
+      "eb05": 0.9938900567,
+      "sig_mgps": false
+    },
+    {
+      "drug": "selamectin",
+      "event": "NEUROLOGIC",
+      "n": 2165,
+      "E": 3001.7652178194,
+      "a_b": 21817,
+      "a_c": 17688,
+      "N": 144967,
+      "prr": 0.7872662392,
+      "chi2": 124.1492569268,
+      "ror": 0.7638300194,
+      "ror_lo": 0.728420743,
+      "sig_prr": false,
+      "sig_ror": false,
+      "ebgm": 0.7212203237,
+      "post_mean": 0.7213868506,
+      "eb05": 0.6960813181,
+      "sig_mgps": false
+    },
+    {
+      "drug": "milbemycin",
+      "event": "NEUROLOGIC",
+      "n": 123,
+      "E": 92.0627065096,
+      "a_b": 710,
+      "a_c": 17688,
+      "N": 144967,
+      "prr": 1.4227726393,
+      "chi2": 16.9997036851,
+      "ror": 1.5113604325,
+      "ror_lo": 1.2435965122,
+      "sig_prr": false,
+      "sig_ror": true,
+      "ebgm": 1.3310698594,
+      "post_mean": 1.3364594573,
+      "eb05": 1.1452890726,
+      "sig_mgps": false
+    },
+    {
+      "drug": "eprinomectin",
+      "event": "NEUROLOGIC",
+      "n": 547,
+      "E": 339.4952228993,
+      "a_b": 3510,
+      "a_c": 17688,
+      "N": 144967,
+      "prr": 1.2860815216,
+      "chi2": 38.0980491093,
+      "ror": 1.3388950863,
+      "ror_lo": 1.220481794,
+      "sig_prr": false,
+      "sig_ror": true,
+      "ebgm": 1.609335993,
+      "post_mean": 1.610805748,
+      "eb05": 1.4993086938,
+      "sig_mgps": false
+    },
+    {
+      "drug": "selamectin",
+      "event": "Seizure NOS",
+      "n": 262,
+      "E": 266.6383979634,
+      "a_b": 21817,
+      "a_c": 2416,
+      "N": 144967,
+      "prr": 0.6865860527,
+      "chi2": 33.6515802265,
+      "ror": 0.682776521,
+      "ror_lo": 0.6001078078,
+      "sig_prr": false,
+      "sig_ror": false,
+      "ebgm": 0.9817308348,
+      "post_mean": 0.9836009225,
+      "eb05": 0.8859908386,
+      "sig_mgps": false
+    },
+    {
+      "drug": "lotilaner",
+      "event": "Seizure NOS",
+      "n": 33,
+      "E": 17.9196051766,
+      "a_b": 819,
+      "a_c": 2416,
+      "N": 144967,
+      "prr": 2.4373315871,
+      "chi2": 26.6256864615,
+      "ror": 2.4976775698,
+      "ror_lo": 1.758981553,
+      "sig_prr": true,
+      "sig_ror": true,
+      "ebgm": 1.7991911957,
+      "post_mean": 1.8260582776,
+      "eb05": 1.3425689219,
+      "sig_mgps": false
+    },
+    {
+      "drug": "milbemycin",
+      "event": "Seizure NOS",
+      "n": 7,
+      "E": 10.9787176872,
+      "a_b": 710,
+      "a_c": 2416,
+      "N": 144967,
+      "prr": 0.5903910804,
+      "chi2": 1.6213421259,
+      "ror": 0.586312471,
+      "ror_lo": 0.2781818431,
+      "sig_prr": false,
+      "sig_ror": false,
+      "ebgm": 0.6368257579,
+      "post_mean": 0.6794139481,
+      "eb05": 0.3360107162,
+      "sig_mgps": false
+    }
+  ],
+  "mdr1": null,
+  "time_to_signal": {
+    "isox_NEUROLOGIC_sig_prr": {
+      "first_quarter": null,
+      "fda_alert": "2018-09-20"
+    },
+    "isox_NEUROLOGIC_sig_ror": {
+      "first_quarter": null,
+      "fda_alert": "2018-09-20"
+    },
+    "isox_NEUROLOGIC_sig_mgps": {
+      "first_quarter": null,
+      "fda_alert": "2018-09-20"
+    },
+    "isox_Seizure NOS_sig_prr": {
+      "first_quarter": "2017-03-31",
+      "fda_alert": "2018-09-20"
+    },
+    "isox_Seizure NOS_sig_ror": {
+      "first_quarter": "2016-12-31",
+      "fda_alert": "2018-09-20"
+    },
+    "isox_Seizure NOS_sig_mgps": {
+      "first_quarter": null,
+      "fda_alert": "2018-09-20"
+    }
+  },
+  "review_budget": {
+    "isox_NEUROLOGIC": {
+      "rank_prr": {
+        "top_10": null,
+        "top_50": null,
+        "top_100": null,
+        "top_500": null,
+        "top_1000": null,
+        "rank_at_last_quarter": 18735
+      },
+      "rank_ror_lo": {
+        "top_10": null,
+        "top_50": null,
+        "top_100": null,
+        "top_500": null,
+        "top_1000": null,
+        "rank_at_last_quarter": 15471
+      },
+      "rank_eb05": {
+        "top_10": null,
+        "top_50": null,
+        "top_100": null,
+        "top_500": null,
+        "top_1000": null,
+        "rank_at_last_quarter": 11996
+      }
+    },
+    "isox_Seizure NOS": {
+      "rank_prr": {
+        "top_10": null,
+        "top_50": null,
+        "top_100": null,
+        "top_500": null,
+        "top_1000": null,
+        "rank_at_last_quarter": 11865
+      },
+      "rank_ror_lo": {
+        "top_10": null,
+        "top_50": null,
+        "top_100": null,
+        "top_500": null,
+        "top_1000": null,
+        "rank_at_last_quarter": 7367
+      },
+      "rank_eb05": {
+        "top_10": null,
+        "top_50": null,
+        "top_100": null,
+        "top_500": null,
+        "top_1000": null,
+        "rank_at_last_quarter": 9491
+      }
+    },
+    "product_class:isoxazolines_NEUROLOGIC": {
+      "prank_prr": {
+        "top_1": null,
+        "top_3": null,
+        "top_5": null,
+        "top_10": null,
+        "top_20": null,
+        "rank_at_last_quarter": 351
+      },
+      "prank_ror_lo": {
+        "top_1": null,
+        "top_3": null,
+        "top_5": null,
+        "top_10": null,
+        "top_20": null,
+        "rank_at_last_quarter": 264
+      },
+      "prank_eb05": {
+        "top_1": null,
+        "top_3": null,
+        "top_5": null,
+        "top_10": null,
+        "top_20": null,
+        "rank_at_last_quarter": 81
+      }
+    },
+    "product_class:isoxazolines_Seizure NOS": {
+      "prank_prr": {
+        "top_1": null,
+        "top_3": null,
+        "top_5": null,
+        "top_10": "2016-12-31",
+        "top_20": "2016-12-31",
+        "rank_at_last_quarter": 177
+      },
+      "prank_ror_lo": {
+        "top_1": null,
+        "top_3": null,
+        "top_5": null,
+        "top_10": "2016-12-31",
+        "top_20": "2016-12-31",
+        "rank_at_last_quarter": 99
+      },
+      "prank_eb05": {
+        "top_1": null,
+        "top_3": null,
+        "top_5": null,
+        "top_10": null,
+        "top_20": "2016-12-31",
+        "rank_at_last_quarter": 37
+      }
+    },
+    "product_fluralaner_NEUROLOGIC": {
+      "prank_prr": {
+        "top_1": null,
+        "top_3": null,
+        "top_5": null,
+        "top_10": null,
+        "top_20": "2019-12-31",
+        "rank_at_last_quarter": 20
+      },
+      "prank_ror_lo": {
+        "top_1": null,
+        "top_3": null,
+        "top_5": null,
+        "top_10": null,
+        "top_20": "2019-12-31",
+        "rank_at_last_quarter": 20
+      },
+      "prank_eb05": {
+        "top_1": null,
+        "top_3": null,
+        "top_5": null,
+        "top_10": null,
+        "top_20": "2019-12-31",
+        "rank_at_last_quarter": 18
+      }
+    },
+    "product_fluralaner_Seizure NOS": {
+      "prank_prr": {
+        "top_1": null,
+        "top_3": null,
+        "top_5": null,
+        "top_10": "2019-12-31",
+        "top_20": "2019-12-31",
+        "rank_at_last_quarter": 6
+      },
+      "prank_ror_lo": {
+        "top_1": null,
+        "top_3": null,
+        "top_5": null,
+        "top_10": "2019-12-31",
+        "top_20": "2019-12-31",
+        "rank_at_last_quarter": 8
+      },
+      "prank_eb05": {
+        "top_1": null,
+        "top_3": null,
+        "top_5": null,
+        "top_10": null,
+        "top_20": "2019-12-31",
+        "rank_at_last_quarter": 12
+      }
+    },
+    "product_afoxolaner_NEUROLOGIC": {
+      "prank_prr": {
+        "top_1": null,
+        "top_3": null,
+        "top_5": null,
+        "top_10": null,
+        "top_20": null,
+        "rank_at_last_quarter": null
+      },
+      "prank_ror_lo": {
+        "top_1": null,
+        "top_3": null,
+        "top_5": null,
+        "top_10": null,
+        "top_20": null,
+        "rank_at_last_quarter": null
+      },
+      "prank_eb05": {
+        "top_1": null,
+        "top_3": null,
+        "top_5": null,
+        "top_10": null,
+        "top_20": null,
+        "rank_at_last_quarter": null
+      }
+    },
+    "product_afoxolaner_Seizure NOS": {
+      "prank_prr": {
+        "top_1": null,
+        "top_3": null,
+        "top_5": null,
+        "top_10": null,
+        "top_20": null,
+        "rank_at_last_quarter": null
+      },
+      "prank_ror_lo": {
+        "top_1": null,
+        "top_3": null,
+        "top_5": null,
+        "top_10": null,
+        "top_20": null,
+        "rank_at_last_quarter": null
+      },
+      "prank_eb05": {
+        "top_1": null,
+        "top_3": null,
+        "top_5": null,
+        "top_10": null,
+        "top_20": null,
+        "rank_at_last_quarter": null
+      }
+    },
+    "product_sarolaner_NEUROLOGIC": {
+      "prank_prr": {
+        "top_1": null,
+        "top_3": null,
+        "top_5": null,
+        "top_10": null,
+        "top_20": "2018-09-30",
+        "rank_at_last_quarter": 15
+      },
+      "prank_ror_lo": {
+        "top_1": null,
+        "top_3": null,
+        "top_5": "2018-09-30",
+        "top_10": "2018-09-30",
+        "top_20": "2018-09-30",
+        "rank_at_last_quarter": 6
+      },
+      "prank_eb05": {
+        "top_1": null,
+        "top_3": null,
+        "top_5": "2018-09-30",
+        "top_10": "2018-09-30",
+        "top_20": "2018-09-30",
+        "rank_at_last_quarter": 5
+      }
+    },
+    "product_sarolaner_Seizure NOS": {
+      "prank_prr": {
+        "top_1": null,
+        "top_3": "2018-09-30",
+        "top_5": "2018-09-30",
+        "top_10": "2018-09-30",
+        "top_20": "2018-09-30",
+        "rank_at_last_quarter": 2
+      },
+      "prank_ror_lo": {
+        "top_1": "2018-09-30",
+        "top_3": "2018-09-30",
+        "top_5": "2018-09-30",
+        "top_10": "2018-09-30",
+        "top_20": "2018-09-30",
+        "rank_at_last_quarter": 1
+      },
+      "prank_eb05": {
+        "top_1": null,
+        "top_3": "2018-09-30",
+        "top_5": "2018-09-30",
+        "top_10": "2018-09-30",
+        "top_20": "2018-09-30",
+        "rank_at_last_quarter": 2
+      }
+    },
+    "product_lotilaner_NEUROLOGIC": {
+      "prank_prr": {
+        "top_1": null,
+        "top_3": null,
+        "top_5": null,
+        "top_10": null,
+        "top_20": null,
+        "rank_at_last_quarter": null
+      },
+      "prank_ror_lo": {
+        "top_1": null,
+        "top_3": null,
+        "top_5": null,
+        "top_10": null,
+        "top_20": null,
+        "rank_at_last_quarter": null
+      },
+      "prank_eb05": {
+        "top_1": null,
+        "top_3": null,
+        "top_5": null,
+        "top_10": null,
+        "top_20": null,
+        "rank_at_last_quarter": null
+      }
+    },
+    "product_lotilaner_Seizure NOS": {
+      "prank_prr": {
+        "top_1": null,
+        "top_3": null,
+        "top_5": null,
+        "top_10": null,
+        "top_20": null,
+        "rank_at_last_quarter": null
+      },
+      "prank_ror_lo": {
+        "top_1": null,
+        "top_3": null,
+        "top_5": null,
+        "top_10": null,
+        "top_20": null,
+        "rank_at_last_quarter": null
+      },
+      "prank_eb05": {
+        "top_1": null,
+        "top_3": null,
+        "top_5": null,
+        "top_10": null,
+        "top_20": null,
+        "rank_at_last_quarter": null
+      }
+    }
+  },
+  "null_signals_per_1000_cells": {
+    "events_shuffled": {
+      "cells": 157956.2,
+      "prr": 36.869,
+      "ror": 57.596,
+      "mgps": 0.0,
+      "strat_cells": 184035.7,
+      "mgps_strat": 0.0,
+      "hier": 0.0,
+      "excess_unpooled": null,
+      "excess_hier": null
+    },
+    "strata_shuffled": {
+      "cells": null,
+      "prr": null,
+      "ror": null,
+      "mgps": null,
+      "strat_cells": 230517.3,
+      "mgps_strat": null,
+      "hier": null,
+      "excess_unpooled": 3.777,
+      "excess_hier": 0.0
+    }
+  },
+  "config": {
+    "species": "Cat",
+    "safety_only": false,
+    "leave_drug_out": false,
+    "analysis": "pre-registered primary"
+  }
+}

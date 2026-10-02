@@ -1,0 +1,264 @@
+<title>TailSignal Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: clinical operations console — header with network switch, tabbed panels, summary before detail */
+:root{
+  --bg:#F4F6F3; --surface:#FDFDFB; --line:#D9DFDA; --ink:#1B2A2F; --muted:#56676C;
+  --accent:#1F6F8B; --accent-soft:#E2EEF2; --warn:#A84F10; --warn-soft:#F7E9DD; --good:#2B7656; --good-soft:#E3F1E9;
+  --f-display:'Source Serif 4', Georgia, serif; --f-body:'IBM Plex Sans', Arial, sans-serif; --f-data:'IBM Plex Mono', 'Courier New', monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#11181B; --surface:#182226; --line:#2C3A3F; --ink:#E4EBE9; --muted:#9AABAF;
+  --accent:#62B5D1; --accent-soft:#1D3640; --warn:#E89452; --warn-soft:#3A2618; --good:#62C495; --good-soft:#18352A; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#11181B; --surface:#182226; --line:#2C3A3F; --ink:#E4EBE9; --muted:#9AABAF;
+  --accent:#62B5D1; --accent-soft:#1D3640; --warn:#E89452; --warn-soft:#3A2618; --good:#62C495; --good-soft:#18352A; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.5}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:20px;padding-block:28px 56px;display:flex;flex-direction:column;gap:24px}
+header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px}
+.eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--warn);font-weight:600;margin:0}
+h1{font-family:var(--f-display);font-weight:600;font-size:clamp(28px,4vw,40px);line-height:1.1;margin:4px 0 6px;text-wrap:balance}
+h2{font-family:var(--f-display);font-weight:600;font-size:22px;margin:0;text-wrap:balance}
+.sub{color:var(--muted);margin:0;max-width:68ch}
+.switch{display:flex;gap:4px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:4px}
+.switch button{border:0;background:transparent;color:var(--muted);font:500 13px var(--f-body);padding:7px 14px;border-radius:999px;cursor:pointer}
+.switch button[aria-pressed="true"]{background:var(--accent);color:var(--surface)}
+nav.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);overflow-x:auto}
+nav.tabs a{padding:10px 14px;color:var(--muted);text-decoration:none;font-weight:500;border-bottom:2px solid transparent;white-space:nowrap}
+nav.tabs a[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
+a:focus-visible,button:focus-visible,th:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+section.panel{display:flex;flex-direction:column;gap:20px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.kpi .v{font-family:var(--f-data);font-size:28px;font-weight:500;font-variant-numeric:tabular-nums}
+.kpi .l{color:var(--muted);font-size:13px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600;white-space:nowrap}
+th.sort{cursor:pointer}
+th.sort::after{content:" ↕";opacity:.4}
+td.num,th.num{text-align:right;font-family:var(--f-data);font-variant-numeric:tabular-nums}
+.pill{display:inline-block;font-size:12px;font-weight:600;padding:2px 8px;border-radius:999px;white-space:nowrap}
+.pill.warn{background:var(--warn-soft);color:var(--warn)} .pill.good{background:var(--good-soft);color:var(--good)} .pill.neutral{background:var(--accent-soft);color:var(--accent)}
+.note{color:var(--muted);font-size:13px;margin:0;max-width:80ch}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:16px}
+svg text{fill:var(--muted);font-family:var(--f-data);font-size:11px}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+.legend i{display:inline-block;width:12px;height:3px;vertical-align:middle;margin-right:6px}
+.heat td.num{font-weight:500}
+#score td:first-child{white-space:nowrap;font-weight:500}
+footer{color:var(--muted);font-size:13px;border-top:1px solid var(--line);padding-top:16px}
+@media (prefers-reduced-motion:no-preference){.switch button{transition:background .15s}}
+</style>
+
+<div class="wrap">
+<header>
+  <div>
+    <p class="eyebrow">Pet health data platform</p>
+    <h1>TailSignal Dashboard</h1>
+    <p class="sub">Results from the TailSignal portfolio project. Clinic data is simulated; antibiotic-resistance data is real (FDA NARMS dog isolates, 2017–2024).</p>
+  </div>
+  <div class="switch" role="group" aria-label="Network size">
+    <button id="net-1x" aria-pressed="true" data-net="1x">Actual network · 9 clinics</button>
+    <button id="net-10x" aria-pressed="false" data-net="10x">10× volume scenario</button>
+  </div>
+</header>
+
+<nav class="tabs" role="tablist">
+  <a href="#overview" role="tab" data-tab="overview">Overview</a>
+  <a href="#clinics" role="tab" data-tab="clinics">Clinic scorecards</a>
+  <a href="#resistance" role="tab" data-tab="resistance">Antibiotic resistance</a>
+  <a href="#scale" role="tab" data-tab="scale">What scale buys</a>
+</nav>
+
+<section class="panel" id="p-overview" data-panel="overview">
+  <div class="kpis">
+    <div class="kpi"><span class="v">0.983</span><span class="l">Pet match accuracy across businesses (F1), vs 0.904 for the usual rule</span></div>
+    <div class="kpi"><span class="v">0 vs 43</span><span class="l">False drug-safety alarms per 1,000 pairs, vs the standard method (970,167 FDA dog reports)</span></div>
+    <div class="kpi"><span class="v">31% → 43%</span><span class="l">Methicillin-resistant staph in dog skin isolates, 2017 to 2024</span></div>
+    <div class="kpi"><span class="v">0.97</span><span class="l">Rank agreement of clinic complication scores with true quality</span></div>
+  </div>
+  <div class="card">
+    <h2>What each analysis found</h2>
+    <div class="scroll"><table>
+      <thead><tr><th>Analysis</th><th>Finding</th><th>Status</th></tr></thead>
+      <tbody id="verdicts"></tbody>
+    </table></div>
+  </div>
+</section>
+
+<section class="panel" id="p-clinics" data-panel="clinics" hidden>
+  <div class="card">
+    <h2>Anesthetic complications, risk-adjusted</h2>
+    <p class="note">Observed ÷ expected after adjusting for ASA class, emergency, breed shape, species, procedure, age and small-dog size. Dots are shrunk toward the network mean; bars are 95% intervals. Left of 1.0 is better.</p>
+    <div class="scroll"><svg id="forest" role="img" aria-label="Complication observed over expected by clinic with 95% intervals"></svg></div>
+  </div>
+  <div class="card">
+    <h2>Scorecard</h2>
+    <p class="note" id="clinic-note"></p>
+    <div class="scroll"><table id="score">
+      <thead><tr>
+        <th class="sort" tabindex="0" data-k="clinic">Clinic</th>
+        <th class="sort num" tabindex="0" data-k="n">Procedures</th>
+        <th class="sort num" tabindex="0" data-k="oe">Complications O/E</th>
+        <th class="sort num" tabindex="0" data-k="rlo">Rank range</th>
+        <th class="sort num" tabindex="0" data-k="dobs">Deaths obs / exp</th>
+        <th class="sort num" tabindex="0" data-k="dent">Dental O/E</th>
+        <th class="sort num" tabindex="0" data-k="srank">Stewardship rank</th>
+        <th class="sort num" tabindex="0" data-k="cult">Culture before UTI treatment</th>
+        <th class="sort num" tabindex="0" data-k="hpcia">Critically important 1st choice</th>
+      </tr></thead>
+      <tbody></tbody>
+    </table></div>
+  </div>
+</section>
+
+<section class="panel" id="p-resistance" data-panel="resistance" hidden>
+  <div class="card">
+    <h2>Methicillin-resistant <i>S. pseudintermedius</i> (MRSP), share of isolates</h2>
+    <div class="legend"><span><i style="background:var(--warn)"></i>Skin and other sites</span><span><i style="background:var(--accent)"></i>Urine</span></div>
+    <div class="scroll"><svg id="mrsp" role="img" aria-label="MRSP share by year, 2017 to 2024, rising for skin and urine isolates"></svg></div>
+    <p class="note">Shaded bands are 95% confidence intervals. Source: FDA NARMS animal pathogen data (Vet-LIRN, NAHLN).</p>
+  </div>
+  <div class="card">
+    <h2>Which antibiotics still work for dog urinary infections</h2>
+    <p class="note">Percent of urinary <i>E. coli</i> isolates susceptible, 2022–2024, by region. Cells with fewer than 30 isolates are not shown (CLSI M39). Treatment choices belong with the vet and published guidance.</p>
+    <div class="scroll"><table class="heat" id="abg"></table></div>
+  </div>
+</section>
+
+<section class="panel" id="p-scale" data-panel="scale" hidden>
+  <div class="card">
+    <h2>Products by the partner volume they need</h2>
+    <div class="scroll"><table>
+      <thead><tr><th>Product capability</th><th>At 9 clinics</th><th>What it needs</th></tr></thead>
+      <tbody id="scale-rows"></tbody>
+    </table></div>
+    <p class="note">From power calculations and a simulated network with ten times the volume. Switch to the 10× scenario on the Clinic scorecards tab to see death rates become rankable.</p>
+  </div>
+</section>
+
+<footer>Built with Python, DuckDB and dbt. Methods, pre-registered specs and full results are in the project repository. Clinic names are simulated.</footer>
+</div>
+
+<script>
+const DATA = {"clinics_1x": [{"clinic": "AUS-VET1", "n": 577, "oe": 1.34, "lo": 1.07, "hi": 1.67, "cflag": "above", "rlo": 6, "rhi": 9, "dobs": 1, "dexp": 1.2, "dflag": "", "dpow": 0.15, "dent": 1.11, "dentflag": "above", "stew": 0.63, "srank": 1, "cult": 0.72, "first": 0.73, "hpcia": 0.22}, {"clinic": "AUS-VET2", "n": 566, "oe": 1.04, "lo": 0.81, "hi": 1.33, "cflag": "", "rlo": 3, "rhi": 8, "dobs": 2, "dexp": 1.2, "dflag": "", "dpow": 0.14, "dent": 0.65, "dentflag": "below", "stew": 0.22, "srank": 5, "cult": 0.58, "first": 0.62, "hpcia": 0.17}, {"clinic": "AUS-VET3", "n": 634, "oe": 1.02, "lo": 0.81, "hi": 1.29, "cflag": "", "rlo": 4, "rhi": 7, "dobs": 0, "dexp": 1.7, "dflag": "", "dpow": 0.19, "dent": 1.19, "dentflag": "above", "stew": 0.02, "srank": 6, "cult": 0.7, "first": 0.7, "hpcia": 0.14}, {"clinic": "MSP-VET1", "n": 386, "oe": 0.56, "lo": 0.37, "hi": 0.84, "cflag": "below", "rlo": 1, "rhi": 3, "dobs": 0, "dexp": 1.0, "dflag": "", "dpow": 0.12, "dent": 1.0, "dentflag": "", "stew": -0.8, "srank": 9, "cult": 0.18, "first": 0.57, "hpcia": 0.32}, {"clinic": "MSP-VET2", "n": 380, "oe": 0.63, "lo": 0.43, "hi": 0.92, "cflag": "below", "rlo": 1, "rhi": 3, "dobs": 1, "dexp": 1.0, "dflag": "", "dpow": 0.11, "dent": 0.97, "dentflag": "", "stew": -0.54, "srank": 8, "cult": 0.19, "first": 0.83, "hpcia": 0.01}, {"clinic": "MSP-VET3", "n": 364, "oe": 1.34, "lo": 1.03, "hi": 1.76, "cflag": "above", "rlo": 6, "rhi": 9, "dobs": 0, "dexp": 0.7, "dflag": "", "dpow": 0.1, "dent": 0.57, "dentflag": "below", "stew": -0.53, "srank": 7, "cult": 0.36, "first": 0.57, "hpcia": 0.16}, {"clinic": "PHL-VET1", "n": 726, "oe": 1.0, "lo": 0.8, "hi": 1.25, "cflag": "", "rlo": 3, "rhi": 7, "dobs": 0, "dexp": 1.8, "dflag": "", "dpow": 0.14, "dent": 1.32, "dentflag": "above", "stew": 0.33, "srank": 3, "cult": 0.52, "first": 0.77, "hpcia": 0.11}, {"clinic": "PHL-VET2", "n": 677, "oe": 0.76, "lo": 0.59, "hi": 0.99, "cflag": "below", "rlo": 1, "rhi": 4, "dobs": 3, "dexp": 1.8, "dflag": "", "dpow": 0.11, "dent": 1.02, "dentflag": "", "stew": 0.37, "srank": 2, "cult": 0.42, "first": 0.72, "hpcia": 0.04}, {"clinic": "PHL-VET3", "n": 685, "oe": 1.22, "lo": 0.98, "hi": 1.5, "cflag": "", "rlo": 5, "rhi": 9, "dobs": 5, "dexp": 1.6, "dflag": "above", "dpow": 0.12, "dent": 0.97, "dentflag": "", "stew": 0.3, "srank": 4, "cult": 0.41, "first": 0.81, "hpcia": 0.03}], "clinics_10x": [{"clinic": "AUS-VET1", "n": 6193, "oe": 1.53, "lo": 1.43, "hi": 1.63, "cflag": "above", "rlo": 9, "rhi": 9, "dobs": 12, "dexp": 14.4, "dflag": "", "dpow": 0.87, "dent": 1.16, "dentflag": "above", "stew": 0.56, "srank": 1, "cult": 0.75, "first": 0.7, "hpcia": 0.21}, {"clinic": "AUS-VET2", "n": 5354, "oe": 0.93, "lo": 0.85, "hi": 1.01, "cflag": "", "rlo": 4, "rhi": 5, "dobs": 10, "dexp": 11.7, "dflag": "", "dpow": 0.79, "dent": 0.66, "dentflag": "below", "stew": 0.19, "srank": 5, "cult": 0.59, "first": 0.62, "hpcia": 0.17}, {"clinic": "AUS-VET3", "n": 6029, "oe": 1.04, "lo": 0.96, "hi": 1.12, "cflag": "", "rlo": 5, "rhi": 6, "dobs": 9, "dexp": 14.0, "dflag": "", "dpow": 0.84, "dent": 1.13, "dentflag": "above", "stew": -0.16, "srank": 6, "cult": 0.61, "first": 0.7, "hpcia": 0.14}, {"clinic": "MSP-VET1", "n": 4210, "oe": 0.54, "lo": 0.47, "hi": 0.62, "cflag": "below", "rlo": 1, "rhi": 2, "dobs": 8, "dexp": 9.4, "dflag": "", "dpow": 0.73, "dent": 0.98, "dentflag": "", "stew": -0.96, "srank": 9, "cult": 0.24, "first": 0.52, "hpcia": 0.32}, {"clinic": "MSP-VET2", "n": 4126, "oe": 0.6, "lo": 0.53, "hi": 0.68, "cflag": "below", "rlo": 1, "rhi": 2, "dobs": 5, "dexp": 9.7, "dflag": "", "dpow": 0.7, "dent": 0.97, "dentflag": "", "stew": -0.59, "srank": 8, "cult": 0.32, "first": 0.82, "hpcia": 0.04}, {"clinic": "MSP-VET3", "n": 3757, "oe": 1.24, "lo": 1.13, "hi": 1.36, "cflag": "above", "rlo": 7, "rhi": 8, "dobs": 10, "dexp": 8.2, "dflag": "", "dpow": 0.65, "dent": 0.62, "dentflag": "below", "stew": -0.29, "srank": 7, "cult": 0.43, "first": 0.58, "hpcia": 0.15}, {"clinic": "PHL-VET1", "n": 7334, "oe": 0.98, "lo": 0.91, "hi": 1.06, "cflag": "", "rlo": 4, "rhi": 6, "dobs": 19, "dexp": 16.7, "dflag": "", "dpow": 0.93, "dent": 1.25, "dentflag": "above", "stew": 0.56, "srank": 2, "cult": 0.51, "first": 0.8, "hpcia": 0.06}, {"clinic": "PHL-VET2", "n": 6726, "oe": 0.76, "lo": 0.69, "hi": 0.83, "cflag": "below", "rlo": 3, "rhi": 3, "dobs": 13, "dexp": 15.6, "dflag": "", "dpow": 0.88, "dent": 1.06, "dentflag": "above", "stew": 0.45, "srank": 3, "cult": 0.41, "first": 0.74, "hpcia": 0.05}, {"clinic": "PHL-VET3", "n": 6780, "oe": 1.2, "lo": 1.12, "hi": 1.29, "cflag": "above", "rlo": 7, "rhi": 8, "dobs": 30, "dexp": 16.2, "dflag": "above", "dpow": 0.89, "dent": 1.0, "dentflag": "", "stew": 0.23, "srank": 4, "cult": 0.34, "first": 0.83, "hpcia": 0.04}], "mrsp": [{"site": "Other sites", "year": 2017, "p": 0.3132, "lo": 0.2712, "hi": 0.3585, "n": 431}, {"site": "Other sites", "year": 2018, "p": 0.3373, "lo": 0.3087, "hi": 0.3673, "n": 996}, {"site": "Other sites", "year": 2019, "p": 0.3951, "lo": 0.3706, "hi": 0.42, "n": 1501}, {"site": "Other sites", "year": 2020, "p": 0.3693, "lo": 0.3454, "hi": 0.3939, "n": 1519}, {"site": "Other sites", "year": 2021, "p": 0.3731, "lo": 0.3496, "hi": 0.3973, "n": 1576}, {"site": "Other sites", "year": 2022, "p": 0.3932, "lo": 0.3694, "hi": 0.4175, "n": 1587}, {"site": "Other sites", "year": 2023, "p": 0.4286, "lo": 0.4049, "hi": 0.4526, "n": 1652}, {"site": "Other sites", "year": 2024, "p": 0.4295, "lo": 0.4046, "hi": 0.4548, "n": 1490}, {"site": "UTI", "year": 2017, "p": 0.1963, "lo": 0.1321, "hi": 0.2815, "n": 107}, {"site": "UTI", "year": 2018, "p": 0.1925, "lo": 0.1424, "hi": 0.255, "n": 187}, {"site": "UTI", "year": 2019, "p": 0.2334, "lo": 0.192, "hi": 0.2807, "n": 347}, {"site": "UTI", "year": 2020, "p": 0.2487, "lo": 0.208, "hi": 0.2944, "n": 382}, {"site": "UTI", "year": 2021, "p": 0.2411, "lo": 0.1984, "hi": 0.2896, "n": 336}, {"site": "UTI", "year": 2022, "p": 0.263, "lo": 0.2205, "hi": 0.3105, "n": 365}, {"site": "UTI", "year": 2023, "p": 0.3102, "lo": 0.2654, "hi": 0.3588, "n": 374}, {"site": "UTI", "year": 2024, "p": 0.3237, "lo": 0.2806, "hi": 0.3701, "n": 417}], "abg": [{"region": "Canada", "drug": "Amoxicillin/Clavulanic Acid", "n": 108, "pct_susceptible": 1.0}, {"region": "Canada", "drug": "Ampicillin", "n": 108, "pct_susceptible": 1.0}, {"region": "Canada", "drug": "Cefazolin", "n": 108, "pct_susceptible": 0.917}, {"region": "Canada", "drug": "Cefpodoxime", "n": 108, "pct_susceptible": 0.926}, {"region": "Canada", "drug": "Enrofloxacin", "n": 108, "pct_susceptible": 0.954}, {"region": "Canada", "drug": "Marbofloxacin", "n": 108, "pct_susceptible": 0.944}, {"region": "Canada", "drug": "Trimethoprim/Sulfamethoxazole", "n": 108, "pct_susceptible": 0.926}, {"region": "Midwest", "drug": "Amoxicillin/Clavulanic Acid", "n": 1918, "pct_susceptible": 1.0}, {"region": "Midwest", "drug": "Ampicillin", "n": 1918, "pct_susceptible": 1.0}, {"region": "Midwest", "drug": "Cefazolin", "n": 1918, "pct_susceptible": 0.883}, {"region": "Midwest", "drug": "Cefpodoxime", "n": 1811, "pct_susceptible": 0.873}, {"region": "Midwest", "drug": "Enrofloxacin", "n": 1918, "pct_susceptible": 0.883}, {"region": "Midwest", "drug": "Marbofloxacin", "n": 1917, "pct_susceptible": 0.875}, {"region": "Midwest", "drug": "Trimethoprim/Sulfamethoxazole", "n": 1918, "pct_susceptible": 0.914}, {"region": "Northeast", "drug": "Amoxicillin/Clavulanic Acid", "n": 233, "pct_susceptible": 0.966}, {"region": "Northeast", "drug": "Ampicillin", "n": 233, "pct_susceptible": 0.876}, {"region": "Northeast", "drug": "Cefazolin", "n": 127, "pct_susceptible": 0.819}, {"region": "Northeast", "drug": "Cefpodoxime", "n": 127, "pct_susceptible": 0.827}, {"region": "Northeast", "drug": "Enrofloxacin", "n": 233, "pct_susceptible": 0.871}, {"region": "Northeast", "drug": "Marbofloxacin", "n": 127, "pct_susceptible": 0.827}, {"region": "Northeast", "drug": "Trimethoprim/Sulfamethoxazole", "n": 146, "pct_susceptible": 0.911}, {"region": "South", "drug": "Amoxicillin/Clavulanic Acid", "n": 1443, "pct_susceptible": 0.999}, {"region": "South", "drug": "Ampicillin", "n": 1443, "pct_susceptible": 0.999}, {"region": "South", "drug": "Cefazolin", "n": 1443, "pct_susceptible": 0.814}, {"region": "South", "drug": "Cefpodoxime", "n": 1443, "pct_susceptible": 0.792}, {"region": "South", "drug": "Enrofloxacin", "n": 1439, "pct_susceptible": 0.826}, {"region": "South", "drug": "Marbofloxacin", "n": 1441, "pct_susceptible": 0.815}, {"region": "South", "drug": "Trimethoprim/Sulfamethoxazole", "n": 1410, "pct_susceptible": 0.906}, {"region": "West", "drug": "Amoxicillin/Clavulanic Acid", "n": 267, "pct_susceptible": 1.0}, {"region": "West", "drug": "Ampicillin", "n": 267, "pct_susceptible": 1.0}, {"region": "West", "drug": "Cefazolin", "n": 267, "pct_susceptible": 0.884}, {"region": "West", "drug": "Cefpodoxime", "n": 267, "pct_susceptible": 0.884}, {"region": "West", "drug": "Enrofloxacin", "n": 266, "pct_susceptible": 0.914}, {"region": "West", "drug": "Marbofloxacin", "n": 266, "pct_susceptible": 0.91}, {"region": "West", "drug": "Trimethoprim/Sulfamethoxazole", "n": 267, "pct_susceptible": 0.948}]};
+const $ = s => document.querySelector(s);
+const fmtPct = v => Math.round(v*100) + '%';
+const pill = (txt, kind) => `<span class="pill ${kind}">${txt}</span>`;
+
+const VERDICTS = [
+  ['Drug-safety signals, FDA reports','0 false alarms per 1,000 vs 43; herding-breed ivermectin risk ranked in top 30','good','Works; one known signal missed'],
+  ['Antibiotic resistance, FDA NARMS','MRSP rose from 31% to 43% of skin isolates; urinary E. coli stable','good','Confirmed'],
+  ['Customer segments','Daycare regulars: 22% of households, 64% of revenue','good','Revised design stable'],
+  ['Demand forecasting','Daycare staffing cost 7% lower than baseline','warn','Intervals too narrow'],
+  ['Clinic quality scorecards','Complication rankings work at today\'s volume','good','Works; deaths need scale'],
+  ['Oral health','Toy breeds: 2.5× the odds of dental disease','good','Matches published studies'],
+  ['Reminder targeting','Reminders help on average','warn','Pilot too small'],
+  ['Early warning from daycare','Signal was engagement, not early warning','warn','Failed'],
+  ['Drug safety in clinic records','Recovers planted risk only at 10× network','warn','Needs ~130× scale'],
+  ['Clinical text, real UK notes','Seizure search precision 30% before review','warn','Needs expert review'],
+];
+$('#verdicts').innerHTML = VERDICTS.map(v=>`<tr><td>${v[0]}</td><td>${v[1]}</td><td>${pill(v[3], v[2])}</td></tr>`).join('');
+
+const SCALE = [
+  ['Complication scorecards','good','Ready','Nothing more'],
+  ['Dental-charting and antibiotic scorecards','good','Ready','Nothing more'],
+  ['Regional antibiotic-resistance tables','good','Ready','Public FDA data'],
+  ['Death-rate scorecards per clinic','warn','Not yet','About 5,000 procedures per clinic'],
+  ['Drug side effects, common (GI upset)','warn','Not yet','About 80× today\'s network'],
+  ['Drug side effects, rare (seizures)','warn','Not yet','About 130× today\'s network'],
+  ['Following pets across clinics','warn','Partly: microchips link 31%','Owner identifiers in data-sharing agreements'],
+];
+$('#scale-rows').innerHTML = SCALE.map(s=>`<tr><td>${s[0]}</td><td>${pill(s[2], s[1])}</td><td>${s[3]}</td></tr>`).join('');
+
+/* ---------- clinics ---------- */
+let net = '1x', sortKey = 'oe', sortDir = 1;
+function flagPill(f, goodWhen){ if(!f) return ''; const good = f === goodWhen; return ' ' + pill(f === 'above' ? 'Above expected' : 'Below expected', good ? 'good' : 'warn'); }
+function renderClinics(){
+  const rows = [...DATA['clinics_' + net]].sort((a,b)=> (a[sortKey] > b[sortKey] ? 1 : a[sortKey] < b[sortKey] ? -1 : 0) * sortDir);
+  $('#score tbody').innerHTML = rows.map(r=>`<tr>
+    <td>${r.clinic}</td><td class="num">${r.n.toLocaleString()}</td>
+    <td class="num">${r.oe.toFixed(2)} <span style="color:var(--muted)">(${r.lo.toFixed(2)}–${r.hi.toFixed(2)})</span>${flagPill(r.cflag,'below')}</td>
+    <td class="num">${r.rlo}–${r.rhi}</td>
+    <td class="num">${r.dobs} / ${r.dexp.toFixed(1)}${flagPill(r.dflag,'below')}</td>
+    <td class="num">${r.dent.toFixed(2)}${r.dentflag === 'below' ? ' ' + pill('Under-recording','warn') : ''}</td>
+    <td class="num">${r.srank}</td><td class="num">${fmtPct(r.cult)}</td><td class="num">${fmtPct(r.hpcia)}</td></tr>`).join('');
+  const meanPow = rows.reduce((s,r)=>s+r.dpow,0)/rows.length;
+  $('#clinic-note').textContent = net === '1x'
+    ? `About ${Math.round(rows.reduce((s,r)=>s+r.n,0)/rows.length)} anesthetics per clinic over four years. Power to detect a clinic with double the death risk: ${fmtPct(meanPow)}, too low to rank deaths per clinic. Rank range is the 90% interval of each clinic's complication rank (1 = best).`
+    : `About ${Math.round(rows.reduce((s,r)=>s+r.n,0)/rows.length).toLocaleString()} anesthetics per clinic. Power to detect double the death risk: ${fmtPct(meanPow)}; the high-mortality clinic is now flagged. Rank range is the 90% interval of each clinic's complication rank (1 = best).`;
+  drawForest(rows);
+}
+function drawForest(rowsIn){
+  const rows = [...rowsIn].sort((a,b)=>a.oe-b.oe);
+  const W = 760, rowH = 30, top = 16, left = 96, right = 24, H = top + rows.length*rowH + 34;
+  const lo = 0.3, hi = 2.0, x = v => left + (Math.log(v)-Math.log(lo))/(Math.log(hi)-Math.log(lo))*(W-left-right);
+  const svg = $('#forest'); svg.setAttribute('viewBox',`0 0 ${W} ${H}`); svg.setAttribute('width', W); svg.style.maxWidth='100%'; svg.style.height='auto';
+  let s = '';
+  [0.5,0.75,1,1.5,2].forEach(t=>{ s += `<line x1="${x(t)}" x2="${x(t)}" y1="${top-6}" y2="${H-28}" stroke="var(--line)" stroke-width="${t===1?2:1}"/><text x="${x(t)}" y="${H-10}" text-anchor="middle">${t}</text>`; });
+  rows.forEach((r,i)=>{
+    const y = top + i*rowH + rowH/2;
+    const col = r.cflag === 'above' ? 'var(--warn)' : r.cflag === 'below' ? 'var(--good)' : 'var(--accent)';
+    s += `<text x="${left-10}" y="${y+4}" text-anchor="end">${r.clinic}</text>`;
+    s += `<line x1="${x(Math.max(r.lo,lo))}" x2="${x(Math.min(r.hi,hi))}" y1="${y}" y2="${y}" stroke="${col}" stroke-width="3" stroke-linecap="round"/>`;
+    s += `<circle cx="${x(r.oe)}" cy="${y}" r="6" fill="${col}" stroke="var(--surface)" stroke-width="2"/>`;
+  });
+  svg.innerHTML = s;
+}
+document.querySelectorAll('.switch button').forEach(b=>b.addEventListener('click',()=>{
+  net = b.dataset.net; document.querySelectorAll('.switch button').forEach(o=>o.setAttribute('aria-pressed', String(o===b))); renderClinics();
+}));
+document.querySelectorAll('#score th.sort').forEach(th=>{
+  const go = ()=>{ const k = th.dataset.k; sortDir = (sortKey === k) ? -sortDir : 1; sortKey = k; renderClinics(); };
+  th.addEventListener('click', go); th.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); go(); } });
+});
+
+/* ---------- resistance ---------- */
+function drawMRSP(){
+  const W=760,H=300,L=48,R=20,T=16,B=32, years=[2017,2018,2019,2020,2021,2022,2023,2024];
+  const x = y => L + (y-2017)/7*(W-L-R), y = p => T + (1-p/0.5)*(H-T-B);
+  const svg=$('#mrsp'); svg.setAttribute('viewBox',`0 0 ${W} ${H}`); svg.setAttribute('width',W); svg.style.maxWidth='100%'; svg.style.height='auto';
+  let s='';
+  [0,0.1,0.2,0.3,0.4,0.5].forEach(t=>{ s+=`<line x1="${L}" x2="${W-R}" y1="${y(t)}" y2="${y(t)}" stroke="var(--line)"/><text x="${L-8}" y="${y(t)+4}" text-anchor="end">${t*100}%</text>`; });
+  years.forEach(yr=>{ s+=`<text x="${x(yr)}" y="${H-10}" text-anchor="middle">${yr}</text>`; });
+  [['Other sites','var(--warn)'],['UTI','var(--accent)']].forEach(([site,col])=>{
+    const pts = DATA.mrsp.filter(d=>d.site===site).sort((a,b)=>a.year-b.year);
+    const band = pts.map(d=>`${x(d.year)},${y(d.hi)}`).join(' ') + ' ' + [...pts].reverse().map(d=>`${x(d.year)},${y(d.lo)}`).join(' ');
+    s+=`<polygon points="${band}" fill="${col}" fill-opacity="0.14"/>`;
+    s+=`<polyline points="${pts.map(d=>`${x(d.year)},${y(d.p)}`).join(' ')}" fill="none" stroke="${col}" stroke-width="2.5"/>`;
+    pts.forEach((d,i)=>{ s+=`<circle cx="${x(d.year)}" cy="${y(d.p)}" r="${i===pts.length-1?5:3}" fill="${col}"/>`; });
+    const last = pts[pts.length-1], first = pts[0];
+    s+=`<text x="${x(first.year)+6}" y="${y(first.p)-10}" style="fill:${col}">${fmtPct(first.p)}</text>`;
+    s+=`<text x="${x(last.year)-6}" y="${y(last.p)-10}" text-anchor="end" style="fill:${col}">${fmtPct(last.p)}</text>`;
+  });
+  svg.innerHTML=s;
+}
+function drawABG(){
+  const regions=['Northeast','South','Midwest','West','Canada'];
+  const names={'Amoxicillin/Clavulanic Acid':'Amoxicillin-clavulanate','Trimethoprim/Sulfamethoxazole':'Trimethoprim-sulfamethoxazole'};
+  const drugs=[...new Set(DATA.abg.map(d=>d.drug))];
+  const get=(r,d)=>DATA.abg.find(a=>a.region===r&&a.drug===d);
+  const shade=p=>{ const t=Math.max(0,Math.min(1,(1-p)/0.25)); return `color-mix(in srgb, var(--warn) ${Math.round(t*45)}%, transparent)`; };
+  let h=`<thead><tr><th>Drug</th>${regions.map(r=>`<th class="num">${r}</th>`).join('')}</tr></thead><tbody>`;
+  drugs.sort((a,b)=>(get('South',b)?.pct_susceptible??0)-(get('South',a)?.pct_susceptible??0)).forEach(d=>{
+    h+=`<tr><td>${names[d]||d}</td>${regions.map(r=>{const c=get(r,d); return c?`<td class="num" style="background:${shade(c.pct_susceptible)}">${fmtPct(c.pct_susceptible)}</td>`:'<td class="num">–</td>';}).join('')}</tr>`;
+  });
+  const maxN = regions.map(r=>Math.max(...DATA.abg.filter(a=>a.region===r).map(a=>a.n)));
+  h+=`<tr><td style="color:var(--muted)">Isolates (largest cell)</td>${maxN.map(n=>`<td class="num" style="color:var(--muted)">${n.toLocaleString()}</td>`).join('')}</tr></tbody>`;
+  $('#abg').innerHTML=h;
+}
+
+/* ---------- tabs ---------- */
+function show(tab){
+  if(!document.querySelector(`[data-panel="${tab}"]`)) tab='overview';
+  document.querySelectorAll('[data-panel]').forEach(p=>p.hidden = p.dataset.panel!==tab);
+  document.querySelectorAll('nav.tabs a').forEach(a=>a.setAttribute('aria-selected', String(a.dataset.tab===tab)));
+}
+document.querySelectorAll('nav.tabs a').forEach(a=>a.addEventListener('click',e=>{ e.preventDefault(); show(a.dataset.tab); try{history.replaceState(null,'','#'+a.dataset.tab);}catch(_){} }));
+renderClinics(); drawMRSP(); drawABG(); show((location.hash||'#overview').slice(1));
+</script>

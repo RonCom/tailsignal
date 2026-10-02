@@ -1,0 +1,410 @@
+{
+  "overall": {
+    "dog": {
+      "pet_years": 24380,
+      "prevalence": 0.0941,
+      "ci95": [
+        0.0905,
+        0.0978
+      ]
+    },
+    "cat": {
+      "pet_years": 8116,
+      "prevalence": 0.1003,
+      "ci95": [
+        0.0939,
+        0.107
+      ]
+    }
+  },
+  "by_size_dogs": [
+    {
+      "size_class": "large",
+      "pet_years": 10573,
+      "cases": 883,
+      "prevalence": 0.0835,
+      "ci_lo": 0.0784,
+      "ci_hi": 0.0889
+    },
+    {
+      "size_class": "medium",
+      "pet_years": 8248,
+      "cases": 739,
+      "prevalence": 0.0896,
+      "ci_lo": 0.0836,
+      "ci_hi": 0.096
+    },
+    {
+      "size_class": "small",
+      "pet_years": 3125,
+      "cases": 255,
+      "prevalence": 0.0816,
+      "ci_lo": 0.0725,
+      "ci_hi": 0.0917
+    },
+    {
+      "size_class": "toy",
+      "pet_years": 2293,
+      "cases": 406,
+      "prevalence": 0.1771,
+      "ci_lo": 0.162,
+      "ci_hi": 0.1932
+    }
+  ],
+  "by_age_dogs": [
+    {
+      "age_band": "10-12",
+      "pet_years": 3486,
+      "cases": 443,
+      "prevalence": 0.1271,
+      "ci_lo": 0.1164,
+      "ci_hi": 0.1385
+    },
+    {
+      "age_band": "12+",
+      "pet_years": 4555,
+      "cases": 700,
+      "prevalence": 0.1537,
+      "ci_lo": 0.1435,
+      "ci_hi": 0.1644
+    },
+    {
+      "age_band": "2-4",
+      "pet_years": 3199,
+      "cases": 180,
+      "prevalence": 0.0563,
+      "ci_lo": 0.0488,
+      "ci_hi": 0.0648
+    },
+    {
+      "age_band": "4-7",
+      "pet_years": 5436,
+      "cases": 383,
+      "prevalence": 0.0705,
+      "ci_lo": 0.064,
+      "ci_hi": 0.0776
+    },
+    {
+      "age_band": "7-10",
+      "pet_years": 5333,
+      "cases": 497,
+      "prevalence": 0.0932,
+      "ci_lo": 0.0857,
+      "ci_hi": 0.1013
+    },
+    {
+      "age_band": "<2",
+      "pet_years": 2348,
+      "cases": 90,
+      "prevalence": 0.0383,
+      "ci_lo": 0.0313,
+      "ci_hi": 0.0469
+    }
+  ],
+  "by_year": [
+    {
+      "species": "cat",
+      "yr": 2022,
+      "pet_years": 2000,
+      "cases": 167,
+      "prevalence": 0.0835,
+      "ci_lo": 0.0722,
+      "ci_hi": 0.0964
+    },
+    {
+      "species": "cat",
+      "yr": 2023,
+      "pet_years": 2032,
+      "cases": 217,
+      "prevalence": 0.1068,
+      "ci_lo": 0.0941,
+      "ci_hi": 0.121
+    },
+    {
+      "species": "cat",
+      "yr": 2024,
+      "pet_years": 2046,
+      "cases": 217,
+      "prevalence": 0.1061,
+      "ci_lo": 0.0934,
+      "ci_hi": 0.1201
+    },
+    {
+      "species": "cat",
+      "yr": 2025,
+      "pet_years": 2038,
+      "cases": 213,
+      "prevalence": 0.1045,
+      "ci_lo": 0.092,
+      "ci_hi": 0.1185
+    },
+    {
+      "species": "dog",
+      "yr": 2022,
+      "pet_years": 5836,
+      "cases": 440,
+      "prevalence": 0.0754,
+      "ci_lo": 0.0689,
+      "ci_hi": 0.0825
+    },
+    {
+      "species": "dog",
+      "yr": 2023,
+      "pet_years": 6010,
+      "cases": 612,
+      "prevalence": 0.1018,
+      "ci_lo": 0.0944,
+      "ci_hi": 0.1097
+    },
+    {
+      "species": "dog",
+      "yr": 2024,
+      "pet_years": 6186,
+      "cases": 649,
+      "prevalence": 0.1049,
+      "ci_lo": 0.0975,
+      "ci_hi": 0.1128
+    },
+    {
+      "species": "dog",
+      "yr": 2025,
+      "pet_years": 6348,
+      "cases": 592,
+      "prevalence": 0.0933,
+      "ci_lo": 0.0863,
+      "ci_hi": 0.1007
+    }
+  ],
+  "adjusted_odds_ratios_dogs": [
+    {
+      "term": "Intercept",
+      "odds_ratio": 0.1257,
+      "ci_lo": 0.1013,
+      "ci_hi": 0.1561,
+      "p": 0.0
+    },
+    {
+      "term": "C(size_class)[T.medium]",
+      "odds_ratio": 1.0926,
+      "ci_lo": 0.9741,
+      "ci_hi": 1.2254,
+      "p": 0.1305
+    },
+    {
+      "term": "C(size_class)[T.small]",
+      "odds_ratio": 0.9774,
+      "ci_lo": 0.8295,
+      "ci_hi": 1.1517,
+      "p": 0.785
+    },
+    {
+      "term": "C(size_class)[T.toy]",
+      "odds_ratio": 2.4888,
+      "ci_lo": 2.1742,
+      "ci_hi": 2.8489,
+      "p": 0.0
+    },
+    {
+      "term": "C(age_band)[T.<2]",
+      "odds_ratio": 0.679,
+      "ci_lo": 0.5117,
+      "ci_hi": 0.901,
+      "p": 0.0073
+    },
+    {
+      "term": "C(age_band)[T.4-7]",
+      "odds_ratio": 1.241,
+      "ci_lo": 1.0152,
+      "ci_hi": 1.5169,
+      "p": 0.0351
+    },
+    {
+      "term": "C(age_band)[T.7-10]",
+      "odds_ratio": 1.6679,
+      "ci_lo": 1.3698,
+      "ci_hi": 2.0309,
+      "p": 0.0
+    },
+    {
+      "term": "C(age_band)[T.10-12]",
+      "odds_ratio": 2.403,
+      "ci_lo": 1.9663,
+      "ci_hi": 2.9368,
+      "p": 0.0
+    },
+    {
+      "term": "C(age_band)[T.12+]",
+      "odds_ratio": 2.9158,
+      "ci_lo": 2.4117,
+      "ci_hi": 3.5253,
+      "p": 0.0
+    },
+    {
+      "term": "C(market)[T.MSP]",
+      "odds_ratio": 1.0622,
+      "ci_lo": 0.935,
+      "ci_hi": 1.2068,
+      "p": 0.3539
+    },
+    {
+      "term": "C(market)[T.PHL]",
+      "odds_ratio": 1.0803,
+      "ci_lo": 0.9671,
+      "ci_hi": 1.2067,
+      "p": 0.1717
+    },
+    {
+      "term": "ever_obese",
+      "odds_ratio": 0.9362,
+      "ci_lo": 0.8211,
+      "ci_hi": 1.0674,
+      "p": 0.3243
+    },
+    {
+      "term": "had_wellness",
+      "odds_ratio": 0.3423,
+      "ci_lo": 0.3059,
+      "ci_hi": 0.3831,
+      "p": 0.0
+    }
+  ],
+  "detection_by_wellness_exam": [
+    {
+      "had_wellness": 0,
+      "pet_years": 2678,
+      "cases": 558,
+      "prevalence": 0.2084,
+      "ci_lo": 0.1934,
+      "ci_hi": 0.2242
+    },
+    {
+      "had_wellness": 1,
+      "pet_years": 21702,
+      "cases": 1735,
+      "prevalence": 0.0799,
+      "ci_lo": 0.0764,
+      "ci_hi": 0.0836
+    }
+  ],
+  "treatment_gap": {
+    "diagnosed_dog_years": 2293,
+    "with_cleaning_same_year": 1056,
+    "cleaning_rate": 0.4605,
+    "by_size": {
+      "large": 0.4643,
+      "medium": 0.4493,
+      "small": 0.4863,
+      "toy": 0.4581
+    }
+  },
+  "avg_cleaning_price": 783.17,
+  "clinics_below_expected": 0,
+  "clinics": 9,
+  "cleaning_revenue_gap_per_year_total": 0.0,
+  "top_breeds": [
+    {
+      "breed": "Yorkshire Terrier",
+      "size_class": "toy",
+      "pet_years": 790,
+      "cases": 159,
+      "raw_prevalence": 0.2013,
+      "shrunk_prevalence": 0.1897,
+      "ci90_lo": 0.1734,
+      "ci90_hi": 0.2066,
+      "prior_strength": 717.9539
+    },
+    {
+      "breed": "Chihuahua",
+      "size_class": "toy",
+      "pet_years": 618,
+      "cases": 110,
+      "raw_prevalence": 0.178,
+      "shrunk_prevalence": 0.1775,
+      "ci90_lo": 0.1606,
+      "ci90_hi": 0.195,
+      "prior_strength": 717.9539
+    },
+    {
+      "breed": "Shih Tzu",
+      "size_class": "toy",
+      "pet_years": 885,
+      "cases": 137,
+      "raw_prevalence": 0.1548,
+      "shrunk_prevalence": 0.1648,
+      "ci90_lo": 0.1498,
+      "ci90_hi": 0.1802,
+      "prior_strength": 717.9539
+    },
+    {
+      "breed": "Poodle",
+      "size_class": "medium",
+      "pet_years": 1265,
+      "cases": 150,
+      "raw_prevalence": 0.1186,
+      "shrunk_prevalence": 0.1092,
+      "ci90_lo": 0.0976,
+      "ci90_hi": 0.1213,
+      "prior_strength": 605.7509
+    },
+    {
+      "breed": "Dachshund",
+      "size_class": "small",
+      "pet_years": 1011,
+      "cases": 101,
+      "raw_prevalence": 0.0999,
+      "shrunk_prevalence": 0.0938,
+      "ci90_lo": 0.0818,
+      "ci90_hi": 0.1064,
+      "prior_strength": 502.7711
+    },
+    {
+      "breed": "Beagle",
+      "size_class": "medium",
+      "pet_years": 900,
+      "cases": 82,
+      "raw_prevalence": 0.0911,
+      "shrunk_prevalence": 0.0905,
+      "ci90_lo": 0.0787,
+      "ci90_hi": 0.103,
+      "prior_strength": 605.7509
+    },
+    {
+      "breed": "Mixed Breed Dog",
+      "size_class": "medium",
+      "pet_years": 3021,
+      "cases": 268,
+      "raw_prevalence": 0.0887,
+      "shrunk_prevalence": 0.0889,
+      "ci90_lo": 0.0812,
+      "ci90_hi": 0.0968,
+      "prior_strength": 605.7509
+    },
+    {
+      "breed": "Border Collie",
+      "size_class": "medium",
+      "pet_years": 529,
+      "cases": 46,
+      "raw_prevalence": 0.087,
+      "shrunk_prevalence": 0.0884,
+      "ci90_lo": 0.0749,
+      "ci90_hi": 0.1026,
+      "prior_strength": 605.7509
+    }
+  ],
+  "comparison": {
+    "ours": {
+      "dog_annual_prevalence": 0.0941,
+      "toy_to_large_ratio": 2.12,
+      "age12plus_to_2to4_ratio": 2.73
+    },
+    "banfield_us": {
+      "period_prevalence": 0.182,
+      "extra_small_to_large_ratio": 1.88
+    },
+    "vetcompass_uk": {
+      "annual_prevalence": 0.125,
+      "under10kg_vs_30to40kg_risk": 3.07,
+      "age12plus_vs_2to4_risk": 3.91
+    }
+  }
+}

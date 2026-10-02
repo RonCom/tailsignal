@@ -1,0 +1,44 @@
+{
+  "snapshots": 392838,
+  "observed_platform": {
+    "active_in_other_channels": {
+      "rows": 58085,
+      "auc_vet_only": 0.6638,
+      "auc_with_cross_channel": 0.6756,
+      "lift": 0.0118
+    },
+    "test_rows": 175979,
+    "test_pets": 11617,
+    "event_rate": 0.0842,
+    "auc_vet_only": 0.7082,
+    "auc_with_cross_channel": 0.7146,
+    "lift": 0.0064,
+    "lift_ci95": [
+      0.0048,
+      0.0078
+    ],
+    "share_of_sick_visits_in_top5pct": {
+      "vet_only": 0.16,
+      "with_cross_channel": 0.164
+    }
+  },
+  "power": {
+    "0.0": {
+      "full_sample_lift": 0.0088,
+      "min_pets_for_80pct_power": 2000
+    },
+    "0.25": {
+      "full_sample_lift": 0.0105,
+      "min_pets_for_80pct_power": 2000
+    },
+    "0.5": {
+      "full_sample_lift": 0.0117,
+      "min_pets_for_80pct_power": 2000
+    },
+    "1.0": {
+      "full_sample_lift": 0.0153,
+      "min_pets_for_80pct_power": 1000
+    }
+  },
+  "H5_note": "minimum linked pets for 80% power to detect the lift each signal strength produces"
+}

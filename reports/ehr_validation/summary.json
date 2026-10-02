@@ -1,0 +1,586 @@
+{
+  "consistency": {
+    "base_visits_in_ehr": 53123,
+    "platform_vet_visits": 53167
+  },
+  "dental": {
+    "dog_prevalence": 0.1806876949192689,
+    "cat_prevalence": 0.19031798766018035,
+    "dog_years": 25331,
+    "by_size": {
+      "large": 0.1521,
+      "medium": 0.1686,
+      "small": 0.2059,
+      "toy": 0.321
+    },
+    "by_wellness": {
+      "false": 0.2023,
+      "true": 0.1771
+    },
+    "by_age": {
+      "<2": 0.04,
+      "2-4": 0.0884,
+      "4-7": 0.1388,
+      "7-10": 0.1978,
+      "10-12": 0.2558,
+      "12+": 0.3133
+    },
+    "odds_ratios": {
+      "Intercept": {
+        "or": 0.066,
+        "lo": 0.055,
+        "hi": 0.08
+      },
+      "C(size)[T.toy]": {
+        "or": 2.951,
+        "lo": 2.626,
+        "hi": 3.317
+      },
+      "C(size)[T.small]": {
+        "or": 1.56,
+        "lo": 1.383,
+        "hi": 1.76
+      },
+      "C(size)[T.medium]": {
+        "or": 1.177,
+        "lo": 1.073,
+        "hi": 1.291
+      },
+      "C(age_band)[T.<2]": {
+        "or": 0.418,
+        "lo": 0.33,
+        "hi": 0.529
+      },
+      "C(age_band)[T.4-7]": {
+        "or": 1.642,
+        "lo": 1.405,
+        "hi": 1.92
+      },
+      "C(age_band)[T.7-10]": {
+        "or": 2.553,
+        "lo": 2.185,
+        "hi": 2.983
+      },
+      "C(age_band)[T.10-12]": {
+        "or": 3.549,
+        "lo": 3.026,
+        "hi": 4.161
+      },
+      "C(age_band)[T.12+]": {
+        "or": 4.747,
+        "lo": 4.065,
+        "hi": 5.543
+      },
+      "overweight[T.True]": {
+        "or": 1.602,
+        "lo": 1.483,
+        "hi": 1.731
+      },
+      "wellness[T.True]": {
+        "or": 0.873,
+        "lo": 0.792,
+        "hi": 0.962
+      },
+      "C(market)[T.MSP]": {
+        "or": 0.961,
+        "lo": 0.867,
+        "hi": 1.066
+      },
+      "C(market)[T.PHL]": {
+        "or": 1.109,
+        "lo": 1.014,
+        "hi": 1.213
+      }
+    },
+    "clinic_funnel": [
+      {
+        "clinic": "AUS-VET1",
+        "observed": 512,
+        "expected": 499.444,
+        "ratio": 1.025,
+        "z": 0.562,
+        "flag": "",
+        "planted_thoroughness": 0.894
+      },
+      {
+        "clinic": "AUS-VET2",
+        "observed": 470,
+        "expected": 530.567,
+        "ratio": 0.886,
+        "z": -2.629,
+        "flag": "low",
+        "planted_thoroughness": 0.45
+      },
+      {
+        "clinic": "AUS-VET3",
+        "observed": 558,
+        "expected": 509.989,
+        "ratio": 1.094,
+        "z": 2.126,
+        "flag": "high",
+        "planted_thoroughness": 0.883
+      },
+      {
+        "clinic": "MSP-VET1",
+        "observed": 412,
+        "expected": 382.972,
+        "ratio": 1.076,
+        "z": 1.483,
+        "flag": "",
+        "planted_thoroughness": 0.743
+      },
+      {
+        "clinic": "MSP-VET2",
+        "observed": 368,
+        "expected": 344.475,
+        "ratio": 1.068,
+        "z": 1.268,
+        "flag": "",
+        "planted_thoroughness": 0.727
+      },
+      {
+        "clinic": "MSP-VET3",
+        "observed": 279,
+        "expected": 331.553,
+        "ratio": 0.841,
+        "z": -2.886,
+        "flag": "low",
+        "planted_thoroughness": 0.45
+      },
+      {
+        "clinic": "PHL-VET1",
+        "observed": 731,
+        "expected": 649.794,
+        "ratio": 1.125,
+        "z": 3.186,
+        "flag": "high",
+        "planted_thoroughness": 0.97
+      },
+      {
+        "clinic": "PHL-VET2",
+        "observed": 640,
+        "expected": 678.605,
+        "ratio": 0.943,
+        "z": -1.482,
+        "flag": "",
+        "planted_thoroughness": 0.812
+      },
+      {
+        "clinic": "PHL-VET3",
+        "observed": 607,
+        "expected": 649.601,
+        "ratio": 0.934,
+        "z": -1.671,
+        "flag": "",
+        "planted_thoroughness": 0.766
+      }
+    ],
+    "sensitivity_by_wellness": {
+      "false": 0.6062,
+      "true": 0.7623
+    },
+    "funnel_spearman_vs_planted": 0.6945667492672501
+  },
+  "anesthesia": {
+    "procedures": 4995,
+    "deaths": 12,
+    "death_table": [
+      {
+        "species": "cat",
+        "asa": "ASA 1-2",
+        "procedures": 1073,
+        "deaths": 0,
+        "rate": 0.0,
+        "ci_lo": 0.0,
+        "ci_hi": 0.00343,
+        "cepsaf": 0.0011,
+        "within_ci": true
+      },
+      {
+        "species": "cat",
+        "asa": "ASA 3-5",
+        "procedures": 193,
+        "deaths": 4,
+        "rate": 0.02073,
+        "ci_lo": 0.00568,
+        "ci_hi": 0.05221,
+        "cepsaf": 0.014,
+        "within_ci": true
+      },
+      {
+        "species": "dog",
+        "asa": "ASA 1-2",
+        "procedures": 3366,
+        "deaths": 3,
+        "rate": 0.00089,
+        "ci_lo": 0.00018,
+        "ci_hi": 0.0026,
+        "cepsaf": 0.0005,
+        "within_ci": true
+      },
+      {
+        "species": "dog",
+        "asa": "ASA 3-5",
+        "procedures": 363,
+        "deaths": 5,
+        "rate": 0.01377,
+        "ci_lo": 0.00449,
+        "ci_hi": 0.03185,
+        "cepsaf": 0.0133,
+        "within_ci": true
+      }
+    ],
+    "complication_rate": 0.09249249249249249,
+    "complication_funnel": [
+      {
+        "clinic": "AUS-VET1",
+        "observed": 71,
+        "expected": 51.157,
+        "ratio": 1.388,
+        "z": 2.774,
+        "flag": "high",
+        "planted_or": 2.0
+      },
+      {
+        "clinic": "AUS-VET2",
+        "observed": 54,
+        "expected": 51.169,
+        "ratio": 1.055,
+        "z": 0.396,
+        "flag": "",
+        "planted_or": 1.158
+      },
+      {
+        "clinic": "AUS-VET3",
+        "observed": 63,
+        "expected": 61.095,
+        "ratio": 1.031,
+        "z": 0.244,
+        "flag": "",
+        "planted_or": 1.195
+      },
+      {
+        "clinic": "MSP-VET1",
+        "observed": 16,
+        "expected": 36.206,
+        "ratio": 0.442,
+        "z": -3.358,
+        "flag": "low",
+        "planted_or": 0.6
+      },
+      {
+        "clinic": "MSP-VET2",
+        "observed": 19,
+        "expected": 35.202,
+        "ratio": 0.54,
+        "z": -2.731,
+        "flag": "low",
+        "planted_or": 0.637
+      },
+      {
+        "clinic": "MSP-VET3",
+        "observed": 45,
+        "expected": 31.822,
+        "ratio": 1.414,
+        "z": 2.336,
+        "flag": "high",
+        "planted_or": 1.527
+      },
+      {
+        "clinic": "PHL-VET1",
+        "observed": 68,
+        "expected": 67.489,
+        "ratio": 1.008,
+        "z": 0.062,
+        "flag": "",
+        "planted_or": 1.14
+      },
+      {
+        "clinic": "PHL-VET2",
+        "observed": 48,
+        "expected": 65.122,
+        "ratio": 0.737,
+        "z": -2.122,
+        "flag": "low",
+        "planted_or": 0.831
+      },
+      {
+        "clinic": "PHL-VET3",
+        "observed": 78,
+        "expected": 62.739,
+        "ratio": 1.243,
+        "z": 1.927,
+        "flag": "",
+        "planted_or": 1.353
+      }
+    ],
+    "mortality_power": {
+      "procedures_per_clinic": 555,
+      "expected_deaths_per_clinic": 1.33,
+      "power_to_detect_or2": 0.132,
+      "procedures_needed_for_80pct": 4750
+    },
+    "complication_spearman_vs_planted": 0.9666666666666667
+  },
+  "kidney": {
+    "cats_with_ckd_labs": 631,
+    "panels": 1383,
+    "trajectory": [
+      {
+        "window": "0-6",
+        "creatinine_mg_dl": 2.27,
+        "sdma_ug_dl": 20.8,
+        "usg": 1.02,
+        "upc": 0.34,
+        "bun_mg_dl": 33.2,
+        "panels": 452.0
+      },
+      {
+        "window": "6-12",
+        "creatinine_mg_dl": 1.685,
+        "sdma_ug_dl": 19.3,
+        "usg": 1.03,
+        "upc": 0.24,
+        "bun_mg_dl": 24.9,
+        "panels": 100.0
+      },
+      {
+        "window": "12-18",
+        "creatinine_mg_dl": 1.55,
+        "sdma_ug_dl": 17.7,
+        "usg": 1.033,
+        "upc": 0.22,
+        "bun_mg_dl": 23.2,
+        "panels": 127.0
+      },
+      {
+        "window": "18-24",
+        "creatinine_mg_dl": 1.48,
+        "sdma_ug_dl": 14.4,
+        "usg": 1.04,
+        "upc": 0.14,
+        "bun_mg_dl": 22.3,
+        "panels": 103.0
+      },
+      {
+        "window": "24-36",
+        "creatinine_mg_dl": 1.455,
+        "sdma_ug_dl": 12.1,
+        "usg": 1.044,
+        "upc": 0.1,
+        "bun_mg_dl": 22.55,
+        "panels": 200.0
+      },
+      {
+        "window": "36+",
+        "creatinine_mg_dl": 1.43,
+        "sdma_ug_dl": 10.8,
+        "usg": 1.045,
+        "upc": 0.1,
+        "bun_mg_dl": 22.2,
+        "panels": 401.0
+      },
+      {
+        "window": "never CKD",
+        "creatinine_mg_dl": 1.39,
+        "sdma_ug_dl": 10.9,
+        "usg": 1.045,
+        "upc": 0.1,
+        "bun_mg_dl": 21.9,
+        "panels": 2473.0
+      }
+    ],
+    "healthy_panels_creatinine_gt_1_6": 0.1900525677315002,
+    "sdma14_vs_creatinine_hall2014": {
+      "cats": 408,
+      "mean_lead_months": 1.5923320708046687,
+      "median_lead_months": 0.0,
+      "share_sdma_first": 0.23774509803921567
+    },
+    "sdma_lead": {
+      "cats": 363,
+      "mean_days": -43.93939393939394,
+      "share_sdma_first": 0.1046831955922865
+    }
+  },
+  "drug_safety": {
+    "isoxazoline_seizure_naive": {
+      "a": 15,
+      "n1": 12565,
+      "b": 31,
+      "n0": 8477,
+      "rr": 0.3264444244765927,
+      "lo": 0.17633938161419277,
+      "hi": 0.6043231029640677,
+      "se_log": 0.3142088139583881,
+      "exact_lo": 0.16376391837296836,
+      "exact_hi": 0.6231849033393452
+    },
+    "isoxazoline_seizure_restricted": {
+      "a": 11,
+      "n1": 12535,
+      "b": 8,
+      "n0": 8307,
+      "rr": 0.9112185879537297,
+      "lo": 0.3666732352588701,
+      "hi": 2.2644666563846316,
+      "se_log": 0.464444758697492,
+      "exact_lo": 0.3338403529444407,
+      "exact_hi": 2.609563589789197
+    },
+    "nsaid_gi_oa": {
+      "a": 7.0,
+      "n1": 1123.0,
+      "b": 0.0,
+      "n0": 185.0,
+      "rr": NaN,
+      "lo": NaN,
+      "hi": NaN,
+      "exact_lo": 0.23743728938955422,
+      "exact_hi": Infinity
+    },
+    "ml_mdr1_neuro_null": {
+      "a": 0.0,
+      "n1": 789.0,
+      "b": 2.0,
+      "n0": 13759.0,
+      "rr": NaN,
+      "lo": NaN,
+      "hi": NaN,
+      "exact_lo": 0.0,
+      "exact_hi": 92.85241654312767
+    },
+    "replicates": {
+      "isoxazoline_seizure": {
+        "planted_rr": 1.5,
+        "reps": 200,
+        "estimable_share": 0.965,
+        "mean_events": 11.84,
+        "mean_rr": 1.6064580665598631,
+        "naive_mean_rr": 0.3567556734539174,
+        "coverage": 0.9844559585492227,
+        "exact_estimable_share": 1.0,
+        "exact_coverage": 0.985,
+        "power": 0.010362694300518135,
+        "exposed_n": 12565,
+        "comparator_n": 8477,
+        "network_multiple_for_80pct_power": 22.941501416519337
+      },
+      "nsaid_gi_oa": {
+        "planted_rr": 2.0,
+        "reps": 200,
+        "estimable_share": 0.415,
+        "mean_events": 7.195,
+        "mean_rr": 0.8707398693831591,
+        "naive_mean_rr": 0.8707398693831591,
+        "coverage": 0.927710843373494,
+        "exact_estimable_share": 1.0,
+        "exact_coverage": 0.995,
+        "power": 0.0,
+        "exposed_n": 1123,
+        "comparator_n": 185,
+        "network_multiple_for_80pct_power": 16.82292440484409
+      },
+      "ml_mdr1_neuro_null": {
+        "planted_rr": 1.0,
+        "reps": 200,
+        "estimable_share": 0.185,
+        "mean_events": 3.825,
+        "mean_rr": 5.881692371689182,
+        "naive_mean_rr": 5.881692371689182,
+        "coverage": 0.7837837837837838,
+        "exact_estimable_share": 0.975,
+        "exact_coverage": 0.9948717948717949,
+        "power": null,
+        "exposed_n": 789,
+        "comparator_n": 13759,
+        "network_multiple_for_80pct_power": null
+      }
+    }
+  },
+  "stewardship": {
+    "culture_vs_narms": {
+      "cells": 42,
+      "share_within_3pts": 0.6190476190476191,
+      "share_p_ge_0_05": 0.9523809523809523,
+      "max_abs_diff": 0.1181688579122446
+    },
+    "resistance_index_vs_recheck_cultures": {
+      "E. coli|recheck": 0.24,
+      "E. coli|index": 0.15384615384615385,
+      "S. pseudintermedius|recheck": 0.6354679802955665,
+      "S. pseudintermedius|index": 0.4099099099099099
+    },
+    "spearman_by_metric": {
+      "uti_culture_rate": 0.9333333333333332,
+      "pyoderma_culture_rate": 0.8833333333333333,
+      "first_line_share": 0.9166666666666666,
+      "hpcia_share": 0.9833333333333333,
+      "topical_only_pyoderma": 0.7833333333333333,
+      "metronidazole_acute_diarrhea": 0.9,
+      "dental_abx_share": 0.9666666666666667
+    },
+    "failure_by_empirical_resistance": {
+      "false": 0.106703146374829,
+      "true": 0.5727002967359051
+    }
+  },
+  "notes": {
+    "naive_keywords": {
+      "precision": 0.03704501399956924,
+      "recall": 0.9809885931558935,
+      "flagged": 13929
+    },
+    "negation_history_aware": {
+      "precision": 0.7275320970042796,
+      "recall": 0.9695817490494296,
+      "flagged": 701
+    },
+    "true_seizure_notes": 526,
+    "notes_with_negated_mention": 9737,
+    "notes_with_history_mention": 349,
+    "notes_with_fit_and_well": 3012
+  },
+  "microchips": {
+    "pets_at_2plus_clinics": 902,
+    "linkable_by_microchip": 0.3170731707317073,
+    "chip_recorded_share": 0.47421093148575827
+  },
+  "checks": {
+    "base_visits_match_platform": true,
+    "dental.prevalence_12_18pct": false,
+    "dental.small_gt_large": true,
+    "dental.overweight_or_1.5_2.4": true,
+    "dental.wellness_raises_recorded_prevalence": false,
+    "dental.age12_or_2.5_5": true,
+    "dental.funnel_flags_planted_low_clinics": true,
+    "dental.prereg.funnel_false_flags_le_1": true,
+    "dental.amended.funnel_flags_match_planted_direction": true,
+    "dental.amended.funnel_spearman_ge_0.7": false,
+    "dental.amended.exam_sensitivity_higher_with_wellness": true,
+    "anesthesia.deaths_within_cepsaf_ci": true,
+    "anesthesia.complication_funnel_flags_planted_high": true,
+    "anesthesia.complication_funnel_flags_planted_low": true,
+    "anesthesia.prereg.complication_false_flags_le_1": false,
+    "anesthesia.amended.complication_flags_match_planted_direction": true,
+    "anesthesia.amended.complication_spearman_ge_0.7": true,
+    "kidney.creatinine_rises_over_24m": true,
+    "kidney.sdma_rises_over_24m": true,
+    "kidney.usg_falls_over_24m": true,
+    "kidney.prereg.sdma_crosses_before_creatinine_per_cat": false,
+    "kidney.amended.sdma14_median_crosses_before_creatinine1.6": true,
+    "kidney.amended.sdma14_leads_creatinine_per_cat": true,
+    "drug_safety.isox_estimator_coverage_90_99": true,
+    "drug_safety.isox_restricted_unbiased_within_10pct": true,
+    "drug_safety.naive_biased_below_planted": true,
+    "drug_safety.nsaid_estimator_coverage_90_99": true,
+    "drug_safety.prereg.ml_null_estimator_coverage_90_99": false,
+    "drug_safety.amended.exact_ci_coverage_ge_0.93_all_three": true,
+    "drug_safety.prereg.nsaid_ci_covers_2": false,
+    "drug_safety.prereg.ml_null_ci_covers_1": false,
+    "amr.prereg.cultures_within_3pts_of_narms": false,
+    "amr.amended.index_cultures_consistent_with_narms": true,
+    "amr.stewardship_spearman_ge_0.8": true,
+    "amr.failure_higher_when_resistant": true
+  }
+}

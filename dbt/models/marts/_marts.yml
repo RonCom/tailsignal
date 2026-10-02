@@ -1,0 +1,41 @@
+version: 2
+models:
+  - name: dim_pet
+    description: One row per resolved pet (entity resolution across all channels).
+    columns:
+      - name: pet_id
+        data_tests: [unique, not_null]
+      - name: species
+        data_tests:
+          - accepted_values: {arguments: {values: ['dog', 'cat']}}
+  - name: dim_location
+    columns:
+      - name: location_id
+        data_tests: [unique, not_null]
+  - name: fct_service_event
+    description: One row per service delivered in any channel.
+    columns:
+      - name: event_id
+        data_tests: [unique, not_null]
+      - name: pet_id
+        data_tests:
+          - not_null
+          - relationships: {arguments: {to: ref('dim_pet'), field: pet_id}}
+      - name: channel
+        data_tests:
+          - accepted_values: {arguments: {values: ['vet', 'daycare', 'boarding', 'grooming']}}
+      - name: service_code
+        data_tests: [not_null]
+  - name: fct_wellness_membership
+    columns:
+      - name: membership_id
+        data_tests: [unique, not_null]
+  - name: product_pet_cohort
+    description: De-identified, k-anonymous pet cohort (Data Product tier 2).
+    columns:
+      - name: pet_token
+        data_tests: [unique, not_null]
+  - name: product_condition_prevalence
+    description: Suppressed prevalence table (Research & Insights).
+  - name: product_service_benchmark
+    description: Market benchmarks for the partner portal (Embedded Analytics).

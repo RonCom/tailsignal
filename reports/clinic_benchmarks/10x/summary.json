@@ -1,0 +1,183 @@
+{
+  "anesthesia": {
+    "procedures": 50509,
+    "death_rate": 0.002296620404284385,
+    "complication_rate": 0.09594329723415629,
+    "procedures_per_clinic_for_80pct": 5250,
+    "network_deaths": [
+      {
+        "species": "cat",
+        "asa_grp": "1-2",
+        "size": 10653,
+        "sum": 19,
+        "mean": 0.0017835351544165962
+      },
+      {
+        "species": "cat",
+        "asa_grp": "3-5",
+        "size": 1951,
+        "sum": 28,
+        "mean": 0.014351614556637622
+      },
+      {
+        "species": "dog",
+        "asa_grp": "1-2",
+        "size": 34390,
+        "sum": 14,
+        "mean": 0.00040709508578075024
+      },
+      {
+        "species": "dog",
+        "asa_grp": "3-5",
+        "size": 3515,
+        "sum": 55,
+        "mean": 0.015647226173541962
+      }
+    ]
+  },
+  "complication_tau2": 0.12196650001512489,
+  "death_tau2": 0.033651403587993595,
+  "scoring": {
+    "complication_spearman_shrunk": 0.9833333333333333,
+    "complication_spearman_raw": 0.9833333333333333,
+    "complication_mse_raw": 0.0034392459976859153,
+    "complication_mse_shrunk": 0.004080276877151636,
+    "death_flags_998": [
+      "PHL-VET3"
+    ],
+    "death_flags_95": [
+      "PHL-VET3"
+    ],
+    "death_planted_outlier_flagged": true,
+    "death_mean_power_or2": 0.8087364495334876,
+    "dental_flagged_below": [
+      "AUS-VET2",
+      "MSP-VET3"
+    ],
+    "dental_spearman": 0.9958246164193105,
+    "stewardship_spearman": 0.9833333333333333,
+    "complication_mse_vs_true_oe_raw": 0.0013686275131326953,
+    "complication_mse_vs_true_oe_shrunk": 0.0014024083231967811,
+    "complication_reliability": {
+      "AUS-VET1": 0.99,
+      "AUS-VET2": 0.98,
+      "AUS-VET3": 0.99,
+      "MSP-VET1": 0.96,
+      "MSP-VET2": 0.97,
+      "MSP-VET3": 0.98,
+      "PHL-VET1": 0.99,
+      "PHL-VET2": 0.98,
+      "PHL-VET3": 0.99
+    },
+    "death_mse_vs_true_oe_raw": 0.054185994080948645,
+    "death_mse_vs_true_oe_shrunk": 0.03112243990475816,
+    "death_reliability": {
+      "AUS-VET1": 0.3,
+      "AUS-VET2": 0.26,
+      "AUS-VET3": 0.24,
+      "MSP-VET1": 0.22,
+      "MSP-VET2": 0.16,
+      "MSP-VET3": 0.26,
+      "PHL-VET1": 0.4,
+      "PHL-VET2": 0.31,
+      "PHL-VET3": 0.51
+    },
+    "checks": {
+      "complication_spearman": true,
+      "dental_low_clinics_flagged": true,
+      "stewardship_spearman_ge_0.8": true
+    },
+    "planted": {
+      "AUS-VET1": {
+        "comp_log_or": 0.693,
+        "death_log_or": 0.23,
+        "dental_thoroughness": 0.894,
+        "p_culture_uti": 0.741,
+        "p_first_line": 0.708,
+        "p_hpcia_marginal": 0.199,
+        "p_metro": 0.296,
+        "p_dental_abx": 0.13
+      },
+      "AUS-VET2": {
+        "comp_log_or": 0.147,
+        "death_log_or": 0.218,
+        "dental_thoroughness": 0.45,
+        "p_culture_uti": 0.623,
+        "p_first_line": 0.62,
+        "p_hpcia_marginal": 0.162,
+        "p_metro": 0.346,
+        "p_dental_abx": 0.148
+      },
+      "AUS-VET3": {
+        "comp_log_or": 0.178,
+        "death_log_or": -0.335,
+        "dental_thoroughness": 0.883,
+        "p_culture_uti": 0.583,
+        "p_first_line": 0.716,
+        "p_hpcia_marginal": 0.129,
+        "p_metro": 0.456,
+        "p_dental_abx": 0.353
+      },
+      "MSP-VET1": {
+        "comp_log_or": -0.511,
+        "death_log_or": 0.232,
+        "dental_thoroughness": 0.743,
+        "p_culture_uti": 0.268,
+        "p_first_line": 0.536,
+        "p_hpcia_marginal": 0.313,
+        "p_metro": 0.369,
+        "p_dental_abx": 0.254
+      },
+      "MSP-VET2": {
+        "comp_log_or": -0.451,
+        "death_log_or": 0.04,
+        "dental_thoroughness": 0.727,
+        "p_culture_uti": 0.337,
+        "p_first_line": 0.807,
+        "p_hpcia_marginal": 0.049,
+        "p_metro": 0.583,
+        "p_dental_abx": 0.509
+      },
+      "MSP-VET3": {
+        "comp_log_or": 0.423,
+        "death_log_or": 0.054,
+        "dental_thoroughness": 0.45,
+        "p_culture_uti": 0.421,
+        "p_first_line": 0.562,
+        "p_hpcia_marginal": 0.149,
+        "p_metro": 0.425,
+        "p_dental_abx": 0.219
+      },
+      "PHL-VET1": {
+        "comp_log_or": 0.131,
+        "death_log_or": 0.127,
+        "dental_thoroughness": 0.97,
+        "p_culture_uti": 0.486,
+        "p_first_line": 0.789,
+        "p_hpcia_marginal": 0.064,
+        "p_metro": 0.353,
+        "p_dental_abx": 0.19
+      },
+      "PHL-VET2": {
+        "comp_log_or": -0.185,
+        "death_log_or": 0.182,
+        "dental_thoroughness": 0.812,
+        "p_culture_uti": 0.446,
+        "p_first_line": 0.742,
+        "p_hpcia_marginal": 0.049,
+        "p_metro": 0.344,
+        "p_dental_abx": 0.152
+      },
+      "PHL-VET3": {
+        "comp_log_or": 0.302,
+        "death_log_or": 0.693,
+        "dental_thoroughness": 0.766,
+        "p_culture_uti": 0.33,
+        "p_first_line": 0.827,
+        "p_hpcia_marginal": 0.038,
+        "p_metro": 0.517,
+        "p_dental_abx": 0.115
+      }
+    }
+  }
+}

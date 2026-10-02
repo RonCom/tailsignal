@@ -1,0 +1,102 @@
+{
+  "memberships": 2927,
+  "train": 2640,
+  "test": 287,
+  "overall_effect_lapse_rate": {
+    "control": 0.141,
+    "reminder": 0.1236
+  },
+  "primary_time_holdout": {
+    "n": 287,
+    "retained_per_1000_contacts_top30": {
+      "uplift_X": 58.0,
+      "uplift_T": 41.1,
+      "risk": -82.2,
+      "random": 21.4
+    },
+    "ci95": {
+      "uplift_X": [
+        -93.3,
+        192.7
+      ],
+      "uplift_T": [
+        -89.8,
+        198.9
+      ],
+      "risk": [
+        -226.2,
+        74.7
+      ],
+      "random": [
+        -54.8,
+        96.6
+      ]
+    },
+    "qini_area": {
+      "uplift_X": -0.0023,
+      "uplift_T": 0.0005,
+      "risk": -0.0193
+    },
+    "uplift_X_minus_risk": {
+      "point": 140.2,
+      "ci95": [
+        -13.8,
+        273.4
+      ],
+      "p_greater": 0.96
+    }
+  },
+  "secondary_crossfit": {
+    "n": 2927,
+    "retained_per_1000_contacts_top30": {
+      "uplift_X": 23.9,
+      "uplift_T": 15.6,
+      "risk": 11.6,
+      "random": 17.4
+    },
+    "ci95": {
+      "uplift_X": [
+        -19.7,
+        71.3
+      ],
+      "uplift_T": [
+        -25.3,
+        60.6
+      ],
+      "risk": [
+        -36.2,
+        61.2
+      ],
+      "random": [
+        -5.6,
+        42.9
+      ]
+    },
+    "qini_area": {
+      "uplift_X": -0.0004,
+      "uplift_T": -0.0027,
+      "risk": -0.0051
+    },
+    "uplift_X_minus_risk": {
+      "point": 12.3,
+      "ci95": [
+        -24.8,
+        54.4
+      ],
+      "p_greater": 0.761
+    }
+  },
+  "H6_pass": false,
+  "recovery_check": {
+    "spearman_uplift_X_vs_true_benefit": 0.166,
+    "spearman_risk_vs_true_benefit": 0.05,
+    "oracle_retained_per_1000_top30": 92.8,
+    "true_benefit_by_segment": {
+      "boarding_travelers": 0.0182,
+      "full_service_urban": 0.0,
+      "grooming_focused": 0.0119,
+      "low_engagement": 0.0301,
+      "vet_only_traditional": 0.0024
+    }
+  }
+}

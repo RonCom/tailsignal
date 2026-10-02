@@ -1,0 +1,13 @@
+species,drug_unit,event,expected,source,verified
+Dog,carprofen,Vomiting,positive,"Rimadyl (carprofen) chewable tablets US label, Adverse Reactions: vomiting in field-study tables and post-approval GI list (DailyMed setid dbc05493)",yes
+Dog,meloxicam,Vomiting,positive,"Metacam oral suspension US label: GI abnormalities incl. vomiting most common adverse reactions (DailyMed setid c27c35d7)",yes
+Dog,deracoxib,Vomiting,positive,"Deramaxx US label, field studies and post-approval GI list (DailyMed setid eced868b)",yes
+Dog,spinosad,Vomiting,positive,"Comfortis US label: vomiting most frequently reported adverse reaction in dogs (FDA SPL 4b110087)",yes
+Dog,cyclosporine,Vomiting,positive,"Atopica US label: vomiting and diarrhea most common, vomiting 30.9% (DailyMed setid 99642708)",yes
+Dog,melarsomine,Injection site pain,positive,"Immiticide US label: injection site pain, swelling, tenderness in ~30% of dogs (FDA SPL e3599f9d)",yes
+Dog,melarsomine,Injection site swelling,positive,"Immiticide US label (as above)",yes
+Cat,selamectin,Application site alopecia,positive,"Revolution US label: transient localized alopecia at or near application site in ~1% of treated cats (FDA SPL 4adc2f5f)",yes
+Dog,selamectin,Application site alopecia,positive,"Revolution US label lists alopecia for cats only",no
+Dog,phenobarbital,Elevated serum alkaline phosphatase (SAP),positive,"No FDA-approved veterinary phenobarbital label for dogs; not verifiable",no
+Dog,class:isoxazolines,NEUROLOGIC,positive,FDA CVM alert 2018-09-20,yes
+Dog,class:macrocyclic_lactones|mdr1_high,NEUROLOGIC,positive,WSU VCPL MDR1 drug list,yes

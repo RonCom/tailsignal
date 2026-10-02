@@ -1,0 +1,13 @@
+version: 2
+sources:
+  - name: er
+    description: Tables written by the Python entity-resolution step (src/tailsignal/er/link.py)
+    schema: intermediate
+    tables:
+      - name: int_pet_clusters
+        description: Source pet record -> resolved household_id and pet_id
+        columns:
+          - name: unique_id
+            data_tests: [unique, not_null]
+          - name: pet_id
+            data_tests: [not_null]

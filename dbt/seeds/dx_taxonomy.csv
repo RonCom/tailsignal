@@ -1,0 +1,73 @@
+source_system,source_value,source_label,condition,body_system
+vet_alpha,DERM-ALG,Allergic dermatitis,allergic_dermatitis,dermatologic
+vet_alpha,EAR-OTE,Otitis externa,otitis_externa,ear
+vet_alpha,GI-ACU,Acute gastroenteritis,gastroenteritis,gastrointestinal
+vet_alpha,DEN-PD,Periodontal disease,dental_disease,dental
+vet_alpha,MSK-OA,Osteoarthritis,osteoarthritis,musculoskeletal
+vet_alpha,MSK-CCL,Cranial cruciate ligament rupture,cruciate_injury,musculoskeletal
+vet_alpha,NEU-IVD,Intervertebral disc disease,ivdd,neurologic
+vet_alpha,ONC-MAS,"Mass, cutaneous/subcutaneous",mass_neoplasia,oncologic
+vet_alpha,CAR-MVD,Myxomatous mitral valve disease,mitral_valve_disease,cardiovascular
+vet_alpha,REN-CKD,Chronic kidney disease,chronic_kidney_disease,renal
+vet_alpha,CAR-HCM,Hypertrophic cardiomyopathy,hypertrophic_cardiomyopathy,cardiovascular
+vet_alpha,NUT-OBS,Obesity,obesity,metabolic
+vet_alpha,WEL-EXM,Annual wellness exam,wellness,preventive
+vet_beta,1104,Atopic dermatitis,allergic_dermatitis,dermatologic
+vet_beta,1210,Ear infection,otitis_externa,ear
+vet_beta,1302,Vomiting/diarrhea,gastroenteritis,gastrointestinal
+vet_beta,1401,Dental disease grade 2-3,dental_disease,dental
+vet_beta,1503,Degenerative joint disease,osteoarthritis,musculoskeletal
+vet_beta,1507,CCL tear,cruciate_injury,musculoskeletal
+vet_beta,1602,IVDD,ivdd,neurologic
+vet_beta,1701,Lump/bump - aspirate,mass_neoplasia,oncologic
+vet_beta,1801,Heart murmur - MVD,mitral_valve_disease,cardiovascular
+vet_beta,1901,CKD stage 2,chronic_kidney_disease,renal
+vet_beta,1805,HCM,hypertrophic_cardiomyopathy,cardiovascular
+vet_beta,2001,Overweight/obese,obesity,metabolic
+vet_beta,100,Wellness,wellness,preventive
+vet_gamma,itchyskinallergies,itchy skin - allergies,allergic_dermatitis,dermatologic
+vet_gamma,allergicderm,allergic derm,allergic_dermatitis,dermatologic
+vet_gamma,atopy,atopy,allergic_dermatitis,dermatologic
+vet_gamma,skinallergyflare,skin allergy flare,allergic_dermatitis,dermatologic
+vet_gamma,earinfection,ear infection,otitis_externa,ear
+vet_gamma,otitis,otitis,otitis_externa,ear
+vet_gamma,oeyeast,OE - yeast,otitis_externa,ear
+vet_gamma,earsredsmelly,ears red/smelly,otitis_externa,ear
+vet_gamma,vd,V/D,gastroenteritis,gastrointestinal
+vet_gamma,vomitinganddiarrhea,vomiting and diarrhea,gastroenteritis,gastrointestinal
+vet_gamma,giupset,GI upset,gastroenteritis,gastrointestinal
+vet_gamma,gastro,gastro,gastroenteritis,gastrointestinal
+vet_gamma,dentaltartar,dental tartar,dental_disease,dental
+vet_gamma,periodz,perio dz,dental_disease,dental
+vet_gamma,needsdental,needs dental,dental_disease,dental
+vet_gamma,dentaldisease,dental disease,dental_disease,dental
+vet_gamma,arthritis,arthritis,osteoarthritis,musculoskeletal
+vet_gamma,djd,DJD,osteoarthritis,musculoskeletal
+vet_gamma,stiffhipsoa,stiff hips - OA,osteoarthritis,musculoskeletal
+vet_gamma,oa,OA,osteoarthritis,musculoskeletal
+vet_gamma,acltear,ACL tear,cruciate_injury,musculoskeletal
+vet_gamma,cclrupture,CCL rupture,cruciate_injury,musculoskeletal
+vet_gamma,kneeinjurycruciate,knee injury - cruciate,cruciate_injury,musculoskeletal
+vet_gamma,backpainivdd,back pain - IVDD,ivdd,neurologic
+vet_gamma,discdisease,disc disease,ivdd,neurologic
+vet_gamma,ivdd,IVDD,ivdd,neurologic
+vet_gamma,lump,lump,mass_neoplasia,oncologic
+vet_gamma,massfna,mass - FNA,mass_neoplasia,oncologic
+vet_gamma,skinmass,skin mass,mass_neoplasia,oncologic
+vet_gamma,lipomavsother,lipoma vs other,mass_neoplasia,oncologic
+vet_gamma,murmur,murmur,mitral_valve_disease,cardiovascular
+vet_gamma,mvd,MVD,mitral_valve_disease,cardiovascular
+vet_gamma,heartmurmurgr3,heart murmur gr 3,mitral_valve_disease,cardiovascular
+vet_gamma,kidneydisease,kidney disease,chronic_kidney_disease,renal
+vet_gamma,ckd,CKD,chronic_kidney_disease,renal
+vet_gamma,renalinsufficiency,renal insufficiency,chronic_kidney_disease,renal
+vet_gamma,hcm,HCM,hypertrophic_cardiomyopathy,cardiovascular
+vet_gamma,cardiomyopathy,cardiomyopathy,hypertrophic_cardiomyopathy,cardiovascular
+vet_gamma,heartdz,heart dz,hypertrophic_cardiomyopathy,cardiovascular
+vet_gamma,overweight,overweight,obesity,metabolic
+vet_gamma,obese,obese,obesity,metabolic
+vet_gamma,weightmgmt,weight mgmt,obesity,metabolic
+vet_gamma,annualexam,annual exam,wellness,preventive
+vet_gamma,wellness,wellness,wellness,preventive
+vet_gamma,vaccinesexam,vaccines + exam,wellness,preventive
+vet_gamma,yearly,yearly,wellness,preventive

@@ -1,0 +1,10 @@
+clinic,procedures,complication_oe,complication_oe_shrunk,complication_95ci,complication_rank_90pct,complication_flag,deaths,deaths_expected,death_flag,power_to_detect_double_death_risk,dental_detection_oe,dental_flag,dental_charted_share,stewardship_composite,stewardship_rank,culture_before_uti_tx,first_line_share,critically_important_first
+AUS-VET1,577,1.39,1.34,1.07-1.67,6-9,above,1,1.2,,0.15,1.11,above,0.82,0.63,1,0.72,0.73,0.22
+AUS-VET2,566,1.05,1.04,0.81-1.33,3-8,,2,1.2,,0.14,0.65,below,0.4,0.22,5,0.58,0.62,0.17
+AUS-VET3,634,1.03,1.02,0.81-1.29,4-7,,0,1.7,,0.19,1.19,above,0.79,0.02,6,0.7,0.7,0.14
+MSP-VET1,386,0.44,0.56,0.37-0.84,1-3,below,0,1.0,,0.12,1.0,,0.66,-0.8,9,0.18,0.57,0.32
+MSP-VET2,380,0.54,0.63,0.43-0.92,1-3,below,1,1.0,,0.11,0.97,,0.66,-0.54,8,0.19,0.83,0.01
+MSP-VET3,364,1.43,1.34,1.03-1.76,6-9,above,0,0.7,,0.1,0.57,below,0.43,-0.53,7,0.36,0.57,0.16
+PHL-VET1,726,1.01,1.0,0.80-1.25,3-7,,0,1.8,,0.14,1.32,above,0.87,0.33,3,0.52,0.77,0.11
+PHL-VET2,677,0.74,0.76,0.59-0.99,1-4,below,3,1.8,,0.11,1.02,,0.72,0.37,2,0.42,0.72,0.04
+PHL-VET3,685,1.25,1.22,0.98-1.50,5-9,,5,1.6,above,0.12,0.97,,0.69,0.3,4,0.41,0.81,0.03

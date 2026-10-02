@@ -1,0 +1,235 @@
+<title>Destination Pet Case Explorer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: controls rail (left) + results (right); stacks on phones. Summary tiles before charts. */
+:root{
+  --bg:#F3F5F2; --surface:#FCFCFA; --line:#D8DED9; --ink:#1A2A2E; --muted:#56676B;
+  --internal:#1F6F8B; --external:#8A6BB8; --cost:#B8622B; --net:#1A2A2E; --pos:#2B7656; --neg:#B23A2A; --grid:#E3E8E4;
+  --f-display:'Source Serif 4', Georgia, serif; --f-body:'IBM Plex Sans', Arial, sans-serif; --f-data:'IBM Plex Mono', 'Courier New', monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#10171A; --surface:#172126; --line:#2B393E; --ink:#E3EAE8; --muted:#9AABAF;
+  --internal:#5FB3CF; --external:#B49BDA; --cost:#E39459; --net:#E3EAE8; --pos:#62C495; --neg:#EE7A68; --grid:#223036; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#10171A; --surface:#172126; --line:#2B393E; --ink:#E3EAE8; --muted:#9AABAF;
+  --internal:#5FB3CF; --external:#B49BDA; --cost:#E39459; --net:#E3EAE8; --pos:#62C495; --neg:#EE7A68; --grid:#223036; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.5}
+.wrap{max-width:1240px;margin:0 auto;padding-inline:20px;padding-block:24px 48px;display:flex;flex-direction:column;gap:20px}
+.eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--cost);font-weight:600;margin:0}
+h1{font-family:var(--f-display);font-weight:600;font-size:clamp(26px,3.6vw,36px);line-height:1.12;margin:4px 0 6px;text-wrap:balance}
+h2{font-family:var(--f-display);font-weight:600;font-size:19px;margin:0}
+.sub{color:var(--muted);margin:0;max-width:72ch}
+.layout{display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:20px;align-items:start}
+@media (min-width:861px){aside.panel{position:sticky;top:calc(env(safe-area-inset-top, 0px) + 12px)}}
+@media (max-width:860px){.layout{grid-template-columns:minmax(0,1fr)}}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px;display:flex;flex-direction:column;gap:16px;min-width:0}
+.ctrl{display:flex;flex-direction:column;gap:6px}
+.ctrl label{display:flex;justify-content:space-between;gap:12px;font-size:14px;font-weight:500}
+.ctrl output{font-family:var(--f-data);font-variant-numeric:tabular-nums;color:var(--internal);white-space:nowrap}
+.ctrl .hint{font-size:12px;color:var(--muted)}
+input[type=range]{width:100%;accent-color:var(--internal)}
+.group{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600;border-top:1px solid var(--line);padding-top:12px}
+.seg{display:flex;gap:4px;background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:3px}
+.seg button{flex:1;border:0;background:transparent;color:var(--muted);font:500 13px var(--f-body);padding:7px 10px;border-radius:999px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--internal);color:var(--surface)}
+button.reset{align-self:flex-start;border:1px solid var(--line);background:transparent;color:var(--ink);font:500 13px var(--f-body);padding:7px 12px;border-radius:8px;cursor:pointer}
+button:focus-visible,input:focus-visible{outline:2px solid var(--internal);outline-offset:2px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.tile .v{font-family:var(--f-data);font-size:24px;font-weight:500;font-variant-numeric:tabular-nums}
+.tile .l{color:var(--muted);font-size:13px}
+.tile .d{font-size:12px;font-family:var(--f-data)}
+.results{display:flex;flex-direction:column;gap:20px;min-width:0}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:2px;vertical-align:-1px;margin-right:6px}
+.chartbox{overflow-x:auto}
+svg{display:block;max-width:100%;height:auto}
+svg text{fill:var(--muted);font-family:var(--f-data);font-size:11px}
+.note{color:var(--muted);font-size:13px;margin:0;max-width:85ch}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{padding:7px 8px;border-bottom:1px solid var(--line);text-align:right;font-family:var(--f-data);font-variant-numeric:tabular-nums;white-space:nowrap}
+th:first-child,td:first-child{text-align:left;font-family:var(--f-body)}
+th{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-family:var(--f-body)}
+tr.total td{font-weight:600}
+</style>
+
+<div class="wrap">
+  <header>
+    <p class="eyebrow">Destination Pet · data platform business case</p>
+    <h1>Destination Pet Case Explorer</h1>
+    <p class="sub">Move the company figures that are not public and watch the five-year EBITDA impact change. Defaults match the Base case in the workbook. Portfolio exercise from public information; not reviewed by Destination Pet.</p>
+  </header>
+
+  <div class="layout">
+    <aside class="panel" aria-label="Inputs">
+      <div class="ctrl">
+        <span class="group" style="border:0;padding:0">Scenario</span>
+        <div class="seg" role="group" aria-label="Scenario">
+          <button id="sc-low" data-s="Low" aria-pressed="false">Low</button>
+          <button id="sc-base" data-s="Base" aria-pressed="true">Base</button>
+          <button id="sc-high" data-s="High" aria-pressed="false">High</button>
+        </div>
+        <span class="hint">Low halves operating effects and cuts prices 20%; High raises effects 40% and prices 15%.</span>
+      </div>
+      <span class="group">Figures to confirm with Destination Pet</span>
+      <div id="controls"></div>
+      <span class="group">Biggest TailSignal assumption</span>
+      <div id="controls2"></div>
+      <button class="reset" id="reset">Reset to Base defaults</button>
+    </aside>
+
+    <section class="results">
+      <div class="tiles" id="tiles"></div>
+      <div class="panel">
+        <h2>EBITDA impact by year</h2>
+        <div class="legend"><span><i style="background:var(--internal)"></i>Internal value</span><span><i style="background:var(--external)"></i>External data revenue</span><span><i style="background:var(--cost)"></i>Platform cost</span><span><i style="background:var(--net);border-radius:50%"></i>Net impact</span></div>
+        <div class="chartbox"><svg id="bars" role="img" aria-label="Bars of value and cost by year with net impact markers"></svg></div>
+      </div>
+      <div class="panel">
+        <h2>Cumulative net impact</h2>
+        <div class="legend" id="cumlegend"></div>
+        <div class="chartbox"><svg id="cum" role="img" aria-label="Cumulative net impact by year for the three scenarios"></svg></div>
+        <p class="note">The line crossing zero is the payback year. Faint lines show the other two scenarios at the same inputs.</p>
+      </div>
+      <div class="panel">
+        <h2>Year-by-year build</h2>
+        <div class="chartbox"><table id="build"></table></div>
+        <p class="note">Fixed in this view (edit in the workbook): 160 locations rolling out 15/50/85/100/100%, 7% staffing effect, 1-point vet cross-sell lift at $600 a client, 40 extra cleanings per clinic at $700, data team 5 to 12 people at $200,000, $15,000 integration per location, license gate 100,000 consenting pets, study gates 792,000 and 1.29M dog records over four years.</p>
+      </div>
+    </section>
+  </div>
+</div>
+
+<script>
+const DEF = {vet:40, pets:3000, labor:700000, dogs:3500, vetMargin:0.40, dentalMargin:0.45, consent:0.70, realize:0.50};
+const SLIDERS = [
+  {k:'vet', label:'Locations with a vet clinic', min:0, max:160, step:1, fmt:v=>`${v} of 160`},
+  {k:'pets', label:'Pets served per location per year', min:500, max:8000, step:100, fmt:v=>v.toLocaleString()},
+  {k:'labor', label:'Daycare and boarding labor cost per location', min:200000, max:1500000, step:25000, fmt:v=>'$'+(v/1000).toLocaleString()+'k'},
+  {k:'dogs', label:'Dogs with vet records per clinic per year', min:500, max:8000, step:100, fmt:v=>v.toLocaleString()},
+  {k:'vetMargin', label:'Margin on a new vet client', min:0.10, max:0.70, step:0.01, fmt:v=>Math.round(v*100)+'%'},
+  {k:'dentalMargin', label:'Margin on a dental cleaning', min:0.10, max:0.70, step:0.01, fmt:v=>Math.round(v*100)+'%'},
+  {k:'consent', label:'Customers consenting to de-identified use', min:0, max:1, step:0.01, fmt:v=>Math.round(v*100)+'%', hint:'Data licenses need 100,000 consenting pets a year'},
+];
+const SLIDERS2 = [
+  {k:'realize', label:'Share of simulated effects realized', min:0.10, max:1.00, step:0.05, fmt:v=>Math.round(v*100)+'%', hint:'Staffing savings are ~70% of Base value; the workbook uses 50%'},
+];
+const SCEN = {Low:{v:0.5,p:0.8}, Base:{v:1,p:1}, High:{v:1.4,p:1.15}};
+const FIX = {locations:160, live:[0.15,0.50,0.85,1,1], staff:0.07, nonvet:0.80, xsell:0.01, vetRev:600, dentalExtra:40, dentalPrice:700,
+  licACV:120000, licGate:100000, licensees:[0,2,3,5,6], repPrice:40000, reports:[1,3,4,5,6], studyPrice:250000,
+  gateCommon:792000, gateRare:1287000, sCommon:[0,0,1,2,2], sRare:[0,0,0,1,1], cogs:0.40, loaded:200000,
+  head:[5,8,10,11,12], integ:15000, infraFixed:150000, infraLoc:600, privacy:150000, multiple:12};
+
+let X = {...DEF}, scen = 'Base';
+
+function model(x, s){
+  const {v, p} = SCEN[s], F = FIX, out = [];
+  for(let j=0;j<5;j++){
+    const liveLoc = Math.round(F.locations*F.live[j]);
+    const liveVet = Math.round(x.vet*F.live[j]);
+    out.push({liveLoc, liveVet});
+  }
+  out.forEach((y,j)=>{
+    y.pets = y.liveLoc*x.pets;
+    let vetSum = 0; for(let k=Math.max(0,j-3);k<=j;k++) vetSum += out[k].liveVet;
+    y.dogRecords = vetSum*x.dogs;
+    y.staff = y.liveLoc*x.labor*F.staff*x.realize*v;
+    y.xsell = y.liveLoc*x.pets*F.nonvet*F.xsell*F.vetRev*x.vetMargin*x.realize*v;
+    y.dental = y.liveVet*F.dentalExtra*F.dentalPrice*x.dentalMargin*x.realize*v;
+    y.internal = y.staff + y.xsell + y.dental;
+    y.lic = (y.pets*x.consent >= F.licGate) ? F.licensees[j]*F.licACV*p : 0;
+    y.rep = F.reports[j]*F.repPrice*p;
+    y.sc = y.dogRecords >= F.gateCommon ? F.sCommon[j]*F.studyPrice*p : 0;
+    y.sr = y.dogRecords >= F.gateRare ? F.sRare[j]*F.studyPrice*p : 0;
+    y.external = y.lic + y.rep + y.sc + y.sr;
+    y.team = F.head[j]*F.loaded;
+    y.integ = (j===0 ? y.liveLoc : Math.max(0, y.liveLoc - out[j-1].liveLoc))*F.integ;
+    y.infra = F.infraFixed + y.liveLoc*F.infraLoc;
+    y.cost = y.team + y.integ + y.infra + F.privacy + (y.sc + y.sr)*F.cogs;
+    y.net = y.internal + y.external - y.cost;
+    y.cum = (j ? out[j-1].cum : 0) + y.net;
+  });
+  return out;
+}
+
+const $ = s => document.querySelector(s);
+const money = v => { if (Math.abs(v) < 0.5) return '$0'; const a = Math.abs(v), sgn = v < 0 ? '−' : ''; return a >= 1e6 ? `${sgn}$${(a/1e6).toFixed(2)}M` : `${sgn}$${Math.round(a/1e3).toLocaleString()}k`; };
+
+function buildControls(list, host){
+  host.innerHTML = list.map(c=>`<div class="ctrl"><label for="in-${c.k}"><span>${c.label}</span><output id="out-${c.k}"></output></label>
+    <input type="range" id="in-${c.k}" min="${c.min}" max="${c.max}" step="${c.step}" value="${X[c.k]}">${c.hint?`<span class="hint">${c.hint}</span>`:''}</div>`).join('');
+  list.forEach(c=>{
+    const el = $('#in-'+c.k);
+    const upd = ()=>{ X[c.k] = parseFloat(el.value); $('#out-'+c.k).textContent = c.fmt(X[c.k]); render(); };
+    el.addEventListener('input', upd); $('#out-'+c.k).textContent = c.fmt(X[c.k]);
+  });
+}
+
+function niceStep(range){ const raw = range/5, p = Math.pow(10, Math.floor(Math.log10(raw))); return [1,2,2.5,5,10].map(m=>m*p).find(s=>s>=raw); }
+
+function drawBars(rows){
+  const W=760,H=320,L=64,R=16,T=14,B=30;
+  const maxV = Math.max(...rows.map(r=>r.internal+r.external), 1), minV = Math.min(...rows.map(r=>-r.cost), ...rows.map(r=>r.net), 0);
+  const step = niceStep(maxV-minV), top = Math.ceil(maxV/step)*step, bot = Math.floor(minV/step)*step;
+  const y = v => T + (top - v)/(top-bot)*(H-T-B), band = (W-L-R)/5, bw = band*0.42;
+  let s='';
+  for(let t=bot;t<=top+1e-6;t+=step){ s+=`<line x1="${L}" x2="${W-R}" y1="${y(t)}" y2="${y(t)}" stroke="var(--grid)" stroke-width="${t===0?1.5:1}"/><text x="${L-8}" y="${y(t)+4}" text-anchor="end">${money(t)}</text>`; }
+  rows.forEach((r,j)=>{
+    const cx = L + band*j + band/2, x0 = cx - bw/2;
+    s+=`<rect x="${x0}" y="${y(r.internal)}" width="${bw}" height="${Math.max(0,y(0)-y(r.internal))}" fill="var(--internal)"/>`;
+    s+=`<rect x="${x0}" y="${y(r.internal+r.external)}" width="${bw}" height="${Math.max(0,y(r.internal)-y(r.internal+r.external))}" fill="var(--external)"/>`;
+    s+=`<rect x="${x0}" y="${y(0)}" width="${bw}" height="${Math.max(0,y(-r.cost)-y(0))}" fill="var(--cost)" fill-opacity="0.85"/>`;
+    s+=`<circle cx="${cx}" cy="${y(r.net)}" r="6" fill="var(--net)" stroke="var(--surface)" stroke-width="2"/>`;
+    s+=`<text x="${cx+bw/2+6}" y="${y(r.net)+4}" style="fill:${r.net>=0?'var(--pos)':'var(--neg)'};font-weight:600">${money(r.net)}</text>`;
+    s+=`<text x="${cx}" y="${H-10}" text-anchor="middle">Year ${j+1}</text>`;
+  });
+  const svg=$('#bars'); svg.setAttribute('viewBox',`0 0 ${W} ${H}`); svg.setAttribute('width',W); svg.innerHTML=s;
+}
+
+function drawCum(all){
+  const W=760,H=260,L=64,R=70,T=14,B=30;
+  const vals = Object.values(all).flatMap(r=>r.map(d=>d.cum)).concat([0]);
+  const step = niceStep(Math.max(...vals)-Math.min(...vals) || 1), top = Math.ceil(Math.max(...vals)/step)*step, bot = Math.floor(Math.min(...vals)/step)*step;
+  const y = v => T + (top-v)/(top-bot)*(H-T-B), x = j => L + j*(W-L-R)/4;
+  let s='';
+  for(let t=bot;t<=top+1e-6;t+=step){ s+=`<line x1="${L}" x2="${W-R}" y1="${y(t)}" y2="${y(t)}" stroke="var(--grid)" stroke-width="${t===0?1.5:1}"/><text x="${L-8}" y="${y(t)+4}" text-anchor="end">${money(t)}</text>`; }
+  [0,1,2,3,4].forEach(j=>{ s+=`<text x="${x(j)}" y="${H-10}" text-anchor="middle">Year ${j+1}</text>`; });
+  const col = {Low:'var(--cost)', Base:'var(--internal)', High:'var(--pos)'};
+  Object.entries(all).forEach(([k,rows])=>{
+    const on = k===scen;
+    s+=`<polyline points="${rows.map((d,j)=>`${x(j)},${y(d.cum)}`).join(' ')}" fill="none" stroke="${col[k]}" stroke-width="${on?3:1.5}" stroke-opacity="${on?1:0.35}"/>`;
+    const last = rows[4];
+    s+=`<circle cx="${x(4)}" cy="${y(last.cum)}" r="${on?5:3}" fill="${col[k]}" fill-opacity="${on?1:0.5}"/>`;
+    s+=`<text x="${x(4)+8}" y="${y(last.cum)+4}" style="fill:${col[k]};opacity:${on?1:0.6}">${k}</text>`;
+  });
+  const svg=$('#cum'); svg.setAttribute('viewBox',`0 0 ${W} ${H}`); svg.setAttribute('width',W); svg.innerHTML=s;
+  $('#cumlegend').innerHTML = Object.keys(all).map(k=>`<span><i style="background:${col[k]};height:3px;border-radius:0"></i>${k}${k===scen?' (selected)':''}</span>`).join('');
+}
+
+const BASE = model(DEF,'Base');
+function render(){
+  const rows = model(X, scen), all = {Low:model(X,'Low'), Base:model(X,'Base'), High:model(X,'High')};
+  const y5 = rows[4], pay = rows.findIndex(r=>r.cum>0), b5 = BASE[4];
+  const delta = (v, ref) => { const d = v-ref; if(Math.abs(d) < 1) return '<span class="d" style="color:var(--muted)">same as Base default</span>'; return `<span class="d" style="color:${d>0?'var(--pos)':'var(--neg)'}">${d>0?'+':''}${money(d)} vs Base default</span>`; };
+  const share = y5.internal+y5.external > 0 ? Math.round(y5.staff/(y5.internal+y5.external)*100) : 0;
+  $('#tiles').innerHTML = `
+    <div class="tile"><span class="v">${money(y5.net)}</span><span class="l">Net EBITDA impact, Year 5</span>${delta(y5.net,b5.net)}</div>
+    <div class="tile"><span class="v">${pay<0?'Beyond Y5':'Year '+(pay+1)}</span><span class="l">Payback (cumulative turns positive)</span></div>
+    <div class="tile"><span class="v">${money(Math.max(0,y5.net)*FIX.multiple)}</span><span class="l">Enterprise value at 12× Year-5 impact</span>${delta(Math.max(0,y5.net)*12, Math.max(0,b5.net)*12)}</div>
+    <div class="tile"><span class="v">${share}%</span><span class="l">Share of Year-5 value from staffing savings</span></div>`;
+  drawBars(rows); drawCum(all);
+  const line = (lbl,k,cls='') => `<tr class="${cls}"><td>${lbl}</td>${rows.map(r=>`<td>${typeof r[k]==='number' && ['liveLoc','liveVet','pets','dogRecords'].indexOf(k)<0 ? money(r[k]) : typeof r[k]==='number' && Math.abs(r[k])>=1000 && k!=='pets' && k!=='dogRecords' ? money(r[k]) : r[k].toLocaleString()}</td>`).join('')}</tr>`;
+  $('#build').innerHTML = `<thead><tr><th>Line</th>${rows.map((_,j)=>`<th>Year ${j+1}</th>`).join('')}</tr></thead><tbody>
+    ${line('Live locations','liveLoc')}${line('Live vet clinics','liveVet')}${line('Pets observed','pets')}${line('Dog vet records, 4-year window','dogRecords')}
+    ${line('Staffing savings','staff')}${line('Connected Care cross-sell','xsell')}${line('Dental capture','dental')}
+    ${line('Data licenses','lic')}${line('Research reports','rep')}${line('Drug-safety studies','sc')}${line('Rare-event studies','sr')}
+    ${line('Platform cost','cost')}${line('Net EBITDA impact','net','total')}${line('Cumulative','cum','total')}</tbody>`;
+}
+
+buildControls(SLIDERS, $('#controls')); buildControls(SLIDERS2, $('#controls2'));
+document.querySelectorAll('.seg button').forEach(b=>b.addEventListener('click',()=>{ scen=b.dataset.s; document.querySelectorAll('.seg button').forEach(o=>o.setAttribute('aria-pressed',String(o===b))); render(); }));
+$('#reset').addEventListener('click',()=>{ X={...DEF}; [...SLIDERS,...SLIDERS2].forEach(c=>{ $('#in-'+c.k).value=X[c.k]; $('#out-'+c.k).textContent=c.fmt(X[c.k]); }); render(); });
+render();
+</script>

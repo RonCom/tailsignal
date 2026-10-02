@@ -1,0 +1,405 @@
+{
+  "households": 7729,
+  "train_end": "2024-06-30",
+  "preregistered_spec": {
+    "k": 4,
+    "k_selection": [
+      {
+        "k": 2,
+        "bic": 112398.0112,
+        "min_share": 0.22,
+        "usable": true
+      },
+      {
+        "k": 3,
+        "bic": 36640.6784,
+        "min_share": 0.22,
+        "usable": true
+      },
+      {
+        "k": 4,
+        "bic": -29387.7896,
+        "min_share": 0.1228,
+        "usable": true
+      },
+      {
+        "k": 5,
+        "bic": -63805.7469,
+        "min_share": 0.0248,
+        "usable": false
+      },
+      {
+        "k": 6,
+        "bic": -63970.0759,
+        "min_share": 0.0021,
+        "usable": false
+      },
+      {
+        "k": 7,
+        "bic": -95438.6077,
+        "min_share": 0.0194,
+        "usable": false
+      },
+      {
+        "k": 8,
+        "bic": -94569.5684,
+        "min_share": 0.0439,
+        "usable": false
+      },
+      {
+        "k": 9,
+        "bic": -99741.6137,
+        "min_share": 0.0175,
+        "usable": false
+      },
+      {
+        "k": 10,
+        "bic": -147202.5945,
+        "min_share": 0.0248,
+        "usable": false
+      }
+    ],
+    "jaccard_by_segment": [
+      0.451,
+      0.592,
+      0.678,
+      0.36
+    ],
+    "H7_pass": false
+  },
+  "exploratory_top_level": {
+    "features": [
+      "vet_visits_py",
+      "wellness_share",
+      "daycare_days_py",
+      "boarding_nights_py",
+      "grooming_appts_py"
+    ],
+    "covariance": "diag",
+    "reg_covar": 0.1,
+    "k_selection": [
+      {
+        "k": 2,
+        "bic": 93247.4869,
+        "min_share": 0.2157,
+        "usable": true
+      },
+      {
+        "k": 3,
+        "bic": 83579.614,
+        "min_share": 0.1672,
+        "usable": true
+      },
+      {
+        "k": 4,
+        "bic": 82051.0431,
+        "min_share": 0.0448,
+        "usable": false
+      },
+      {
+        "k": 5,
+        "bic": 79727.3069,
+        "min_share": 0.0452,
+        "usable": false
+      },
+      {
+        "k": 6,
+        "bic": 77433.3364,
+        "min_share": 0.0453,
+        "usable": false
+      },
+      {
+        "k": 7,
+        "bic": 76048.6872,
+        "min_share": 0.0452,
+        "usable": false
+      },
+      {
+        "k": 8,
+        "bic": 75625.9384,
+        "min_share": 0.0168,
+        "usable": false
+      },
+      {
+        "k": 9,
+        "bic": 75168.8682,
+        "min_share": 0.0093,
+        "usable": false
+      },
+      {
+        "k": 10,
+        "bic": 75043.6794,
+        "min_share": 0.0272,
+        "usable": false
+      }
+    ],
+    "k": 3
+  },
+  "exploratory_finer_level": {
+    "k": 6,
+    "jaccard_by_subsegment": [
+      0.84,
+      0.888,
+      0.766,
+      0.762,
+      0.935,
+      0.994
+    ],
+    "nesting": {
+      "0": {
+        "0": 0,
+        "1": 934,
+        "2": 0
+      },
+      "1": {
+        "0": 1334,
+        "1": 0,
+        "2": 0
+      },
+      "2": {
+        "0": 217,
+        "1": 61,
+        "2": 118
+      },
+      "3": {
+        "0": 4,
+        "1": 667,
+        "2": 0
+      },
+      "4": {
+        "0": 3219,
+        "1": 0,
+        "2": 1
+      },
+      "5": {
+        "0": 1,
+        "1": 0,
+        "2": 1173
+      }
+    },
+    "subsegments": [
+      {
+        "subsegment": 0,
+        "vet_visits_py": 1.448,
+        "wellness_share": 0.697,
+        "daycare_days_py": 124.747,
+        "boarding_nights_py": 9.615,
+        "grooming_appts_py": 7.675,
+        "spend_py": 6746.949,
+        "channels_used": 3.857,
+        "pets": 1.819,
+        "dog_share": 0.952,
+        "on_wellness_plan": 0.602,
+        "groom_need_breed_share": 0.321,
+        "households": 934,
+        "share_households": 0.121,
+        "revenue_share": 0.402,
+        "bootstrap_jaccard": 0.84,
+        "parent_segment": "Daycare regulars",
+        "name": "Daycare + grooming regulars"
+      },
+      {
+        "subsegment": 1,
+        "vet_visits_py": 1.448,
+        "wellness_share": 0.641,
+        "daycare_days_py": 0.023,
+        "boarding_nights_py": 9.129,
+        "grooming_appts_py": 0.005,
+        "spend_py": 1221.293,
+        "channels_used": 2.013,
+        "pets": 1.599,
+        "dog_share": 0.702,
+        "on_wellness_plan": 0.325,
+        "groom_need_breed_share": 0.133,
+        "households": 1334,
+        "share_households": 0.173,
+        "revenue_share": 0.104,
+        "bootstrap_jaccard": 0.888,
+        "parent_segment": "Vet-centric",
+        "name": "Vet + boarding"
+      },
+      {
+        "subsegment": 2,
+        "vet_visits_py": 0.059,
+        "wellness_share": 0.0,
+        "daycare_days_py": 11.225,
+        "boarding_nights_py": 4.683,
+        "grooming_appts_py": 2.128,
+        "spend_py": 958.822,
+        "channels_used": 1.361,
+        "pets": 1.194,
+        "dog_share": 0.842,
+        "on_wellness_plan": 0.003,
+        "groom_need_breed_share": 0.207,
+        "households": 396,
+        "share_households": 0.051,
+        "revenue_share": 0.024,
+        "bootstrap_jaccard": 0.766,
+        "parent_segment": "Vet-centric",
+        "name": "No partner-vet visits"
+      },
+      {
+        "subsegment": 3,
+        "vet_visits_py": 1.508,
+        "wellness_share": 0.692,
+        "daycare_days_py": 105.168,
+        "boarding_nights_py": 9.42,
+        "grooming_appts_py": 0.014,
+        "spend_py": 5188.668,
+        "channels_used": 2.869,
+        "pets": 1.548,
+        "dog_share": 0.946,
+        "on_wellness_plan": 0.55,
+        "groom_need_breed_share": 0.082,
+        "households": 671,
+        "share_households": 0.087,
+        "revenue_share": 0.222,
+        "bootstrap_jaccard": 0.762,
+        "parent_segment": "Daycare regulars",
+        "name": "Daycare regulars, no grooming"
+      },
+      {
+        "subsegment": 4,
+        "vet_visits_py": 1.649,
+        "wellness_share": 0.656,
+        "daycare_days_py": 0.008,
+        "boarding_nights_py": 0.065,
+        "grooming_appts_py": 0.007,
+        "spend_py": 617.094,
+        "channels_used": 1.067,
+        "pets": 1.403,
+        "dog_share": 0.612,
+        "on_wellness_plan": 0.286,
+        "groom_need_breed_share": 0.125,
+        "households": 3220,
+        "share_households": 0.417,
+        "revenue_share": 0.127,
+        "bootstrap_jaccard": 0.935,
+        "parent_segment": "Vet-centric",
+        "name": "Vet only"
+      },
+      {
+        "subsegment": 5,
+        "vet_visits_py": 1.345,
+        "wellness_share": 0.689,
+        "daycare_days_py": 0.034,
+        "boarding_nights_py": 4.744,
+        "grooming_appts_py": 7.072,
+        "spend_py": 1600.954,
+        "channels_used": 2.559,
+        "pets": 1.693,
+        "dog_share": 0.856,
+        "on_wellness_plan": 0.39,
+        "groom_need_breed_share": 0.324,
+        "households": 1174,
+        "share_households": 0.152,
+        "revenue_share": 0.12,
+        "bootstrap_jaccard": 0.994,
+        "parent_segment": "Grooming-led",
+        "name": "Grooming-led"
+      }
+    ]
+  },
+  "k": 3,
+  "segments": [
+    {
+      "segment": 0,
+      "vet_visits_py": 1.521,
+      "wellness_share": 0.623,
+      "daycare_days_py": 0.018,
+      "boarding_nights_py": 2.886,
+      "grooming_appts_py": 0.007,
+      "spend_py": 779.711,
+      "channels_used": 1.338,
+      "pets": 1.448,
+      "dog_share": 0.645,
+      "on_wellness_plan": 0.284,
+      "groom_need_breed_share": 0.129,
+      "households": 4775,
+      "pets_total": 6913,
+      "share_households": 0.618,
+      "share_pets": 0.583,
+      "revenue_share": 0.238,
+      "bootstrap_jaccard": 0.881,
+      "name": "Vet-centric"
+    },
+    {
+      "segment": 1,
+      "vet_visits_py": 1.42,
+      "wellness_share": 0.669,
+      "daycare_days_py": 115.22,
+      "boarding_nights_py": 9.383,
+      "grooming_appts_py": 4.408,
+      "spend_py": 6005.048,
+      "channels_used": 3.39,
+      "pets": 1.687,
+      "dog_share": 0.95,
+      "on_wellness_plan": 0.56,
+      "groom_need_breed_share": 0.22,
+      "households": 1662,
+      "pets_total": 2803,
+      "share_households": 0.215,
+      "share_pets": 0.237,
+      "revenue_share": 0.637,
+      "bootstrap_jaccard": 0.944,
+      "name": "Daycare regulars"
+    },
+    {
+      "segment": 2,
+      "vet_visits_py": 1.228,
+      "wellness_share": 0.626,
+      "daycare_days_py": 0.031,
+      "boarding_nights_py": 4.44,
+      "grooming_appts_py": 6.959,
+      "spend_py": 1513.308,
+      "channels_used": 2.454,
+      "pets": 1.651,
+      "dog_share": 0.859,
+      "on_wellness_plan": 0.354,
+      "groom_need_breed_share": 0.324,
+      "households": 1292,
+      "pets_total": 2133,
+      "share_households": 0.167,
+      "share_pets": 0.18,
+      "revenue_share": 0.125,
+      "bootstrap_jaccard": 0.755,
+      "name": "Grooming-led"
+    }
+  ],
+  "top_level_min_jaccard": 0.755,
+  "top_level_passes_H7_criteria": true,
+  "cross_sell_daycare_no_grooming": {
+    "households": 704,
+    "median_grooming_appts_py_among_groomers": 5.63
+  },
+  "recovery_check_vs_synthetic_truth": {
+    "ari": 0.213,
+    "crosstab": {
+      "boarding_travelers": {
+        "Daycare regulars": 270,
+        "Grooming-led": 187,
+        "Vet-centric": 631
+      },
+      "full_service_urban": {
+        "Daycare regulars": 1099,
+        "Grooming-led": 64,
+        "Vet-centric": 145
+      },
+      "grooming_focused": {
+        "Daycare regulars": 293,
+        "Grooming-led": 528,
+        "Vet-centric": 367
+      },
+      "low_engagement": {
+        "Daycare regulars": 0,
+        "Grooming-led": 230,
+        "Vet-centric": 1324
+      },
+      "vet_only_traditional": {
+        "Daycare regulars": 0,
+        "Grooming-led": 283,
+        "Vet-centric": 1821
+      }
+    }
+  }
+}
