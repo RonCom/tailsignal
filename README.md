@@ -56,6 +56,8 @@ The isoxazoline (2018 FDA alert) control was **not** detected before the alert a
 
 **Model A confirmatory test (2020+ reports, pre-registered):** the breed-specific MDR1 signal and near-zero false-signal rate replicate; the isoxazoline seizure/tremor signal is real (~1.5× expected) but again misses the EB05 ≥ 2 bar. A verified set of label-listed reactions shows the limit of disproportionality for common reactions such as vomiting. Details in [model A results](docs/model_a_results.md), sections 7–8.
 
+**Model A exposure denominators (pre-registered):** fluralaner is the only isoxazoline with published dose counts (41.6M worldwide, 2014–2016; EMA). US FDA reports per 10,000 doses are at least 5.06 for any event, 0.30 neurologic and 0.16 convulsion, 4.2× the EU electronic reporting rate. Afoxolaner's neurologic reporting rate equals fluralaner's only if it sold 44.7M US doses in the same years, a figure only the manufacturer holds. [Results](docs/model_a_exposure_results.md).
+
 **Segmentation and forecasting** ([results](docs/analytics_results.md), [one-page brief](docs/briefs/platform_brief.md))
 
 | | Result |
@@ -83,7 +85,7 @@ The isoxazoline (2018 FDA alert) control was **not** detected before the alert a
 
 **Clinic quality benchmarks** ([results](docs/clinic_benchmarks_results.md)): risk-adjusted anesthesia, dental-charting, and antibiotic-stewardship scorecards with funnel plots, shrinkage, and rank ranges. Complication benchmarks work at current clinic volume (rank correlation with planted quality 0.97); death rates need ~5,000 procedures per clinic before they can rank clinics.
 
-**Oral health insights** ([report](docs/oral_health_report.md)): 9.4% of dogs diagnosed per year; toy breeds 2.5× the odds; fewer than half of diagnosed dogs get a cleaning the same year. Compared against published Banfield (US) and VetCompass (UK) studies, which exposed four simulator gaps now queued for the simulator extension. Roadmap: [docs/roadmap.md](docs/roadmap.md).
+**Oral health insights** ([report](docs/oral_health_report.md)): 9.4% of dogs diagnosed per year; toy breeds 2.5× the odds; fewer than half of diagnosed dogs get a cleaning the same year. Compared against published Banfield (US) and VetCompass (UK) studies, which exposed four simulator gaps. Re-run on the clinical record layer, two are closed and two partly closed, and dog prevalence moves from 9.4% to 18.1%. Roadmap: [docs/roadmap.md](docs/roadmap.md).
 
 ## Architecture
 

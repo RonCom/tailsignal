@@ -162,4 +162,4 @@ The two method claims replicate on new data: the breed-specific MDR1 signal and 
 2. ~~Cats~~ (done, section 6).
 3. ~~Verify the reference set against labels~~ (done, section 7).
 4. ~~Pre-registered seizure/tremor analysis on 2020+ data~~ (done, section 8).
-5. Add exposure denominators (doses sold or prescriptions from partner clinics) so rates replace proportional ratios.
+5. Add exposure denominators (doses sold or prescriptions from partner clinics) so rates replace proportional ratios. Done for fluralaner, the one isoxazoline with public dose counts: [exposure results](model_a_exposure_results.md).

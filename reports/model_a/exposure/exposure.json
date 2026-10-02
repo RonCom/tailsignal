@@ -1,0 +1,86 @@
+{
+  "q1": {
+    "counts": {
+      "any_report": 11939,
+      "neurologic": 713,
+      "convulsion": 376
+    },
+    "table": [
+      {
+        "scenario": "lower bound (all non-EU doses in US)",
+        "us_doses_m": 23.6,
+        "any_report_per_10k": 5.058898305084745,
+        "neurologic_per_10k": 0.3021186440677966,
+        "convulsion_per_10k": 0.1593220338983051
+      },
+      {
+        "scenario": "US = 75% of non-EU",
+        "us_doses_m": 17.7,
+        "any_report_per_10k": 6.745197740112994,
+        "neurologic_per_10k": 0.40282485875706214,
+        "convulsion_per_10k": 0.21242937853107344
+      },
+      {
+        "scenario": "US = 50% of non-EU",
+        "us_doses_m": 11.8,
+        "any_report_per_10k": 10.11779661016949,
+        "neurologic_per_10k": 0.6042372881355932,
+        "convulsion_per_10k": 0.3186440677966102
+      }
+    ],
+    "eu_electronic_rate_per_10k": 1.191111111111111,
+    "P1_convulsion_lb_below_1": true,
+    "P2_any_lb_at_least_2x_eu": true,
+    "any_lb_over_eu": 4.247209397925626
+  },
+  "q2": {
+    "reference_neuro_per_10k": 0.3021186440677966,
+    "table": [
+      {
+        "drug": "fluralaner",
+        "window": "2014-2016",
+        "any_report": 11939,
+        "neurologic": 713,
+        "convulsion": 376,
+        "break_even_us_doses_m": 23.6
+      },
+      {
+        "drug": "afoxolaner",
+        "window": "2014-2016",
+        "any_report": 11555,
+        "neurologic": 1351,
+        "convulsion": 867,
+        "break_even_us_doses_m": 44.71753155680225
+      },
+      {
+        "drug": "sarolaner",
+        "window": "2014-2016",
+        "any_report": 439,
+        "neurologic": 138,
+        "convulsion": 53,
+        "break_even_us_doses_m": 4.567741935483871
+      },
+      {
+        "drug": "lotilaner",
+        "window": "2018-2020",
+        "any_report": 3335,
+        "neurologic": 455,
+        "convulsion": 258,
+        "break_even_us_doses_m": 15.06030855539972
+      }
+    ]
+  },
+  "q3": {
+    "counts": {
+      "any_report": 57447,
+      "neurologic": 5215,
+      "convulsion": 3037
+    },
+    "per_10k_lower_bound": {
+      "any_report": 1.6413428571428572,
+      "neurologic": 0.149,
+      "convulsion": 0.08677142857142857
+    },
+    "neuro_2014_2016_lb": 0.3021186440677966
+  }
+}

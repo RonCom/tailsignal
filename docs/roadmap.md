@@ -25,6 +25,8 @@ Updated 2026-10-02. Sources reviewed for this version: Banfield's 150-million-vi
 | Analyze | Option 4: Model A2 EHR drug-safety cohorts | At 10× network, isoxazoline seizure RR 1.29 (0.39–4.29) vs planted 1.5; rare-event validation needs ~130× this network; pet-only record matching fails at scale; no-look-back design recreates channeling bias |
 | Organize | Option 3: clinical EHR layer | Prescriptions, anesthesia, labs, real-NARMS cultures, notes, microchips; 26/35 checks pass; channeling bias, network-size, and benchmark-power findings |
 | Insights | Option 1: oral health report | 9.4%/yr in dogs, toy breeds 2.5× odds, 46% cleaned; four simulator gaps found vs. published studies |
+| Insights | Oral health re-run on the clinical record layer | Overweight and clinic-charting gaps closed; small-breed and exam-detection gaps partly closed; dog prevalence 18.1% (Banfield 18.2%, VetCompass 12.5%) |
+| Analyze | Model A exposure denominators (fluralaner) | US reports per 10,000 doses, 2014–2016: 5.06 any, 0.30 neurologic, 0.16 convulsion (lower bounds); 4.2× the EU reporting rate; afoxolaner's neurologic rate equals fluralaner's only at 44.7M US doses; other products have no public dose data ([results](model_a_exposure_results.md)) |
 
 ## Next, in order
 
