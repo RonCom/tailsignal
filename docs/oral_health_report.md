@@ -54,12 +54,35 @@
 | Overweight | No effect (OR 0.94, n.s.) | **OR 1.65–2.23** | — |
 | Top breeds | Yorkie, Chihuahua, Shih Tzu | Greyhound, Shetland Sheepdog, Papillon, Toy and Miniature Poodle | Toy Poodle, King Charles Spaniel, Greyhound, Cavalier |
 
-The age pattern and the toy-breed excess match the literature. **Four gaps show where the simulator falls short of real practice**, and they go straight into the simulator extension (roadmap option 3):
+The age pattern and the toy-breed excess match the literature. Four gaps showed where the simulator fell short of real practice:
 
-1. **Small breeds.** Published studies find small breeds (not just toy) at the highest risk; the simulator raises risk only for toy breeds and a few named breeds.
-2. **Overweight dogs.** Both are simulated, but the simulator does not link them; real data show 1.7–2.2× odds.
-3. **Detection at wellness exams.** Here, dogs *without* a wellness exam that year are more often diagnosed (20.8% vs. 8.0%), because their only visit was a sick visit. In real practice periodontal disease is mostly found and graded at routine exams, so exams should *raise* recorded prevalence. The simulator needs a "detected at wellness exam" step.
-4. **Clinic differences.** Real clinics differ in how thoroughly they chart dental disease; without that variation, clinic benchmarks have nothing to find.
+1. **Small breeds.** Published studies find small breeds (not just toy) at the highest risk; the simulator raised risk only for toy breeds and a few named breeds.
+2. **Overweight dogs.** Both were simulated, but the simulator didn't link them; real data show 1.7–2.2× odds.
+3. **Detection at wellness exams.** Dogs *without* a wellness exam that year were more often diagnosed (20.8% vs. 8.0%), because their only visit was a sick visit. In real practice periodontal disease is mostly found and graded at routine exams.
+4. **Clinic differences.** Clinics didn't differ in how thoroughly they chart dental disease, so clinic benchmarks had nothing to find.
+
+## Re-run on the clinical record layer
+
+The simulator extension ([results](simulator_extension_results.md)) added a dental model to the clinical record layer with all four fixes: small-breed risk, an overweight effect, a detection step at each visit that's more sensitive at wellness exams, and planted charting thoroughness per clinic. The same comparison on those records (25,331 dog-years):
+
+| | Platform layer (above) | Clinical record layer | Banfield / Waltham (US) | VetCompass (UK) |
+|---|---|---|---|---|
+| Overall, dogs | 9.4% | 18.1% | 18.2% (5-year period) | 12.5% per year |
+| Toy vs. large | 2.1× | 2.1× (32.1% vs. 15.2%) | Extra-small 1.9× large | Under 10 kg: 3.07× |
+| Small (non-toy) vs. large | 1.0× | 1.35× (20.6%); adjusted OR 1.56 | Small highest (25.7%) | Elevated |
+| Age 12+ vs. 2–4 | 2.7× | 3.5× (31.3% vs. 8.8%) | Rises steadily | 3.91× |
+| Overweight, adjusted OR | 0.94 (n.s.) | 1.60 (1.48–1.73) | 1.65–2.23 | — |
+| Wellness exam that year | 8.0% vs. 20.8% without | 17.7% vs. 20.2% without | Mostly found at exams | — |
+| Clinics flagged for charting | 0 (none planted) | 2 low, 2 high; both planted under-charting clinics flagged | — | — |
+
+| Gap | Verdict |
+|---|---|
+| 1. Small breeds | Partly closed: small breeds now sit above large but below toy; Banfield puts small breeds highest |
+| 2. Overweight | Closed: OR 1.60, just under the published 1.65–2.23 |
+| 3. Detection at exams | Partly closed: disease present at a wellness exam is recorded 76% of the time vs. 61% at other visits, but raw prevalence is still lower in exam years (17.7% vs. 20.2%) because exam-free years are sick-visit years |
+| 4. Clinic differences | Closed: the funnel flags both planted under-charting clinics low; rank correlation with planted thoroughness 0.69 |
+
+Two changes for the sold report follow. Dog prevalence on the record layer, 18.1%, sits between Banfield's 5-year figure and VetCompass's annual figure, so the 9.4% headline above understates disease by about half and a buyer sizing a market from it would undercount. And the "exams find disease" effect only shows up after conditioning on true disease, which a real dataset doesn't have; in real data the raw exam comparison will mislead the same way, so the report should compare clinics on charting rate at wellness exams, not on raw prevalence.
 
 ## Methods
 
