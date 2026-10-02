@@ -66,3 +66,13 @@ def test_root_redirects_to_docs(api):
     c, _ = api
     r = c.get("/", follow_redirects=False)
     assert r.status_code in (302, 307) and r.headers["location"] == "/docs"
+
+
+def test_me_and_customer_portal(api):
+    c, _ = api
+    r = c.get("/v1/me", headers={"X-API-Key": "k-clinic"})
+    assert r.status_code == 200 and r.json()["clinic"] == "PHL-VET1"
+    assert set(r.json()["entitlements"]) == {"antibiogram", "scorecard_own"}
+    assert c.get("/v1/service-benchmarks", headers={"X-API-Key": "k-ins"}).status_code == 403
+    r = c.get("/app")
+    assert r.status_code == 200 and "TailSignal" in r.text

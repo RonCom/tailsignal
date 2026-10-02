@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TailSignal Data Portal</title>
+<style>
+:root{
+  --bg:#F4F6F3; --surface:#FDFDFB; --line:#D9DFDA; --ink:#1B2A2F; --muted:#56676C;
+  --accent:#1F6F8B; --accent-soft:#E2EEF2; --warn:#A84F10; --warn-soft:#F7E9DD; --good:#2B7656; --good-soft:#E3F1E9;
+  --mono:ui-monospace,'SFMono-Regular',Menlo,Consolas,monospace; --sans:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#11181B; --surface:#182226; --line:#2C3A3F; --ink:#E4EBE9; --muted:#9AABAF;
+  --accent:#62B5D1; --accent-soft:#1D3640; --warn:#E89452; --warn-soft:#3A2618; --good:#62C495; --good-soft:#18352A; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#11181B; --surface:#182226; --line:#2C3A3F; --ink:#E4EBE9; --muted:#9AABAF;
+  --accent:#62B5D1; --accent-soft:#1D3640; --warn:#E89452; --warn-soft:#3A2618; --good:#62C495; --good-soft:#18352A; color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 var(--sans)}
+header{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid var(--line);background:var(--surface)}
+header h1{font-size:18px;margin:0;font-weight:650}
+.badge{font:500 12px var(--mono);padding:2px 8px;border-radius:999px;background:var(--accent-soft);color:var(--accent)}
+.who{display:flex;gap:10px;align-items:center;font-size:13px;color:var(--muted)}
+button,select,input{font:inherit;color:inherit}
+button{border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:6px 12px;cursor:pointer}
+button.primary{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+button:focus-visible,select:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+select,input{border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:6px 8px;min-width:0}
+.wrap{max-width:1240px;margin:0 auto;padding:20px 16px 48px}
+.intro{color:var(--muted);max-width:75ch;margin:0 0 16px}
+.accounts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:12px}
+.acct{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:8px;text-align:left}
+.acct:hover{border-color:var(--accent)}
+.acct b{font-size:15px}.acct small{color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:4px}.chip{font-size:12px;padding:1px 8px;border-radius:999px;background:var(--good-soft);color:var(--good)}
+.chip.off{background:var(--bg);color:var(--muted);text-decoration:line-through}
+.layout{display:grid;grid-template-columns:220px minmax(0,1fr);gap:16px}
+@media (max-width:820px){.layout{grid-template-columns:minmax(0,1fr)}}
+.layout>*{min-width:0}
+nav{display:flex;flex-direction:column;gap:4px}
+@media (max-width:820px){nav{flex-direction:row;overflow-x:auto}}
+nav button{text-align:left;border:0;background:transparent;padding:9px 10px;border-radius:8px;white-space:nowrap;display:flex;justify-content:space-between;gap:8px}
+nav button[aria-current="true"]{background:var(--accent-soft);color:var(--accent);font-weight:600}
+nav button.locked{color:var(--muted)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;margin-bottom:16px;min-width:0}
+.card h2{font-size:18px;margin:0 0 4px}.card h3{font-size:14px;margin:0 0 8px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+.desc{color:var(--muted);margin:0 0 12px;font-size:14px;max-width:80ch}
+.filters{display:flex;flex-wrap:wrap;gap:10px;align-items:end;margin-bottom:12px}
+.filters label{display:flex;flex-direction:column;gap:2px;font-size:12px;color:var(--muted)}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{padding:7px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle}
+th{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);white-space:nowrap}
+td.n,th.n{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums}
+.bar{height:8px;border-radius:4px;background:var(--accent);display:inline-block;vertical-align:middle}
+.pill{font-size:11px;font-weight:600;padding:1px 7px;border-radius:999px;white-space:nowrap}
+.pill.up{background:var(--warn-soft);color:var(--warn)}.pill.down{background:var(--good-soft);color:var(--good)}
+pre{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px;overflow:auto;font:12px/1.45 var(--mono);margin:0;max-height:340px}
+#req{white-space:pre-wrap;word-break:break-all}
+.grid2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}
+@media (max-width:1000px){.grid2{grid-template-columns:1fr}}
+.meta{display:flex;flex-wrap:wrap;gap:12px;align-items:center;font-size:13px;color:var(--muted);margin-bottom:8px}
+.err{background:var(--warn-soft);color:var(--warn);border-radius:8px;padding:12px;font-weight:500}
+svg text{fill:var(--muted);font:11px var(--sans)}
+.usage td{font-size:12px}
+.note{font-size:12px;color:var(--muted);margin:8px 0 0}
+.hidden{display:none}
+</style>
+</head>
+<body>
+<header>
+  <div style="display:flex;gap:10px;align-items:center"><h1>TailSignal Data Portal</h1><span class="badge" id="rel">release …</span><span class="badge" id="mode"></span></div>
+  <div class="who" id="who"></div>
+</header>
+<div class="wrap">
+  <section id="signin">
+    <p class="intro">Customers sign in with their API key and see the data products their plan includes. Every view below is a call to the TailSignal API, shown with its request, response and the usage it is billed for. Pick a demo account.</p>
+    <div class="accounts" id="accounts"></div>
+    <div class="card" id="keybox" style="margin-top:16px">
+      <h3>Or enter an API key</h3>
+      <div class="filters"><label>X-API-Key<input id="keyinput" placeholder="e.g. demo-pharma" autocomplete="off"></label><button class="primary" id="keygo">Sign in</button></div>
+      <div id="keyerr"></div>
+    </div>
+  </section>
+  <section id="app" class="hidden">
+    <div class="layout">
+      <nav id="nav" aria-label="Data products"></nav>
+      <div>
+        <div id="view"></div>
+        <div class="grid2">
+          <div class="card"><h3>API request</h3><pre id="req"></pre><p class="note" id="reqnote"></p></div>
+          <div class="card"><h3>Response (first rows)</h3><pre id="resp"></pre></div>
+        </div>
+        <div class="card"><h3>Usage this session (billed per call and per row)</h3><div class="scroll"><table class="usage"><thead><tr><th>Time</th><th>Endpoint</th><th class="n">Rows</th><th class="n">Status</th></tr></thead><tbody id="usage"></tbody></table></div><p class="note" id="usagesum"></p></div>
+      </div>
+    </div>
+  </section>
+</div>
+<script>
+/* ---------- accounts and plans (mirror config/api_keys.json and the API's ENTITLEMENTS) ---------- */
+const ACCOUNTS = {
+  'demo-insurer': {role:'insurer', name:'Example pet insurer'},
+  'demo-pharma': {role:'pharma', name:'Example animal-health manufacturer'},
+  'demo-agency': {role:'public_health', name:'Example public-health agency'},
+  'clinic-PHL-VET1': {role:'clinic', clinic:'PHL-VET1', name:'PHL-VET1 (partner clinic)'},
+  'clinic-AUS-VET2': {role:'clinic', clinic:'AUS-VET2', name:'AUS-VET2 (partner clinic)'},
+  'demo-admin': {role:'admin', name:'TailSignal internal'}
+};
+const ENTITLEMENTS = {
+  admin:['health_index','drug_signals','antibiogram','scorecard_any','benchmarks'],
+  insurer:['health_index'], pharma:['drug_signals','health_index'],
+  public_health:['antibiogram','drug_signals'], clinic:['antibiogram','scorecard_own']
+};
+const PLAN = {insurer:'Data license: Pet Health Index', pharma:'Data license + drug-safety landscape', public_health:'Resistance and safety feed',
+              clinic:'Partner plan (free, in exchange for data)', admin:'Internal: all products'};
+const PRODUCTS = [
+  {id:'health_index', label:'Pet Health Index', need:['health_index']},
+  {id:'drug_signals', label:'Drug-safety signals', need:['drug_signals']},
+  {id:'antibiogram', label:'Regional antibiogram', need:['antibiogram']},
+  {id:'scorecard', label:'Clinic scorecard', need:['scorecard_own','scorecard_any']},
+  {id:'benchmarks', label:'Service benchmarks', need:['benchmarks']}
+];
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const pct = v => v == null ? '–' : Math.round(v*100) + '%';
+const num = (v,d=2) => v == null || Number.isNaN(v) ? '–' : Number(v).toLocaleString(undefined,{maximumFractionDigits:d, minimumFractionDigits:d});
+
+/* ---------- data layer: live API when served at /app, otherwise an in-browser emulation over a release sample ---------- */
+const LIVE = /\/app\/?$/.test(location.pathname);
+let SAMPLE = null, KEY = null, ME = null;
+const usage = [];
+
+async function api(path, params = {}) {
+  const qs = new URLSearchParams(Object.entries(params).filter(([,v]) => v !== '' && v != null)).toString();
+  const url = path + (qs ? '?' + qs : '');
+  showRequest(url);
+  let status, body;
+  if (LIVE) {
+    const r = await fetch(url, {headers:{'X-API-Key': KEY}});
+    status = r.status; body = await r.json();
+  } else {
+    [status, body] = emulate(path, params);
+  }
+  if (path !== '/v1/me') logUsage(url, status, body);
+  $('#resp').textContent = JSON.stringify(status === 200 ? preview(body) : body, null, 2);
+  if (status !== 200) throw Object.assign(new Error(body.detail || 'Request failed'), {status});
+  return body;
+}
+function preview(b) {
+  if (Array.isArray(b.data)) return {...b, data: b.data.slice(0, 2), note: b.data.length > 3 ? `… ${b.rows} rows` : undefined};
+  return b;
+}
+function showRequest(url) {
+  const host = LIVE ? location.origin : 'https://api.tailsignal.example';
+  $('#req').textContent = `curl -H "X-API-Key: ${KEY}" \\\n  "${host}${url}"`;
+  $('#reqnote').textContent = LIVE ? 'Live: this page is calling the API with your key.' :
+    'Demo: requests are answered in the browser from a sample of release v' + (SAMPLE?.release ?? '') + ', with the same plan checks as the API.';
+}
+function logUsage(url, status, body) {
+  const rows = status === 200 ? (body.rows ?? (body.clinic ? 1 : 0)) : 0;
+  usage.unshift({t:new Date().toLocaleTimeString(), url, rows, status});
+  $('#usage').innerHTML = usage.slice(0, 8).map(u => `<tr><td>${u.t}</td><td style="font-family:var(--mono)">${esc(u.url)}</td><td class="n">${u.rows.toLocaleString()}</td><td class="n">${u.status}</td></tr>`).join('');
+  const ok = usage.filter(u => u.status === 200);
+  $('#usagesum').textContent = `${ok.length} billable calls, ${ok.reduce((s,u)=>s+u.rows,0).toLocaleString()} rows returned. Denied calls (403) are logged but not billed.`;
+}
+
+function emulate(path, p) {
+  const acct = ACCOUNTS[KEY];
+  if (!acct) return [401, {detail:'Unknown or missing API key. Send it in the X-API-Key header.'}];
+  const ent = ENTITLEMENTS[acct.role] || [];
+  const T = SAMPLE.tables, v = SAMPLE.release;
+  const need = e => ent.includes(e) ? null : [403, {detail:`Your plan does not include ${e.replace('_',' ')}.`}];
+  const filt = (rows, keys) => rows.filter(r => keys.every(k => p[k] === undefined || p[k] === '' || String(r[k]) === String(p[k])));
+  if (path === '/v1/me') return [200, {name:acct.name, role:acct.role, clinic:acct.clinic ?? null, entitlements:[...ent].sort()}];
+  if (path === '/v1/health-index') {
+    const d = need('health_index'); if (d) return d;
+    const rows = filt(p.composite ? T.health_index_composite : T.health_index_conditions, ['species','breed_group','market','year','condition']);
+    return [200, {release:v, rows:rows.length, data:rows}];
+  }
+  if (path === '/v1/drug-signals') {
+    const d = need('drug_signals'); if (d) return d;
+    let rows = p.breed_stratum ? T.drug_signals_breed.filter(r => r.stratum === p.breed_stratum) : T.drug_signals;
+    const has = (s, q) => !q || String(s).toLowerCase().includes(String(q).toLowerCase());
+    rows = rows.filter(r => has(r.drug, p.drug) && has(r.event, p.event) && r.eb05 >= (+p.min_eb05 || 2));
+    return [200, {release:v, rows:rows.length, data:rows.slice(0, +p.limit || 200)}];
+  }
+  if (path === '/v1/antibiogram') {
+    const d = need('antibiogram'); if (d) return d;
+    const rows = filt(T.antibiogram, ['region','organism','source']);
+    return [200, {release:v, rows:rows.length, data:rows}];
+  }
+  if (path.startsWith('/v1/clinics/')) {
+    const clinic = decodeURIComponent(path.split('/')[3]);
+    if (acct.role === 'clinic') { if (acct.clinic !== clinic) return [403, {detail:'A clinic key can only read its own scorecard.'}]; }
+    else { const d = need('scorecard_any'); if (d) return d; }
+    const row = T.clinic_scorecard.find(r => r.clinic === clinic);
+    if (!row) return [404, {detail:`No scorecard for ${clinic}.`}];
+    const med = {};
+    Object.keys(row).forEach(k => { const xs = T.clinic_scorecard.map(r => r[k]).filter(x => typeof x === 'number').sort((a,b)=>a-b);
+      if (xs.length) med[k] = Math.round((xs.length % 2 ? xs[(xs.length-1)/2] : (xs[xs.length/2-1]+xs[xs.length/2])/2)*100)/100; });
+    return [200, {release:v, clinic:row, network_median:med}];
+  }
+  if (path === '/v1/service-benchmarks') {
+    const d = need('benchmarks'); if (d) return d;
+    const rows = filt(T.service_benchmark, ['market','channel','location_id']);
+    return [200, {release:v, rows:rows.length, data:rows}];
+  }
+  return [404, {detail:'Not found'}];
+}
+
+/* ---------- CSV download ---------- */
+function csvButton(rows, name) {
+  const b = document.createElement('button'); b.textContent = 'Download CSV';
+  b.onclick = () => {
+    if (!rows.length) return;
+    const cols = Object.keys(rows[0]);
+    const q = x => x == null ? '' : /[",\n]/.test(String(x)) ? `"${String(x).replace(/"/g,'""')}"` : String(x);
+    const text = [cols.join(','), ...rows.map(r => cols.map(c => q(r[c])).join(','))].join('\n');
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([text], {type:'text/csv'})); a.download = name + '.csv'; a.click();
+    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  };
+  return b;
+}
+function select(id, label, opts, value) {
+  return `<label>${label}<select id="${id}">${opts.map(o => { const [v,t] = Array.isArray(o) ? o : [o,o];
+    return `<option value="${esc(v)}"${String(v)===String(value)?' selected':''}>${esc(t)}</option>`; }).join('')}</select></label>`;
+}
+const uniq = (rows, k) => [...new Set(rows.map(r => r[k]))].sort();
+
+/* ---------- product views ---------- */
+const VIEWS = {
+  async health_index(el) {
+    const st = VIEWS.hi_state ||= {species:'dog', condition:'dental_disease', year:'2025', market:'PHL', composite:false};
+    el.innerHTML = `<div class="card"><h2>Pet Health Index</h2>
+      <p class="desc">100 = network average for that species, condition and year. Small groups are pulled toward 100 so prices are not set on noise; raw prevalence ships in the same rows. Cells with fewer than 10 pets are never released.</p>
+      <div class="filters">${select('hi-sp','Species',['dog','cat'],st.species)}
+      ${select('hi-co','Condition',['dental_disease','allergic_dermatitis','chronic_kidney_disease','gastroenteritis','mass_neoplasia','obesity','osteoarthritis','otitis_externa','cruciate_injury','mitral_valve_disease'].map(c=>[c,c.replace(/_/g,' ')]),st.condition)}
+      ${select('hi-yr','Year',['2022','2023','2024','2025'],st.year)}${select('hi-mk','Market',['AUS','MSP','PHL'],st.market)}
+      <span id="hi-dl"></span></div><div id="hi-out"></div></div>`;
+    const go = async () => {
+      st.species = $('#hi-sp').value; st.condition = $('#hi-co').value; st.year = $('#hi-yr').value; st.market = $('#hi-mk').value;
+      const out = $('#hi-out');
+      try {
+        const r = await api('/v1/health-index', {species:st.species, condition:st.condition, year:st.year, market:st.market, limit:5000});
+        const rows = r.data.sort((a,b) => b.index - a.index);
+        $('#hi-dl').replaceChildren(csvButton(rows, 'pet_health_index'));
+        if (!rows.length) { out.innerHTML = '<p class="desc">No releasable cells for this selection (all under 10 pets).</p>'; return; }
+        out.innerHTML = `<div class="meta"><span>${rows.length} breed groups released</span><span>Dot = index, line = 90% interval</span></div>
+          <div class="scroll">${dotPlot(rows)}</div>
+          <div class="scroll"><table><thead><tr><th>Breed group</th><th class="n">Pets seen</th><th class="n">With condition</th><th class="n">Prevalence</th><th class="n">Network</th><th class="n">Index</th><th class="n">90% interval</th></tr></thead><tbody>
+          ${rows.map(x=>`<tr><td>${esc(x.breed_group)}</td><td class="n">${x.pets_seen.toLocaleString()}</td><td class="n">${x.pets_with_condition}</td><td class="n">${pct(x.prevalence)}</td><td class="n">${pct(x.network_prevalence)}</td><td class="n"><b>${num(x.index,0)}</b></td><td class="n">${num(x.index_lo,0)}–${num(x.index_hi,0)}</td></tr>`).join('')}
+          </tbody></table></div>`;
+      } catch (e) { out.innerHTML = `<p class="err">${esc(e.message)}</p>`; }
+    };
+    el.querySelectorAll('select').forEach(s => s.onchange = go); go();
+  },
+  async drug_signals(el) {
+    const st = VIEWS.ds_state ||= {drug:'ivermectin', event:'', stratum:'', min:'2'};
+    el.innerHTML = `<div class="card"><h2>Drug-safety signals</h2>
+      <p class="desc">Disproportionality scores from real FDA adverse-event reports. EB05 is the conservative (5th percentile) Bayesian estimate of how many times more often the reaction is reported with the drug than expected; 2 or more is a signal. The breed view shows breed-specific excesses from the hierarchical model, relative to all dogs.</p>
+      <div class="filters"><label>Drug contains<input id="ds-dr" value="${esc(st.drug)}"></label><label>Reaction contains<input id="ds-ev" value="${esc(st.event)}"></label>
+      ${select('ds-st','View',[['','All dogs'],['mdr1_high','Breed: MDR1 high-frequency'],['mdr1_low','Breed: MDR1 low-frequency'],['other_purebred','Breed: other purebred'],['mixed_unknown','Breed: mixed or unknown']],st.stratum)}
+      ${select('ds-min','Minimum EB05',['1','1.5','2','3','5','10'],st.min)}<button class="primary" id="ds-go">Search</button><span id="ds-dl"></span></div>
+      <div id="ds-out"></div></div>`;
+    const go = async () => {
+      st.drug = $('#ds-dr').value.trim(); st.event = $('#ds-ev').value.trim(); st.stratum = $('#ds-st').value; st.min = $('#ds-min').value;
+      const out = $('#ds-out');
+      try {
+        const r = await api('/v1/drug-signals', {drug:st.drug, event:st.event, breed_stratum:st.stratum, min_eb05:st.min, limit:200});
+        const rows = r.data.sort((a,b) => b.eb05 - a.eb05);
+        $('#ds-dl').replaceChildren(csvButton(rows, 'drug_signals'));
+        const max = Math.max(...rows.map(x => st.stratum ? x.ratio_to_all_dogs : x.eb05), 1);
+        out.innerHTML = `<div class="meta"><span>${r.rows.toLocaleString()} ${r.rows === 1 ? 'signal matches' : 'signals match'}${r.rows > rows.length ? `; showing the top ${rows.length}` : ''}</span>${LIVE ? '' : `<span>Demo sample: pairs with ≥ 100 reports (full product: ${SAMPLE.full_rows.drug_signals.toLocaleString()} pairs)</span>`}</div>
+          <div class="scroll"><table><thead><tr><th>Drug</th><th>Reaction</th><th class="n">Reports</th>${st.stratum ? '<th class="n">EBGM</th><th class="n">EB05</th><th>Ratio to all dogs</th>' : '<th class="n">Expected</th><th class="n">EBGM</th><th>EB05</th>'}</tr></thead><tbody>
+          ${rows.slice(0,100).map(x => `<tr><td>${esc(x.drug)}</td><td>${esc(x.event)}</td><td class="n">${x.n.toLocaleString()}</td>${st.stratum
+            ? `<td class="n">${num(x.ebgm)}</td><td class="n">${num(x.eb05)}</td><td><span class="bar" style="width:${Math.round(x.ratio_to_all_dogs/max*120)}px"></span> ${num(x.ratio_to_all_dogs)}×</td>`
+            : `<td class="n">${num(x.expected,0)}</td><td class="n">${num(x.ebgm)}</td><td><span class="bar" style="width:${Math.round(Math.min(x.eb05,max)/max*120)}px"></span> ${num(x.eb05)}</td>`}</tr>`).join('')}
+          </tbody></table></div>`;
+      } catch (e) { out.innerHTML = `<p class="err">${esc(e.message)}</p>`; }
+    };
+    $('#ds-go').onclick = go; el.querySelectorAll('select').forEach(s => s.onchange = go);
+    el.querySelectorAll('input').forEach(i => i.onkeydown = e => { if (e.key === 'Enter') go(); }); go();
+  },
+  async antibiogram(el) {
+    const st = VIEWS.ab_state ||= {organism:'E. coli', source:'UTI'};
+    el.innerHTML = `<div class="card"><h2>Regional antibiogram</h2>
+      <p class="desc">Percent of dog isolates susceptible, 2022–2024, from real FDA NARMS laboratory data. Cells with fewer than 30 isolates are not reported (CLSI M39). Treatment choices belong with the vet and published guidance.</p>
+      <div class="filters">${select('ab-or','Organism',['E. coli','S. pseudintermedius'],st.organism)}${select('ab-so','Source',[['UTI','Urine'],['Other sites','Skin and other sites']],st.source)}<span id="ab-dl"></span></div>
+      <div id="ab-out"></div></div>`;
+    const go = async () => {
+      st.organism = $('#ab-or').value; st.source = $('#ab-so').value;
+      const out = $('#ab-out');
+      try {
+        const r = await api('/v1/antibiogram', {organism:st.organism, source:st.source});
+        $('#ab-dl').replaceChildren(csvButton(r.data, 'antibiogram'));
+        const regions = ['Northeast','South','Midwest','West','Canada'].filter(g => r.data.some(x => x.region === g));
+        const drugs = uniq(r.data, 'drug');
+        const cell = (g,d) => r.data.find(x => x.region === g && x.drug === d);
+        const shade = p => `color-mix(in srgb, var(--warn) ${Math.round(Math.max(0, Math.min(1, (1-p)/0.4))*55)}%, transparent)`;
+        drugs.sort((a,b) => { const m = d => regions.reduce((s,g)=>s+(cell(g,d)?.pct_susceptible ?? 1),0); return m(b)-m(a); });
+        out.innerHTML = !r.data.length ? '<p class="desc">No releasable cells.</p>' : `<div class="scroll"><table><thead><tr><th>Drug</th>${regions.map(g=>`<th class="n">${g}</th>`).join('')}</tr></thead><tbody>
+          ${drugs.map(d => `<tr><td>${esc(d)}</td>${regions.map(g => { const c = cell(g,d); return c ? `<td class="n" style="background:${shade(c.pct_susceptible)}" title="${c.n} isolates">${pct(c.pct_susceptible)}</td>` : '<td class="n">–</td>'; }).join('')}</tr>`).join('')}
+          </tbody></table></div><p class="note">Darker = fewer isolates susceptible. Hover a cell for the isolate count.</p>`;
+      } catch (e) { out.innerHTML = `<p class="err">${esc(e.message)}</p>`; }
+    };
+    el.querySelectorAll('select').forEach(s => s.onchange = go); go();
+  },
+  async scorecard(el) {
+    const own = ME.clinic;
+    const clinics = ['AUS-VET1','AUS-VET2','AUS-VET3','MSP-VET1','MSP-VET2','MSP-VET3','PHL-VET1','PHL-VET2','PHL-VET3'];
+    const st = VIEWS.sc_state ||= {clinic: own || 'PHL-VET1'};
+    if (own) st.clinic = own;
+    el.innerHTML = `<div class="card"><h2>Clinic scorecard</h2>
+      <p class="desc">Risk-adjusted for case mix recorded in the clinic's own records. Observed ÷ expected below 1 is better for complications; for dental disease, below 1 may mean under-charting. ${own ? 'A clinic key can read only its own scorecard; try another clinic to see the API refuse.' : ''}</p>
+      <div class="filters">${select('sc-cl','Clinic',clinics,st.clinic)}<span id="sc-dl"></span></div><div id="sc-out"></div></div>`;
+    const go = async () => {
+      st.clinic = $('#sc-cl').value;
+      const out = $('#sc-out');
+      try {
+        const r = await api(`/v1/clinics/${encodeURIComponent(st.clinic)}/scorecard`);
+        const c = r.clinic, m = r.network_median;
+        $('#sc-dl').replaceChildren(csvButton([c], 'scorecard_' + st.clinic));
+        const flag = f => f === 'above' ? '<span class="pill up">Above expected</span>' : f === 'below' ? '<span class="pill down">Below expected</span>' : '';
+        const rows = [
+          ['Anesthetic procedures', c.procedures, m.procedures, v => num(v,0), ''],
+          ['Complications, observed ÷ expected (shrunk)', c.complication_oe_shrunk, m.complication_oe_shrunk, v => num(v), flag(c.complication_flag) + ` 95%: ${esc(c.complication_95ci ?? '')}; rank range ${esc(c.complication_rank_90pct ?? '')}`],
+          ['Deaths, observed (expected)', c.deaths, m.deaths, v => num(v,0), `expected ${num(c.deaths_expected,1)}; power to detect doubled risk ${pct(c.power_to_detect_double_death_risk)}`],
+          ['Dental disease recorded, observed ÷ expected', c.dental_detection_oe, m.dental_detection_oe, v => num(v), flag(c.dental_flag)],
+          ['Cultures before treating urinary infections', c.culture_before_uti_tx, m.culture_before_uti_tx, pct, 'higher is better'],
+          ['Critically important antibiotic as first choice', c.critically_important_first, m.critically_important_first, pct, 'lower is better'],
+          ['Stewardship rank (of 9)', c.stewardship_rank, m.stewardship_rank, v => num(v,0), '1 = best']];
+        out.innerHTML = `<div class="scroll"><table><thead><tr><th>Measure</th><th class="n">${esc(st.clinic)}</th><th class="n">Network median</th><th></th></tr></thead><tbody>
+          ${rows.map(([l,v,mv,f,n]) => `<tr><td>${l}</td><td class="n"><b>${f(v)}</b></td><td class="n">${f(mv)}</td><td style="font-size:12px;color:var(--muted)">${n}</td></tr>`).join('')}</tbody></table></div>`;
+      } catch (e) { out.innerHTML = `<p class="err">${esc(e.message)} (HTTP ${e.status})</p>`; }
+    };
+    $('#sc-cl').onchange = go; go();
+  },
+  async benchmarks(el) {
+    const st = VIEWS.bm_state ||= {market:'PHL', channel:'daycare'};
+    el.innerHTML = `<div class="card"><h2>Service benchmarks</h2>
+      <p class="desc">Monthly revenue per active pet by location, with each location's percentile within its market. Partners see their own line against the market; this internal view shows all locations.</p>
+      <div class="filters">${select('bm-mk','Market',['AUS','MSP','PHL'],st.market)}${select('bm-ch','Service',['daycare','boarding','grooming','vet'],st.channel)}<span id="bm-dl"></span></div><div id="bm-out"></div></div>`;
+    const go = async () => {
+      st.market = $('#bm-mk').value; st.channel = $('#bm-ch').value;
+      const out = $('#bm-out');
+      try {
+        const r = await api('/v1/service-benchmarks', {market:st.market, channel:st.channel});
+        $('#bm-dl').replaceChildren(csvButton(r.data, 'service_benchmarks'));
+        out.innerHTML = r.data.length ? `<div class="scroll">${linePlot(r.data)}</div>` : '<p class="desc">No rows.</p>';
+      } catch (e) { out.innerHTML = `<p class="err">${esc(e.message)}</p>`; }
+    };
+    el.querySelectorAll('select').forEach(s => s.onchange = go); go();
+  }
+};
+
+/* ---------- charts ---------- */
+function dotPlot(rows) {
+  const W = 720, rowH = 26, L = 120, R = 30, T = 10, H = T + rows.length*rowH + 30;
+  const lo = Math.min(80, ...rows.map(r => r.index_lo)), hi = Math.max(120, ...rows.map(r => r.index_hi));
+  const x = v => L + (v-lo)/(hi-lo)*(W-L-R);
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="${W}" style="max-width:100%;height:auto" role="img" aria-label="Index by breed group with 90% intervals">`;
+  s += `<line x1="${x(100)}" x2="${x(100)}" y1="${T}" y2="${H-24}" stroke="var(--muted)" stroke-dasharray="3 3"/><text x="${x(100)}" y="${H-8}" text-anchor="middle">100 = network</text>`;
+  rows.forEach((r,i) => { const y = T + i*rowH + rowH/2, col = r.index_lo > 100 ? 'var(--warn)' : r.index_hi < 100 ? 'var(--good)' : 'var(--accent)';
+    s += `<text x="${L-8}" y="${y+4}" text-anchor="end" style="fill:var(--ink)">${esc(r.breed_group)}</text>
+      <line x1="${x(r.index_lo)}" x2="${x(r.index_hi)}" y1="${y}" y2="${y}" stroke="${col}" stroke-width="2"/>
+      <circle cx="${x(r.index)}" cy="${y}" r="5" fill="${col}"><title>${esc(r.breed_group)}: ${num(r.index,0)} (${num(r.index_lo,0)}–${num(r.index_hi,0)})</title></circle>
+      <text x="${x(r.index_hi)+6}" y="${y+4}">${num(r.index,0)}</text>`; });
+  return s + '</svg>';
+}
+function linePlot(rows) {
+  const W = 760, H = 300, L = 50, R = 110, T = 12, B = 30;
+  const months = uniq(rows, 'month'), locs = uniq(rows, 'location_id');
+  const ys = rows.map(r => r.revenue_per_active_pet), ymax = Math.max(...ys)*1.05, ymin = Math.min(...ys)*0.85;
+  const x = i => L + i/(Math.max(months.length-1,1))*(W-L-R), y = v => T + (1-(v-ymin)/(ymax-ymin))*(H-T-B);
+  const cols = ['var(--accent)','var(--warn)','var(--good)','var(--muted)'];
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="${W}" style="max-width:100%;height:auto" role="img" aria-label="Revenue per active pet by month and location">`;
+  for (let k = 0; k <= 4; k++) { const v = ymin + (ymax-ymin)*k/4; s += `<line x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)"/><text x="${L-6}" y="${y(v)+4}" text-anchor="end">$${Math.round(v)}</text>`; }
+  months.forEach((m,i) => { if (m.endsWith('-01-01')) s += `<text x="${x(i)}" y="${H-10}" text-anchor="middle">${m.slice(0,4)}</text>`; });
+  const labels = [];
+  locs.forEach((loc,j) => { const pts = rows.filter(r => r.location_id === loc).sort((a,b) => a.month < b.month ? -1 : 1);
+    const d = pts.map(p => `${x(months.indexOf(p.month))},${y(p.revenue_per_active_pet)}`).join(' ');
+    s += `<polyline points="${d}" fill="none" stroke="${cols[j % 4]}" stroke-width="2"/>`;
+    const last = pts[pts.length-1]; labels.push({loc, col:cols[j % 4], x:x(months.indexOf(last.month))+6, y:y(last.revenue_per_active_pet)+4}); });
+  labels.sort((a,b) => a.y - b.y).forEach((l,i,arr) => { if (i && l.y - arr[i-1].y < 13) l.y = arr[i-1].y + 13;
+    s += `<text x="${l.x}" y="${l.y}" style="fill:${l.col}">${esc(l.loc)}</text>`; });
+  return s + '</svg>';
+}
+
+/* ---------- shell ---------- */
+async function signIn(key) {
+  KEY = key; usage.length = 0; $('#usage').innerHTML = ''; $('#usagesum').textContent = '';
+  try { ME = await api('/v1/me'); }
+  catch (e) { $('#keyerr').innerHTML = `<p class="err">${esc(e.message)}</p>`; KEY = null; return; }
+  $('#signin').classList.add('hidden'); $('#app').classList.remove('hidden');
+  $('#who').innerHTML = `<span>${esc(ME.name || key)} · ${esc(PLAN[ME.role] || ME.role)}</span><button id="out">Switch account</button>`;
+  $('#out').onclick = () => { $('#app').classList.add('hidden'); $('#signin').classList.remove('hidden'); $('#who').innerHTML = ''; KEY = null; };
+  const has = p => p.need.some(e => ME.entitlements.includes(e));
+  $('#nav').innerHTML = PRODUCTS.map(p => `<button data-p="${p.id}" class="${has(p) ? '' : 'locked'}">${p.label}${has(p) ? '' : ' <span aria-label="not in plan">🔒</span>'}</button>`).join('');
+  const first = PRODUCTS.find(has);
+  document.querySelectorAll('#nav button').forEach(b => b.onclick = () => open(b.dataset.p));
+  open(first ? first.id : PRODUCTS[0].id);
+}
+function open(id) {
+  document.querySelectorAll('#nav button').forEach(b => b.setAttribute('aria-current', String(b.dataset.p === id)));
+  const p = PRODUCTS.find(x => x.id === id);
+  const el = $('#view');
+  if (!p.need.some(e => ME.entitlements.includes(e))) {
+    el.innerHTML = `<div class="card"><h2>${p.label}</h2><p class="desc">Not included in your plan (${esc(PLAN[ME.role])}). The API refuses these calls with HTTP 403, as below.</p></div>`;
+    const path = {health_index:'/v1/health-index', drug_signals:'/v1/drug-signals', antibiogram:'/v1/antibiogram', benchmarks:'/v1/service-benchmarks', scorecard:'/v1/clinics/PHL-VET1/scorecard'}[id];
+    api(path, {}).catch(() => {});
+    return;
+  }
+  VIEWS[id](el);
+}
+async function boot() {
+  $('#mode').textContent = LIVE ? 'live API' : 'demo';
+  if (!LIVE) {
+    SAMPLE = await (await fetch('portal_sample.json')).json();
+    $('#rel').textContent = `release v${SAMPLE.release} · ${SAMPLE.released_at.slice(0,10)}`;
+  } else { $('#rel').textContent = 'latest release'; }
+  $('#accounts').innerHTML = Object.entries(ACCOUNTS).map(([k,a]) => {
+    const ent = ENTITLEMENTS[a.role];
+    return `<button class="acct" data-k="${k}"><b>${esc(a.name)}</b><small>${esc(PLAN[a.role])} · key <code>${k}</code></small>
+      <div class="chips">${PRODUCTS.map(p => `<span class="chip ${p.need.some(e => ent.includes(e)) ? '' : 'off'}">${p.label}</span>`).join('')}</div></button>`; }).join('');
+  document.querySelectorAll('.acct').forEach(b => b.onclick = () => signIn(b.dataset.k));
+  $('#keygo').onclick = () => signIn($('#keyinput').value.trim());
+  $('#keyinput').onkeydown = e => { if (e.key === 'Enter') signIn($('#keyinput').value.trim()); };
+}
+boot();
+</script>
+</body>
+</html>

@@ -15,7 +15,7 @@ TailSignal is a working model of a pet health data business. It links each pet's
 | 1. Collect | Synthetic multi-channel generator; real-data ingest (openFDA, Austin, NYC licenses, Census CBP, PetEVAL) | ✅ Built; openFDA (1.36M reports), FDA NARMS and PetEVAL ingested and used |
 | 2. Organize | dbt on DuckDB: staging for 6 source systems, breed/diagnosis/service taxonomies, entity resolution, de-identified products, 28 data tests | ✅ Built |
 | 3. Analyze | Model A ✅ · segmentation ✅ · forecasting ✅ · Models C–D ✅ · Model A2 (EHR cohorts) ✅ · clinic benchmarks ✅ · feline CKD ✅ · Model B (awaiting Dog Aging Project access) | In progress |
-| 4. Commercialize | Pet Health Index, versioned releases (DuckLake / Parquet), scoring API with entitlements and metering, partner portal, five-year business case | ✅ Built ([results](docs/productization_results.md)) |
+| 4. Commercialize | Pet Health Index, versioned releases (DuckLake / Parquet), scoring API with entitlements and metering, customer portal (`/app`; [demo](https://roncom.github.io/projects/tailsignal/portal/)), five-year business case | ✅ Built ([results](docs/productization_results.md)) |
 | 5. Communicate | Slide deck, executive memo and interactive dashboard (`reports/dashboard/tailsignal_dashboard.html`); technical write-ups in `docs/` | ✅ Built |
 
 ## Results so far
@@ -164,7 +164,8 @@ uv run python -m tailsignal.models.forecasting_conformal  # conformal intervals 
 uv run python scripts/reminder_trial_power.py          # power for the proposed reminder trial
 uv run python -m tailsignal.models.clinic_benchmarks   # clinic scorecards (add --root data_scale10 --tag 10x)
 uv run python -m tailsignal.products.release           # versioned data-product release (DuckLake, else Parquet)
-uv run uvicorn tailsignal.api.app:app --reload          # API + partner portal; docs at /docs
+uv run uvicorn tailsignal.api.app:app --reload          # API; customer portal at /app, docs at /docs
+uv run python scripts/export_portal_sample.py           # release sample for the static portal demo
 uv run python scripts/build_business_case.py          # five-year business case workbook
 ```
 

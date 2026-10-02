@@ -15,7 +15,7 @@ from pathlib import Path
 
 import pandas as pd
 from fastapi import Depends, FastAPI, Header, HTTPException, Query, Request
-from fastapi.responses import HTMLResponse, RedirectResponse, Response
+from fastapi.responses import FileResponse, HTMLResponse, RedirectResponse, Response
 
 from tailsignal.products.release import open_store
 
@@ -91,6 +91,38 @@ def root():
 @app.get("/favicon.ico", include_in_schema=False)
 def favicon():
     return Response(status_code=204)
+
+
+PRODUCTS = {"health_index": "Pet Health Index", "drug_signals": "Drug-safety signals", "antibiogram": "Regional antibiogram",
+            "scorecard_own": "Your clinic scorecard", "scorecard_any": "Clinic scorecards", "benchmarks": "Service benchmarks"}
+STATIC = Path(__file__).parent / "static"
+
+
+@app.get("/app", include_in_schema=False)
+def customer_portal():
+    """Customer portal front end; it calls this API with the customer's key."""
+    return FileResponse(STATIC / "portal.html")
+
+
+@app.get("/v1/me")
+def me(c: dict = Depends(client)):
+    """Who this key belongs to and which products its plan includes."""
+    ent = sorted(ENTITLEMENTS.get(c["role"], set()))
+    return {"name": c.get("name"), "role": c["role"], "clinic": c.get("clinic"), "entitlements": ent,
+            "products": [PRODUCTS[e] for e in ent]}
+
+
+@app.get("/v1/service-benchmarks")
+def service_benchmarks(request: Request, market: str | None = None, channel: str | None = None,
+                       location_id: str | None = None, release: int | None = None,
+                       limit: int = Query(2000, le=5000), c: dict = Depends(client)):
+    need(c, "benchmarks")
+    df, v = table("service_benchmark", release)
+    for col, val in [("market", market), ("channel", channel), ("location_id", location_id)]:
+        if val:
+            df = df[df[col] == val]
+    meter(request, c, len(df), v)
+    return {"release": v, "rows": len(df), "data": records(df, limit)}
 
 
 @app.get("/v1/releases")

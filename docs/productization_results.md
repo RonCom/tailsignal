@@ -51,7 +51,7 @@ FastAPI service over the latest or a pinned release (`?release=N`). Each key has
 | Clinic | Its own scorecard and portal page, antibiogram |
 | Admin | Everything |
 
-Every successful call is logged (key, endpoint, rows, release) for usage-based billing. The partner portal (`/portal/{clinic}`) is the same scorecard rendered as a page: the clinic's values beside the network median. Demo keys are in `config/api_keys.json`; real keys belong in a secrets store.
+Every successful call is logged (key, endpoint, rows, release) for usage-based billing. A customer portal at `/app` (`src/tailsignal/api/static/portal.html`) is the front end on the same API: a customer signs in with a key, sees only the products in its plan, and can chart, filter and download each one, with the request, response and billed usage shown for every view. `GET /v1/me` returns a key's role and entitlements; `GET /v1/service-benchmarks` serves the benchmarks product. The same page runs as a static demo over a release sample (`scripts/export_portal_sample.py`) on [the project website](https://roncom.github.io/projects/tailsignal/portal/). The partner portal (`/portal/{clinic}`) is the same scorecard rendered as a page: the clinic's values beside the network median. Demo keys are in `config/api_keys.json`; real keys belong in a secrets store.
 
 ## Business case (illustrative assumptions)
 
