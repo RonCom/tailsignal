@@ -88,7 +88,7 @@ The isoxazoline (2018 FDA alert) control was **not** detected before the alert a
 ## Architecture
 
 ```
-raw sources (6 systems, 4 formats) ─┐
+raw sources (6 systems, 3 formats) ─┐
 public data (FDA, Census, cities)  ─┤
                                     ▼
 dbt staging ── normalize names, phones, dates, units, species codes
