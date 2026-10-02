@@ -20,7 +20,7 @@
 
 | Action | Owner | First step |
 |---|---|---|
-| Grooming offer to daycare regulars | Daycare and grooming partners | Pilot at two sites with a randomized holdout, so the lift is measured, not assumed |
+| Grooming offer to daycare regulars | Daycare and grooming partners | Pilot at two sites with a randomized holdout to measure the lift |
 | Vet referral program for daycare/grooming-only households | Vet partners | Add a "new patient" offer at daycare check-in |
 | Weekly forecast-based staffing | Daycare operations | Use the 13-week plan in the partner portal; review the forecast against actuals monthly |
 | Retention focus on daycare regulars | Commercial | Keep reminding all wellness-plan members; expand the randomized pilot to 6,000–9,000 members before targeting |
@@ -30,4 +30,4 @@
 
 - The customer groups are stable: rerunning the analysis on 50 resampled datasets gives the same groups (stability scores 0.76–0.99 on a 0–1 scale).
 - Our first segmentation design was unstable and is reported as a failure; the version above was revised and documented before rerunning.
-- The forecast is more accurate than last-year-same-week, but its stated uncertainty ranges are too narrow (they catch 64% of outcomes, not 80%). A simpler blended forecast fixes this in testing and will be confirmed on 2025 data before rollout.
+- The forecast is more accurate than last-year-same-week, but its stated uncertainty ranges are too narrow (they catch 64% of outcomes, not 80%). Recalibrating the ranges from past forecast errors brings coverage to 82%.

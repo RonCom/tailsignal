@@ -31,7 +31,7 @@ Clustering on five behavioral rates only, with household attributes kept as desc
 
 Every segment at both levels clears the 0.75 stability bar with 50 bootstrap refits.
 
-**Recovery check.** Agreement with the simulator's hidden segments is low (adjusted Rand 0.21). This is expected, not a failure. The simulator assigns behavior probabilistically, so households in different hidden segments often behave alike (for example, many "boarding travelers" never board in a given window). The segments describe what customers do, which is what a business can act on.
+**Recovery check.** Agreement with the simulator's hidden segments is low (adjusted Rand 0.21), as expected: the simulator assigns behavior probabilistically, so households in different hidden segments often behave alike (for example, many "boarding travelers" never board in a given window). The segments describe what customers do, which is what a business can act on.
 
 ### Commercial opportunities (illustrative sizing)
 
@@ -96,4 +96,4 @@ Spec, written before running: [`forecast_conformal_spec.md`](forecast_conformal_
 
 - The segments feed the partner portal ("your customer mix vs. your market") and target the uplift model.
 - Forecasts and staffing plans are the first embedded-analytics feature for daycare partners.
-- Next forecasting step: conformal prediction intervals to fix calibration, then confirm the average model on 2025 data.
+- Next forecasting step: confirm the average model on 2025 data.

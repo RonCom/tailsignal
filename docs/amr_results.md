@@ -9,7 +9,7 @@ Real data: FDA NARMS Animal Pathogen AMR Data (Vet-LIRN and NAHLN laboratories),
 1. **Methicillin-resistant *S. pseudintermedius* (MRSP) is common and rising.** 36.5% of isolates overall. From skin and other sites: 31% in 2017 → 43% in 2024. From urine: 20% → 32%. Adjusted for region and site, the odds rise 7% a year (OR 1.07, 95% CI 1.05–1.09). **The pre-registered expectation (present at a meaningful level and not declining) is confirmed.**
 2. ***S. pseudintermedius* is becoming harder to treat across the board.** Every one of the 16 significant rising trends is in this organism, including clindamycin (31% → 43% resistant), trimethoprim-sulfamethoxazole (30% → 39%), enrofloxacin (36% → 49%), and cefpodoxime (17% → 26%). Multidrug resistance (≥ 3 classes): 28% → 41% (OR 1.05/year, p < 0.001).
 3. ***E. coli* is stable or improving.** All 7 significant falling trends are in *E. coli*. Urinary trimethoprim-sulfamethoxazole resistance fell from 13% to 10%; multidrug resistance fell from 17% to 13% (OR 0.95/year).
-4. **Region matters.** MRSP runs 42% in the Northeast and 41% in the South, versus 33% in the Midwest, 30% in the West, and 20% in Canadian submissions. Southern *E. coli* urinary isolates are the least susceptible to cephalosporins and fluoroquinolones.
+4. **Resistance varies by region.** MRSP runs 42% in the Northeast and 41% in the South, versus 33% in the Midwest, 30% in the West, and 20% in Canadian submissions. Southern *E. coli* urinary isolates are the least susceptible to cephalosporins and fluoroquinolones.
 
 ## What went wrong first, and how it was fixed
 

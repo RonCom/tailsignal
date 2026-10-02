@@ -27,7 +27,7 @@ TailSignal is a working model of a pet health data business. It links each pet's
 | Deterministic baseline (same phone + same pet name) | 0.992 | 0.830 | 0.904 |
 | **Two-stage: Splink household model → within-household pet matching** | 0.990 | **0.975** | **0.983** |
 
-The two-stage design matters: a single Splink model over pet records reached only 0.48 precision, because pets in the same household share every owner field and get merged. Resolving households first and pets second fixes that. Household-level linkage: precision 0.971, recall 0.997.
+A single Splink model over pet records reached only 0.48 precision, because pets in the same household share every owner field and get merged. Resolving households first and pets second fixes that. Household-level linkage: precision 0.971, recall 0.997.
 
 **Taxonomy.** 114 distinct raw breed strings: 97 exact alias matches, 13 fuzzy (e.g., "Labrador Retreiver", "Daschund"), 4 left unmapped for review ("Sibe", "York. Terrier", "Aus. Shepherd", "Collie"). All diagnosis codes and free-text reasons from the three vet systems map to 12 conditions + wellness.
 
@@ -40,7 +40,7 @@ The two-stage design matters: a single Splink model over pet records reached onl
 | 5-year birth band + metro | 6% |
 | Suppressed | 8% |
 
-The pre-registered target was ≤ 5% suppression; at this panel size (12.7k pets) it is missed. This is a finding: rare breed groups need more partners before they can be released at this granularity.
+The pre-registered target was ≤ 5% suppression; at this panel size (12.7k pets) it is missed: rare breed groups need more partners before they can be released at this granularity.
 
 **Model A: breed-stratified pharmacovigilance** (970,167 real FDA dog adverse-event reports, plus a 144,967-report cat analysis; [full results](docs/model_a_results.md), [one-page brief](docs/briefs/model_a_brief.md))
 
@@ -75,7 +75,7 @@ The isoxazoline (2018 FDA alert) control was **not** detected before the alert a
 
 **Antimicrobial resistance** ([results](docs/amr_results.md), real FDA NARMS data, 26,396 dog isolates): MRSP rose from 31% to 43% of skin/other-site isolates (2017–2024); all 16 rising trends are in *S. pseudintermedius*, while *E. coli* is stable or improving. The pre-registered pooled analysis was confounded by site-specific breakpoints and cascade testing; the fix and both versions are documented.
 
-**Clinical EHR layer** ([results](docs/simulator_extension_results.md), [spec](docs/simulator_extension_spec.md)): prescriptions, anesthesia, lab panels, real-NARMS culture results, clinical notes, and microchips on the same simulated world; 26 of 35 validation checks pass, with every miss reported. Key findings: a naive isoxazoline–seizure comparison looks protective (RR 0.33) because epileptic dogs are steered away from the drug, and excluding prior seizures recovers the planted effect; confirming a 1.5× risk needs ~23× this network; clinic death rates cannot be benchmarked at this volume but complication rates can.
+**Clinical EHR layer** ([results](docs/simulator_extension_results.md), [spec](docs/simulator_extension_spec.md)): prescriptions, anesthesia, lab panels, real-NARMS culture results, clinical notes, and microchips on the same simulated world; 26 of 35 validation checks pass, with every miss reported. Findings: a naive isoxazoline–seizure comparison looks protective (RR 0.33) because epileptic dogs are steered away from the drug, and excluding prior seizures recovers the planted effect; confirming a 1.5× risk needs ~23× this network; clinic death rates cannot be benchmarked at this volume but complication rates can.
 
 **Model A2: EHR drug-safety cohorts** ([results](docs/model_a2_results.md)): new-user, active-comparator studies in clinic records with text-mined outcomes. At this network's size the studies are uninformative (2 vs 0 seizures); at 10× the isoxazoline estimate is RR 1.29 (0.39–4.29) against a planted 1.5. Real FDA onset dates support a 50-day window (89% of seizures begin within it). Rare-event validation needs ~130× this network, and linking records across clinics on pet details alone fails at scale (4% precision at 10×). On real UK clinic notes (SAVSNET PetEVAL), the frozen seizure dictionary's precision falls to 30%, mostly from "fit for vaccination"-type uses of "fit". An independent check against PetEVAL's own diagnosis labels confirms my verdicts and finds every clear seizure among 150 nervous-system records (15 of 15); my two readings agree only moderately (κ 0.48), so a second reader is needed.
 
@@ -108,7 +108,7 @@ dbt marts
 
 ## Monetization models
 
-See [`docs/monetization.md`](docs/monetization.md). Each model maps to a repo component:
+Each model maps to a repo component (details in [`docs/monetization.md`](docs/monetization.md)):
 
 | Model | TailSignal offering | Built on |
 |---|---|---|

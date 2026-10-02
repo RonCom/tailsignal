@@ -44,7 +44,7 @@ Updated 2026-10-02. Sources reviewed for this version: Banfield's 150-million-vi
 |---|---|
 | Model B: breed-condition risk on real data | Waiting for Dog Aging Project access |
 | Wearables channel for early warning (activity collars) | Better signal source than daycare attendance; needs a data partner or sensor dataset (VetDataHub lists a collar accelerometer dataset) |
-| Pathology image AI (canine mast cell tumor slides) | Different skill set and very large files |
+| Pathology image AI (canine mast cell tumor slides) | Different skill set and large files |
 | Conformal intervals for forecasting; confirm blended model on 2025 data | Small follow-up, fold into productization |
 
 ## Timing

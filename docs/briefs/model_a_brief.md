@@ -8,7 +8,7 @@
 
 2. **Our method doesn't cry wolf.** When we scrambled the data so that no real breed patterns remained, the standard breed comparison still raised about 7 false alarms per 1,000 checks, which would be thousands of alerts across a full product portfolio. Our model raised zero.
 
-3. **Speed and accuracy pull in opposite directions, and we can quantify it.** For the flea-and-tick products FDA warned about in 2018, a simple screening statistic showed the seizure pattern about four and a half years before the warning, but it also flags roughly 1 in 20 drug–reaction pairs by chance. The strict Bayesian score flagged nothing by chance, but it also missed this signal until after the warning.
+3. **Speed and accuracy pull in opposite directions.** For the flea-and-tick products FDA warned about in 2018, a simple screening statistic showed the seizure pattern about four and a half years before the warning, but it also flags roughly 1 in 20 drug–reaction pairs by chance. The strict Bayesian score flagged nothing by chance, but it also missed this signal until after the warning.
 
 4. **At the same review workload, the Bayesian score points reviewers to the right problems sooner.** If a safety reviewer works down a product's list of reported reactions, the Bayesian score put the isoxazoline seizure signal about 3–5 times higher on the list than the simple screen did, two years before FDA's warning. For the MDR1 breed risk, it ranked the signal in the top 30 of up to 100,000 breed checks every quarter from 2013 to 2019; the standard comparison ranked it between 235th and 1,545th.
 

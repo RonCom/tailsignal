@@ -1,6 +1,6 @@
 # Data Monetization Models
 
-TailSignal evaluates four ways to turn multi-channel pet care data into revenue. Each model is built as a working component of this repo, so the comparison rests on artifacts rather than slideware.
+TailSignal evaluates four ways to turn multi-channel pet care data into revenue. Each model is built as a working component of this repo, so the comparison rests on working artifacts.
 
 Prices and volumes below are **illustrative assumptions** for the business-case model (`docs/business_case.md`, Phase 4). They are inputs to be validated with buyer interviews, not market facts.
 
@@ -33,11 +33,11 @@ Prices and volumes below are **illustrative assumptions** for the business-case 
 | Cohort | De-identified pet-level longitudinal records, k ≥ 10 on quasi-identifiers | Monthly |
 | Research | Cohort tier plus linked service and outcome variables, under a data use agreement | Monthly |
 
-**Key risks.** Re-identification, partner objections to resale of their data, and buyers commoditizing raw data. Mitigated by contract terms, the privacy layer, and keeping the highest-value signals in models rather than raw rows.
+**Risks.** Re-identification, partner objections to resale of their data, and buyers commoditizing raw data. Mitigated by contract terms, the privacy layer, and keeping the highest-value signals in models rather than raw rows.
 
 ## 2. Research & Insights
 
-**Value proposition.** Most buyers want answers, not tables. Insights carry higher margins than raw data and expose less of it.
+**Value proposition.** Insights carry higher margins than raw data and expose less of it.
 
 **Offerings**
 - **Pet Health Index (quarterly):** condition prevalence and trend by breed group and region, with uncertainty intervals.
@@ -45,7 +45,7 @@ Prices and volumes below are **illustrative assumptions** for the business-case 
 - **Market opportunity atlas:** pet-care supply vs. estimated demand by county (Census business counts × pet-ownership estimates).
 - **Drug-safety landscape:** breed-stratified adverse-event signals from FDA data, aimed at animal-health pharma.
 
-**Key risks.** Insights are easier to copy once published. Mitigated by the subscription cadence and custom cuts.
+**Risks.** Insights are easier to copy once published. Mitigated by the subscription cadence and custom cuts.
 
 ## 3. Commercialized Models
 
@@ -60,7 +60,7 @@ Prices and volumes below are **illustrative assumptions** for the business-case 
 
 **Requirements before selling a model:** a model card, a calibration report, drift monitoring, versioned endpoints, and a stated scope of valid use.
 
-**Key risks.** Model liability, drift as partner mix changes, and buyers reverse-engineering scores. Mitigated by monitoring, contractual scope, and returning scores rather than coefficients.
+**Risks.** Model liability, drift as partner mix changes, and buyers reverse-engineering scores. Mitigated by monitoring, contractual scope, and returning scores rather than coefficients.
 
 ## 4. Embedded Analytics
 
@@ -72,7 +72,7 @@ Prices and volumes below are **illustrative assumptions** for the business-case 
 - Demand forecast for the partner's own site, with staffing guidance.
 - Early-warning flags: pets showing pre-illness patterns, routed to the partner's vet relationship.
 
-**Key risks.** Building and supporting software is costly; a free portal can be undervalued. Mitigated by tiering (free benchmark, paid predictive features).
+**Risks.** Building and supporting software is costly; a free portal can be undervalued. Mitigated by tiering (free benchmark, paid predictive features).
 
 ## 5. Veterinary EHR–specific offerings
 
@@ -94,7 +94,7 @@ First-opinion EHRs (prescriptions, diagnoses, lab results, and the vet's free-te
 
 ### What EHR monetization requires (and how TailSignal handles it)
 
-- **Clinic and owner terms.** Data-sharing agreements with partner clinics that permit de-identified secondary use and define a revenue share; owner notice at registration. Clinics are data partners, not just sources.
+- **Clinic and owner terms.** Data-sharing agreements with partner clinics that permit de-identified secondary use and define a revenue share; owner notice at registration.
 - **Free text needs extra de-identification.** Notes contain owner names, addresses, and phone numbers; narrative products require automated redaction and sampled audits before release.
 - **A cross-clinic identifier.** Animals move between practices; without linkage, cohorts lose follow-up. Entity resolution (and microchip numbers where captured) is a selling point in its own right.
 - **Exposure completeness.** Products bought online or administered in-clinic may be missing from records; pharmacy partnerships close the gap.

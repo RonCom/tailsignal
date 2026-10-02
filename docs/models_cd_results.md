@@ -48,7 +48,7 @@ Pets seen at daycare, boarding, or grooming in the past 90 days: +0.012.
 
 None reach the pre-registered 0.02, 0.05, or 0.10 lifts, so those sample sizes are undefined.
 
-**The key finding is in the first row.** With no warning signal planted, cross-channel data still lifts AUC by 0.009. That lift comes from *engagement* (households that use daycare and grooming also use vets differently), not from anything changing before the visit. An exploratory ablation (logged as an amendment) separates the two:
+**With no warning signal planted, cross-channel data still lifts AUC by 0.009** (first row). That lift comes from *engagement* (households that use daycare and grooming also use vets differently), not from anything changing before the visit. An exploratory ablation (logged as an amendment) separates the two:
 
 | Data | Engagement lift (uses other channels) | Warning-signal lift (attendance drop, concerning notes) | 95% CI | Warning lift, pets active in other channels |
 |---|---|---|---|---|
@@ -60,9 +60,9 @@ None reach the pre-registered 0.02, 0.05, or 0.10 lifts, so those sample sizes a
 
 The ablation behaves as a valid test should: zero when no signal exists, rising with signal strength. On the platform data the warning signal is not distinguishable from zero across all pets.
 
-**H5 verdict: fails.** Cross-channel data improves prediction modestly, mostly through engagement. True early-warning value is confined to pets that are already active in other channels, and even there it is small unless most illnesses show visible signs.
+**H5 verdict: fails.** Cross-channel data improves prediction modestly, mostly through engagement. Early-warning value is confined to pets that are already active in other channels, and even there it is small unless most illnesses show visible signs.
 
 **What it means for the business.** Do not sell "daycare data predicts illness" as a headline product. Its value is:
 - As a **care-management feature for active pets** (daycare regulars): +0.009 to +0.022 AUC in that group.
-- As a reason to **capture better notes**: the signal depends on staff recording concerns. A structured "health concern" checkbox at check-in would be worth more than any model change.
+- As a reason to **capture better notes**: the signal depends on staff recording concerns. A structured "health concern" checkbox at check-in would record that signal.
 - As a **partner-recruitment target**: roughly 2,000 linked pets with cross-channel activity are needed before a lift of this size can be shown to a buyer.

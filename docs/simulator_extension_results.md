@@ -18,7 +18,7 @@ The EHR layer adds what sits inside a clinic's records: prescriptions, procedure
 
 ## Validation scorecard
 
-26 of 35 checks pass. The 9 that fail are reported, not hidden: 6 are pre-registered checks that were revised for stated reasons (each revised version passes), and 3 are genuine misses.
+26 of 35 checks pass. Of the 9 that fail, 6 are pre-registered checks that were revised for stated reasons (each revised version passes), and 3 are misses.
 
 | Area | Result | Verdict |
 |---|---|---|

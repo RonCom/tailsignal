@@ -30,7 +30,7 @@ All five acceptance checks pass:
 
 The index is deliberately conservative. Small cells are pulled strongly toward 100, so a cell whose raw prevalence is nearly double the network rate (15% vs 8%) reads 117 (90% interval 99–136). This is the right default for pricing (insurers should not reprice on noise), but it understates real differences in small cells. Buyers who want raw rates get them in the same rows.
 
-Only 695 of 1,764 cells (39%) can be released at today's size. Privacy suppression is the binding constraint on this product, which is why the business case gates data licenses at 100 clinics.
+Only 695 of 1,764 cells (39%) can be released at today's size. Privacy suppression limits this product most, so the business case gates data licenses at 100 clinics.
 
 ## Versioned releases
 
@@ -67,10 +67,10 @@ Five-year model with three scenarios. Every number is a formula; prices, adoptio
 
 What the model says, under these assumptions:
 
-1. **The business does not break even within five years** in any scenario. The first-pass assumptions are not a viable plan, and the model shows where to look.
+1. **The business does not break even within five years** in any scenario. The first-pass assumptions are not a viable plan.
 2. **Partner incentives are the biggest variable cost.** Each partner clinic brings in about $2,800 a year in revenue at Year 5 but costs $1,000 in incentives. The incentive has to buy data access cheaply, through free scorecards rather than cash, or the network grows at a loss.
 3. **Data licenses are the swing line.** Eight more licenses at $120,000 would break even in Year 5 (Base). Licenses unlock only once privacy suppression falls, which needs about 100 clinics.
-4. **Validation studies arrive late.** Common side-effect studies unlock in Year 4 and rare ones in Year 5 (Base), set by the scale requirements found in Model A2. They are upside, not the base of the plan.
+4. **Validation studies arrive late.** Common side-effect studies unlock in Year 4 and rare ones in Year 5 (Base), set by the scale requirements found in Model A2. In the Base case they are 29% of Year-5 revenue ($1.25M of $4.25M).
 
 ## Owned-network version: Destination Pet
 

@@ -31,10 +31,10 @@ From 13,407 FDA dog reports linking an isoxazoline to a seizure term, with both 
 
 - **Stages 1–2 are unusable alone** because most seizure words in notes are negations ("no seizures") or history ("hx sz").
 - **Stage 3 still misses phrasings no expansion found**, such as "tonic-clonic episode" and "fitting, paddling". Recall stops at 71%.
-- **The classifier's near-perfect score reflects templated synthetic text.** It is an upper bound, not a forecast.
+- **The classifier's near-perfect score reflects templated synthetic text.** It is an upper bound.
 - **The neurologic classifier failed (7% recall)** because its training notes were sampled from dictionary hits. It never saw the phrasings the dictionary missed. Annotation samples must include non-hits.
-- **Outcome errors matter in small cohorts.** With perfect labels instead of stage 3, the 10× isoxazoline estimate moves from 1.29 to 0.54. Four false-positive notes are enough to swing it.
-- **The stage-2 review is optimistic.** I accepted or rejected each candidate word, but I also wrote the note templates. The PetEVAL check below tests the dictionaries on genuine clinic language.
+- **Outcome errors move estimates in small cohorts.** With perfect labels instead of stage 3, the 10× isoxazoline estimate moves from 1.29 to 0.54. Four false-positive notes are enough to swing it.
+- **The stage-2 review is optimistic.** I accepted or rejected each candidate word, but I also wrote the note templates. The PetEVAL check below tests the dictionaries on real clinic language.
 
 ## Real-text check: SAVSNET PetEVAL (added 2026-10-02)
 
@@ -45,13 +45,13 @@ The seizure dictionary, frozen from the synthetic notes, was run on the 4,999 pu
 | Stage 3, frozen | 60 | 18 | 3 | 39 | **30%** (35% counting uncertain) |
 | Stage 3 + post-hoc "fit" rules | 28 | 18 | 3 | 7 | 64% (75%); optimistic, written after reading these hits |
 
-- **Real notes are much harder than synthetic ones.** Precision fell from 75% on synthetic notes to 30%. 37 of the 39 false hits come from the VeDDRA term "Fit" in its everyday UK sense: "fit for vaccination", "fit to travel", "muzzle fits well", "coughing fit".
+- **Real notes are harder than synthetic ones.** Precision fell from 75% on synthetic notes to 30%. 37 of the 39 false hits come from the VeDDRA term "Fit" in its everyday UK sense: "fit for vaccination", "fit to travel", "muzzle fits well", "coughing fit".
 - **The negation and history rules held up.** All 36 hits removed by stage 3 (e.g., "no seizures since last visit", "no fits since restarting Epiphen") were correctly dropped.
 - **The post-hoc rules lost no true mentions** here and don't change results on the synthetic notes. The independent check below tests them further.
 - **Recall can't be fully measured** without annotating every record. A wider search ("petit mal", "epileptoid", "twitching") found 1–3 seizure-like episodes the dictionary missed, plus several records about epilepsy medication with no current event.
 - **Only the test split (4,999 records) is distributed publicly.** The 11,000 training records needed to fine-tune a PetBERT-style classifier are not, so the classifier comparison stays on synthetic text.
 
-This confirms the paper's point that dictionaries need expert review on real clinic text. It is also why the synthetic results above are best read as an upper bound.
+This confirms the paper's point that dictionaries need expert review on real clinic text.
 
 ### Independent check (added 2026-10-02)
 

@@ -61,8 +61,6 @@ The age pattern and the toy-breed excess match the literature. **Four gaps show 
 3. **Detection at wellness exams.** Here, dogs *without* a wellness exam that year are more often diagnosed (20.8% vs. 8.0%), because their only visit was a sick visit. In real practice periodontal disease is mostly found and graded at routine exams, so exams should *raise* recorded prevalence. The simulator needs a "detected at wellness exam" step.
 4. **Clinic differences.** Real clinics differ in how thoroughly they chart dental disease; without that variation, clinic benchmarks have nothing to find.
 
-Calibrating the simulator to these published effects makes every downstream demonstration more credible, and checking a synthetic world against public research is itself a reusable validation step.
-
 ## Methods
 
 - **Unit:** pet-year. Denominator: pets with any vet visit in the calendar year. Case: any visit that year with a dental-disease diagnosis or procedure. Cleaning: a dental visit of $400 or more (matches "dental cleaning under anesthesia" line items exactly where line items exist).

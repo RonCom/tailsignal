@@ -49,7 +49,7 @@ The analysis window starts in 2013, more than a decade after MDR1 drug sensitivi
 
 Today, isoxazolines × neurologic composite: 27,351 reports vs. 20,416 expected, EBGM 1.34. The excess is real but well below the EB05 ≥ 2 threshold.
 
-Why it was hard (findings, not excuses):
+Why it was hard:
 - **Masking.** Parasiticides dominate this database, and about a quarter of dog reports are lack-of-effectiveness reports. That depresses proportional ratios for every parasiticide.
 - **Self-inflation.** Isoxazolines account for about half of all dog "Seizure NOS" reports. When one product dominates an event, it inflates its own expected count.
 - **Composite dilution.** The pre-registered composite includes ataxia and trembling, which are not elevated. Seizure and tremor terms carry the signal.
@@ -65,11 +65,11 @@ Run after seeing section 3: lack-of-effectiveness reports and terms removed, and
 
 False-signal rates were unchanged (PRR 43, ROR 68, MGPS 0, hierarchical excess 0 per 1,000), and the MDR1 result held (rate ratio vs. other purebred 1.11, probability > 0.999).
 
-**Interpretation.** In this database there is a real speed–specificity trade-off. PRR saw the isoxazoline seizure pattern 4.5 years before the alert but would have raised tens of thousands of other alerts alongside it. MGPS raised none, and it also missed this one until after the alert. A screening program would use the frequentist screen to queue cases for review and the Bayesian score to prioritize them.
+**Interpretation.** In this database there is a speed–specificity trade-off. PRR saw the isoxazoline seizure pattern 4.5 years before the alert but would have raised tens of thousands of other alerts alongside it. MGPS raised none, and it also missed this one until after the alert. A screening program would use the frequentist screen to queue cases for review and the Bayesian score to prioritize them.
 
 ## 5. Like-for-like comparison: fixed review budget (amendment 2026-10-02)
 
-Default thresholds hand PRR and ROR roughly 40–70 alerts per 1,000 cells and MGPS almost none, so sections 1–3 compare methods at very different alert volumes. Here every method gets the same review effort: each quarter, it ranks reaction terms by its own score and a reviewer looks at the top K. Lower rank = found sooner. A rank counts only when the target has n ≥ 3 and the product has at least 20 reviewable terms.
+Default thresholds hand PRR and ROR roughly 40–70 alerts per 1,000 cells and MGPS almost none, so sections 1–3 compare methods at different alert volumes. Here every method gets the same review effort: each quarter, it ranks reaction terms by its own score and a reviewer looks at the top K. Lower rank = found sooner. A rank counts only when the target has n ≥ 3 and the product has at least 20 reviewable terms.
 
 **Within-product ranks** (where the target sits on that product's own reaction list):
 
@@ -130,7 +130,7 @@ Eight reaction–product pairs checked against the US product labels (sources in
 | ROR (lower bound) | 2 | 3 | 3 |
 | MGPS (EB05) | 0 | 2 | 3 |
 
-**What this shows.** Disproportionality methods cannot find reactions that are common across all drugs. Vomiting is the most-reported dog reaction overall, so even the NSAIDs and cyclosporine, where vomiting is the labeled top reaction, sit only 1.3–1.7× above expectation. ROR's lower bound rewards large report counts and ranks these slightly better; MGPS and ROR tie on the distinctive reactions; PRR trails. The label set does not favor MGPS. Its advantage in sections 1–5 is specificity (no false signals) and breed-level shrinkage, not recall of common reactions.
+Disproportionality methods cannot find reactions that are common across all drugs. Vomiting is the most-reported dog reaction overall, so even the NSAIDs and cyclosporine, where vomiting is the labeled top reaction, sit only 1.3–1.7× above expectation. ROR's lower bound rewards large report counts and ranks these slightly better; MGPS and ROR tie on the distinctive reactions; PRR trails. The label set does not favor MGPS. Its advantage in sections 1–5 is specificity (no false signals) and breed-level shrinkage, not recall of common reactions.
 
 ## 8. Confirmatory test on 2020+ reports (pre-registered)
 

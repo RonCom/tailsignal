@@ -6,9 +6,9 @@ Spec (pre-registered): [`feline_ckd_spec.md`](feline_ckd_spec.md). Code: `src/ta
 
 ## Headlines (10× network)
 
-1. **Two visits beat one.** Bradley's four features (creatinine, BUN, urine specific gravity, age) from two visits plus their change reach AUC 0.894, against 0.861 from the latest visit alone and 0.787 from the latest creatinine alone. Change over time is what separates early kidney decline from a cat whose creatinine simply runs high.
+1. **Two visits beat one.** Bradley's four features (creatinine, BUN, urine specific gravity, age) from two visits plus their change reach AUC 0.894, against 0.861 from the latest visit alone and 0.787 from the latest creatinine alone. Change over time separates early kidney decline from a cat whose creatinine runs high.
 2. **SDMA adds the most.** Adding SDMA lifts AUC from 0.918 to 0.965. At 95% specificity it catches 77% of cats diagnosed 12–24 months later, against 41% without it.
-3. **Very early, high-confidence flags stay hard.** At 99% specificity the best model catches 23% of cats diagnosed 12–24 months ahead and 65% of those diagnosed within a year. Bradley et al. report 44% and 63% on real Banfield data. Within a year this simulation matches them; further out it falls short.
+3. **Flags 12–24 months ahead at 99% specificity stay hard.** At 99% specificity the best model catches 23% of cats diagnosed 12–24 months ahead and 65% of those diagnosed within a year. Bradley et al. report 44% and 63% on real Banfield data. Within a year this simulation matches them; further out it falls short.
 4. **The latest creatinine alone cannot be used at 99% specificity.** It flags no future cases, because healthy cats with naturally high readings occupy the top 1%. The IRIS-style rule (creatinine ≥ 1.6 or SDMA ≥ 18) catches 81% of future cases but wrongly flags 24% of cats who stay healthy.
 
 | Model (10×) | AUC (95% CI) | Sensitivity at 95% specificity | At 99%, diagnosis 12–24 mo ahead |
@@ -96,8 +96,8 @@ Net benefit = early catches per cat screened, after charging each unneeded reche
 
 ## Limits
 
-- The simulated kidney decline was generated from these lab values. Absolute performance is optimistic; comparisons between models are the point.
-- Real cats have confounders this simulation lacks: hyperthyroidism, dehydration, muscle loss and diet all move creatinine and urine concentration.
+- The simulated kidney decline was generated from these lab values. Absolute performance is optimistic; read the results as comparisons between models.
+- Hyperthyroidism, dehydration, muscle loss and diet all move creatinine and urine concentration in real cats. The stress test adds the first three, independently of disease; diet is not simulated.
 - Cats are tracked by clinic record only; a cat seen at two clinics appears as two cats.
 - Before any clinical use, this needs validation on real lab histories. The Dog Aging Project does not cover cats, so this means a lab or clinic partner.
 
