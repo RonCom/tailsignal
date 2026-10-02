@@ -1,0 +1,67 @@
+{
+  "scored_forecasts": 3537,
+  "scored_origins": 11,
+  "origins_total": 12,
+  "coverage_conformal": 0.822,
+  "coverage_mint_same_forecasts": 0.654,
+  "by_horizon": {
+    "1-4": {
+      "n": 1188,
+      "coverage_conformal": 0.829,
+      "coverage_mint": 0.639,
+      "median_width_conformal": 20.6,
+      "median_width_mint": 14.2
+    },
+    "5-8": {
+      "n": 1107,
+      "coverage_conformal": 0.819,
+      "coverage_mint": 0.668,
+      "median_width_conformal": 20.2,
+      "median_width_mint": 15.0
+    },
+    "9-13": {
+      "n": 1242,
+      "coverage_conformal": 0.818,
+      "coverage_mint": 0.657,
+      "median_width_conformal": 21.0,
+      "median_width_mint": 15.9
+    }
+  },
+  "newsvendor_quantile": 0.789,
+  "staffing_same_weeks": {
+    "MinT upper 80%": {
+      "handler_days": 35975.0,
+      "overstaff_cost": 423200.0,
+      "turned_away_dog_days": 672.0,
+      "turned_away_cost": 26880.0,
+      "total_cost": 450080.0
+    },
+    "Conformal upper 80%": {
+      "handler_days": 40005.0,
+      "overstaff_cost": 1057600.0,
+      "turned_away_dog_days": 428.0,
+      "turned_away_cost": 17120.0,
+      "total_cost": 1074720.0
+    },
+    "MinT point": {
+      "handler_days": 33530.0,
+      "overstaff_cost": 161600.0,
+      "turned_away_dog_days": 4422.0,
+      "turned_away_cost": 176880.0,
+      "total_cost": 338480.0
+    },
+    "Newsvendor, conformal (exploratory)": {
+      "handler_days": 37960.0,
+      "overstaff_cost": 740000.0,
+      "turned_away_dog_days": 667.0,
+      "turned_away_cost": 26680.0,
+      "total_cost": 766680.0
+    }
+  },
+  "expectations": {
+    "coverage_75_to_85": true,
+    "each_band_70_to_90": true,
+    "wider_than_mint_every_band": true,
+    "staffing_cost_not_higher": false
+  }
+}

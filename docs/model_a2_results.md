@@ -47,11 +47,30 @@ The seizure dictionary, frozen from the synthetic notes, was run on the 4,999 pu
 
 - **Real notes are much harder than synthetic ones.** Precision fell from 75% on synthetic notes to 30%. 37 of the 39 false hits come from the VeDDRA term "Fit" in its everyday UK sense: "fit for vaccination", "fit to travel", "muzzle fits well", "coughing fit".
 - **The negation and history rules held up.** All 36 hits removed by stage 3 (e.g., "no seizures since last visit", "no fits since restarting Epiphen") were correctly dropped.
-- **The post-hoc rules lost no true mentions** here and don't change results on the synthetic notes. They still need testing on unseen real text before use.
+- **The post-hoc rules lost no true mentions** here and don't change results on the synthetic notes. The independent check below tests them further.
 - **Recall can't be fully measured** without annotating every record. A wider search ("petit mal", "epileptoid", "twitching") found 1–3 seizure-like episodes the dictionary missed, plus several records about epilepsy medication with no current event.
 - **Only the test split (4,999 records) is distributed publicly.** The 11,000 training records needed to fine-tune a PetBERT-style classifier are not, so the classifier comparison stays on synthetic text.
 
 This confirms the paper's point that dictionaries need expert review on real clinic text. It is also why the synthetic results above are best read as an upper bound.
+
+### Independent check (added 2026-10-02)
+
+Spec, written before running: [`peteval_holdout_spec.md`](peteval_holdout_spec.md). Code: `src/tailsignal/models/peteval_holdout.py`. A fresh sample of hits was not possible: every hit in the public set had already been read. Instead, my verdicts were compared with PetEVAL's own diagnosis labels, and recall was measured on the 150 records PetEVAL files under "Diseases of the nervous system", which I read with the dictionary output hidden (`docs/peteval_nervous_system_labels.csv`).
+
+| Check | Expected | Result |
+|---|---|---|
+| My true hits that PetEVAL files under nervous-system disease | at least 80% | **100%** (18 of 18) |
+| My false hits that PetEVAL files there | at most 15% | **8%** (3 of 39) |
+| Recall of the frozen dictionary on clear current or recent seizures | at least 70% | **100%** (15 of 15) |
+| Recall counting "possible" episodes too | not stated | 74% (23 of 31) |
+| True seizures lost by the post-hoc "fit" rules | at most 1 | **0** |
+| Dictionary flags on nervous-system records with no seizure | not stated | 1 of 119 |
+
+- **My first labels hold up against PetEVAL's annotators.** Every hit I called true carries their nervous-system label; the three "false" hits that do are dogs with epilepsy but no current seizure ("no fits since restarting phenobarbital").
+- **The dictionary misses vague episodes, not clear seizures.** Of the 8 misses, 6 are episodes the vet could not name ("? petit mals", "collapse, possible syncope", "? canine cramping epileptoid syndrome"). The other 2 are epileptic dogs with no fit since treatment started, which the negation rule drops on purpose.
+- **The post-hoc rules cost no true seizures here either**, so they can be adopted. The 64% precision estimate is still optimistic, because those rules were written from the same notes.
+- **My two readings agree only moderately.** On the 24 notes read both times, the labels match on 18 (75%; Cohen's kappa 0.48, or 0.52 for seizure vs not). Four notes I first called true seizures I later marked "possible" (vague episodes, or a fit with no date). Two I had called false moved up: one to "possible" and one to "seizure", a recheck that reads "no further seizures" and arguably fails the criterion. Recall is unaffected: every note either reading calls a seizure is flagged. Precision is: under the stricter second reading, frozen precision would be 15 of 60 (25%) rather than 18 of 60 (30%). A second reader is needed. The blind read was also not truly blind for these 24 notes, since I had read them before.
+- **Limits:** recall is measured only within the nervous-system label, so seizure notes filed elsewhere are not counted; 15 clear cases give a wide interval (exact 95% CI for 15 of 15: 78–100%).
 
 ## Pre-stated expectations, scored
 

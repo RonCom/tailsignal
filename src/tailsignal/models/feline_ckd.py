@@ -25,11 +25,12 @@ BRADLEY = ["creatinine_mg_dl", "bun_mg_dl", "usg"]
 HORIZON, BLIND, LOOKBACK = (30, 730), 30, (90, 900)
 
 
-def cohort(root: Path) -> pd.DataFrame:
+def cohort(root: Path, labs: pd.DataFrame | None = None) -> pd.DataFrame:
+    """Index panels with outcome and features. `labs` overrides the lab file (used by the stress test)."""
     raw = root / "raw" / "ehr"
     pt = pd.read_parquet(raw / "ehr_patients.parquet")
     cats = pt[pt.species == "cat"].set_index("clinic_patient_id")
-    labs = pd.read_parquet(raw / "ehr_labs.parquet")
+    labs = pd.read_parquet(raw / "ehr_labs.parquet") if labs is None else labs
     labs = labs[labs.clinic_patient_id.isin(cats.index)]
     pan = labs.pivot_table(index=["visit_id", "clinic_patient_id", "day"], columns="analyte", values="value").reset_index()
     pan = pan.sort_values(["clinic_patient_id", "day"])

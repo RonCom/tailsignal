@@ -1,0 +1,21 @@
+{
+  "confounders": {
+    "hyperthyroid_cats": 5110,
+    "cats": 33945,
+    "panels_hyperthyroid": 607,
+    "panels_dehydrated": 4509,
+    "panels": 46876
+  },
+  "auc_drop_from_confounders_cv": {
+    "M0": 0.056,
+    "M3": 0.01,
+    "M4": 0.005,
+    "M5": 0.003
+  },
+  "expectations": {
+    "time_split_changes_auc_lt_0.02": true,
+    "confounders_lower_M0_by_0.05": true,
+    "M5_loses_less_than_M3": true,
+    "M5_at_least_0.90_confounded_time": true
+  }
+}

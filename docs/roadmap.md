@@ -10,11 +10,15 @@ Updated 2026-10-02. Sources reviewed for this version: Banfield's 150-million-vi
 | Organize | dbt models, taxonomies, entity resolution, de-identified products | Pet-level F1 0.983 vs. 0.904 baseline; k-anonymity enforced by tests |
 | Analyze | Model A: breed-aware drug-safety signals | Breed signal and near-zero false signals replicate on 2020+ data; isoxazoline threshold missed |
 | Analyze | Segmentation | Pre-registered design failed; revised design stable (3 + 6 segments) |
-| Analyze | Forecasting | Beats baseline on accuracy, fails interval calibration; blended model promising |
+| Analyze | Forecasting | Beats baseline on accuracy; interval calibration fixed by conformal recalibration (82% coverage); staff to the point forecast |
 | Analyze | Model C: cross-channel early warning | Lift is engagement, not early warning |
 | Analyze | Model D: reminder uplift | Average effect positive; pilot too small for targeting |
 | Insights | Option 2: AMR module (real FDA NARMS data) | MRSP 31% → 43% (2017–2024); S. pseudintermedius worsening, E. coli stable/improving; breakpoint and cascade-testing artifacts found and fixed |
 | Analyze | Option 6: feline kidney disease prediction | Two lab visits beat the latest creatinine (AUC 0.894 vs 0.787); with SDMA 0.965; 23% of cats flagged 12–24 months ahead at 99% specificity (published: 44%) |
+| Analyze | Kidney stress test and decision curve | Confounders cut latest-creatinine AUC to 0.73, SDMA model holds 0.96; flag beats rechecking every cat; ~1.2–1.5 rechecks per cat later diagnosed |
+| Validate | PetEVAL independent check | Verdicts match PetEVAL's diagnosis labels; 15/15 clear seizures found; two readings agree only moderately (κ 0.48) |
+| Engineering | Continuous integration | GitHub Actions runs the test suite on every push |
+| Proposal | Destination Pet reminder trial | Pre-registered design: 6,000 households for a 5-point difference in effect between segments ([design](destination_pet_reminder_trial.md)) |
 | Commercialize | Option 7: productization | Pet Health Index, versioned releases, API with entitlements and metering, partner portal, business case (base case not yet profitable: partner incentives and license volume are the levers) |
 | Communicate | Option 8: communication package | 13-slide deck, executive memo, interactive dashboard (clinic scorecards with 10× switch, NARMS trends, regional antibiogram) |
 | Analyze | Option 5: clinic quality benchmarks | Complication scorecards reliable at current volume (rank corr. 0.97); per-clinic death benchmarks need ~5,000 procedures; under-charting and stewardship gaps detected |

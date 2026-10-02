@@ -1,0 +1,70 @@
+{
+  "cohort_prevalence": 0.24,
+  "m5_95spec_threshold": 0.251,
+  "rechecks_per_early_catch_at_95spec": {
+    "prev_cohort": 1.17,
+    "prev_10pct": 1.49
+  },
+  "net_benefit_selected": [
+    {
+      "threshold": 0.05,
+      "recheck_all": 0.2001,
+      "recheck_none": 0.0,
+      "M5": 0.2234,
+      "M3": 0.2036,
+      "M0": 0.1987,
+      "M5_confounded": 0.2226,
+      "recheck_all_prev10": 0.0526,
+      "M5_prev10": 0.0895
+    },
+    {
+      "threshold": 0.1,
+      "recheck_all": 0.1557,
+      "recheck_none": 0.0,
+      "M5": 0.2189,
+      "M3": 0.1844,
+      "M0": 0.1643,
+      "M5_confounded": 0.2167,
+      "recheck_all_prev10": 0.0,
+      "M5_prev10": 0.0859
+    },
+    {
+      "threshold": 0.2,
+      "recheck_all": 0.0501,
+      "recheck_none": 0.0,
+      "M5": 0.2107,
+      "M3": 0.1602,
+      "M0": 0.1205,
+      "M5_confounded": 0.2088,
+      "recheck_all_prev10": -0.125,
+      "M5_prev10": 0.0795
+    },
+    {
+      "threshold": 0.3,
+      "recheck_all": -0.0855,
+      "recheck_none": 0.0,
+      "M5": 0.2016,
+      "M3": 0.1448,
+      "M0": 0.0981,
+      "M5_confounded": 0.1998,
+      "recheck_all_prev10": -0.2857,
+      "M5_prev10": 0.0725
+    },
+    {
+      "threshold": 0.5,
+      "recheck_all": -0.5198,
+      "recheck_none": 0.0,
+      "M5": 0.1835,
+      "M3": 0.1164,
+      "M0": 0.0575,
+      "M5_confounded": 0.1783,
+      "recheck_all_prev10": -0.8,
+      "M5_prev10": 0.0562
+    }
+  ],
+  "expectations": {
+    "M5_beats_all_and_none_5_to_50": true,
+    "M5_at_least_M3_5_to_50": true,
+    "rechecks_per_catch_double_at_10pct": false
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "agreement_with_icd": {
+    "TP": {
+      "n": 18,
+      "of": 18,
+      "rate": 1.0
+    },
+    "uncertain": {
+      "n": 3,
+      "of": 3,
+      "rate": 1.0
+    },
+    "FP": {
+      "n": 3,
+      "of": 39,
+      "rate": 0.077
+    }
+  },
+  "nervous_records": 150,
+  "labelled_seizure": 15,
+  "labelled_possible": 16,
+  "recall_frozen_stage3": {
+    "n": 15,
+    "of": 15,
+    "rate": 1.0
+  },
+  "recall_v2": {
+    "n": 15,
+    "of": 15,
+    "rate": 1.0
+  },
+  "recall_frozen_incl_possible": {
+    "n": 23,
+    "of": 31,
+    "rate": 0.742
+  },
+  "true_seizures_lost_by_v2": 0,
+  "flags_on_no_seizure_records_frozen": {
+    "n": 1,
+    "of": 119,
+    "rate": 0.008
+  },
+  "missed_by_frozen": [],
+  "expectations": {
+    "tp_nervous_at_least_80pct": true,
+    "fp_nervous_at_most_15pct": true,
+    "recall_frozen_at_least_70pct": true,
+    "v2_loses_at_most_1": true
+  }
+}

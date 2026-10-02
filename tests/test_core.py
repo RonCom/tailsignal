@@ -120,8 +120,17 @@ def test_mantel_haenszel_equals_crude_when_one_stratum():
     assert abs(mantel_haenszel(d)["mh_rr"] - crude(d)["rr"]) < 1e-9 and abs(crude(d)["rr"] - 2.0) < 1e-9
 
 
-def test_stage3_dictionary_rules():
+# Snapshot of the VeDDRA seizure terms in the FDA reaction file, so this test runs without downloaded data (CI).
+SEIZURE_TERMS = ['Absence seizure', 'Clonic seizure', 'Convulsion', 'Convulsive disorder NOS', 'Epilepsy',
+                 'Epileptic fit', 'Epileptic seizure', 'Fit', 'Focal seizure', 'Grand mal seizure',
+                 'Increased seizure frequency', 'Petit mal epilepsy', 'Seizure NOS', 'Status epilepticus',
+                 'Tonic seizure', 'Tonic-clonic seizure']
+
+
+def test_stage3_dictionary_rules(monkeypatch):
+    from tailsignal.models import ehr_text
     from tailsignal.models.ehr_text import Dictionary
+    monkeypatch.setattr(ehr_text, "veddra_terms", lambda outcome: SEIZURE_TERMS)
     texts = pd.Series(["O reports 2 seizures last night.", "Annual exam. No seizures. Fit and well.",
                        "hx sz (idiopathic epilepsy).", "Had a fit this AM."] * 3)
     d = Dictionary("seizure", texts)
@@ -144,3 +153,29 @@ def test_sensitivity_at_specificity():
     s = np.concatenate([np.linspace(0, 1, 100), np.full(10, 2.0)])
     sens, thr = sens_at_spec(y, s, 0.99)
     assert sens == 1.0 and thr < 1.0
+
+
+def test_net_benefit_and_reweight():
+    import numpy as np
+    from tailsignal.models.feline_ckd_decision import net_benefit, reweight
+    y = np.array([1] * 25 + [0] * 75)
+    assert abs(net_benefit(y, y.astype(float), 0.2) - 0.25) < 1e-12      # perfect flag = prevalence
+    assert abs(net_benefit(y, np.ones(100), 0.2) - (0.25 - 0.75 * 0.25)) < 1e-12  # recheck all
+    w = reweight(y, 0.10)
+    assert abs((w * y).sum() / w.sum() - 0.10) < 1e-12
+
+
+def test_conformal_uses_only_past_errors():
+    import pandas as pd
+    from tailsignal.models.forecasting_conformal import POINT, conformal
+    rows = []
+    for k, origin in enumerate(pd.date_range("2024-01-01", periods=3, freq="28D")):
+        for h in range(13):
+            for s in range(40):
+                rows.append({"unique_id": f"daycare/m/l{s}", "origin": origin, "ds": origin + pd.Timedelta(weeks=h),
+                             POINT: 100.0, "y": 100.0 + (k + 1) * (1 if s % 2 else -1), "scale": 1.0})
+    b = conformal(pd.DataFrame(rows))
+    first = b[b.origin == b.origin.min()]
+    assert first.q.isna().all()                     # nothing observed before the first origin
+    later = b[(b.origin == b.origin.max()) & b.q.notna()]
+    assert (later.q <= 2.0 + 1e-9).all()            # built only from earlier origins' errors (sizes 1 and 2)
