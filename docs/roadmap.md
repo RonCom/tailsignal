@@ -14,6 +14,7 @@ Updated 2026-10-02. Sources reviewed for this version: Banfield's 150-million-vi
 | Analyze | Model C: cross-channel early warning | Lift is engagement, not early warning |
 | Analyze | Model D: reminder uplift | Average effect positive; pilot too small for targeting |
 | Insights | Option 2: AMR module (real FDA NARMS data) | MRSP 31% → 43% (2017–2024); S. pseudintermedius worsening, E. coli stable/improving; breakpoint and cascade-testing artifacts found and fixed |
+| Analyze | Option 6: feline kidney disease prediction | Two lab visits beat the latest creatinine (AUC 0.894 vs 0.787); with SDMA 0.965; 23% of cats flagged 12–24 months ahead at 99% specificity (published: 44%) |
 | Commercialize | Option 7: productization | Pet Health Index, versioned releases, API with entitlements and metering, partner portal, business case (base case not yet profitable: partner incentives and license volume are the levers) |
 | Communicate | Option 8: communication package | 13-slide deck, executive memo, interactive dashboard (clinic scorecards with 10× switch, NARMS trends, regional antibiogram) |
 | Analyze | Option 5: clinic quality benchmarks | Complication scorecards reliable at current volume (rank corr. 0.97); per-clinic death benchmarks need ~5,000 procedures; under-charting and stewardship gaps detected |
@@ -30,7 +31,7 @@ Updated 2026-10-02. Sources reviewed for this version: Banfield's 150-million-vi
 | 3 | **Simulator extension**: prescriptions, procedures and anesthesia, longitudinal lab panels, clinical narratives with misspellings and negation, microchip IDs; plus calibration fixes from option 1 (small-breed dental risk, obesity link, detection at wellness exams, clinic-level diagnostic differences); antibiotic prescribing matched to the real NARMS antibiograms for stewardship scorecards | — | Enables 4–6 and AMR scorecards | **Done** ([results](simulator_extension_results.md)); stewardship scorecard sample built |
 | 4 | **Model A2: EHR drug-safety cohorts** (signal validation; absolute incidence and relative risk vs. comparator) | Synthetic EHRs; PetEVAL text check | Signal validation studies for manufacturers and regulators | **Done** ([results](model_a2_results.md)); PetEVAL check: seizure dictionary precision 30% on real notes |
 | 5 | **Clinic quality benchmarks**: risk-adjusted anesthesia mortality and complications, funnel plots | Synthetic EHRs | Scorecards for clinic groups, PE due diligence, insurers | **Done** ([results](clinic_benchmarks_results.md)) |
-| 6 | **Feline CKD early prediction** (RenalTech-style: six lab values + age, two time points, 24-month horizon) | Synthetic labs; Dog Aging Project labs when access arrives | Embedded in a lab partner's results; renal diet and drug care pathways | Planned |
+| 6 | **Feline CKD early prediction** (RenalTech-style: six lab values + age, two time points, 24-month horizon) | Synthetic labs; Dog Aging Project labs when access arrives | Embedded in a lab partner's results; renal diet and drug care pathways | **Done** ([results](feline_ckd_results.md)) |
 | 7 | **Productization**: Pet Health Index, scoring API, partner portal, DuckLake versioned releases, business case | All of the above | All four monetization models | **Done** ([results](productization_results.md)); DuckLake path to be run locally |
 
 ## Later or parked

@@ -135,3 +135,12 @@ def test_funnel_limits_bracket_one_and_narrow_with_volume():
     lo, hi = poisson_limits([10, 1000], 0.95)
     assert lo[0] < 1 < hi[0] and lo[1] < 1 < hi[1]
     assert (hi[1] - lo[1]) < (hi[0] - lo[0])
+
+
+def test_sensitivity_at_specificity():
+    import numpy as np
+    from tailsignal.models.feline_ckd import sens_at_spec
+    y = np.array([0] * 100 + [1] * 10)
+    s = np.concatenate([np.linspace(0, 1, 100), np.full(10, 2.0)])
+    sens, thr = sens_at_spec(y, s, 0.99)
+    assert sens == 1.0 and thr < 1.0

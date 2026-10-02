@@ -1,0 +1,174 @@
+{
+  "index_panels": 4856,
+  "cats": 3567,
+  "positives": 1166,
+  "positive_rate": 0.2401153212520593,
+  "models": [
+    {
+      "model": "M0",
+      "auc": 0.7870911136,
+      "auc_ci": [
+        0.769418896,
+        0.8016728083
+      ],
+      "avg_precision": 0.5504959467,
+      "sens_at_95spec": 0.4048027444,
+      "sens_at_95spec_lead_1_12m": 0.602165088,
+      "sens_at_95spec_lead_12_24m": 0.0632318501,
+      "sens_at_99spec": 0.0,
+      "sens_at_99spec_lead_1_12m": 0.0,
+      "sens_at_99spec_lead_12_24m": 0.0,
+      "rule_sensitivity": null,
+      "rule_specificity": null
+    },
+    {
+      "model": "M1",
+      "auc": 0.783664533,
+      "auc_ci": [
+        0.7701033529,
+        0.7980527654
+      ],
+      "avg_precision": 0.4615314278,
+      "sens_at_95spec": null,
+      "sens_at_95spec_lead_1_12m": null,
+      "sens_at_95spec_lead_12_24m": null,
+      "sens_at_99spec": null,
+      "sens_at_99spec_lead_1_12m": null,
+      "sens_at_99spec_lead_12_24m": null,
+      "rule_sensitivity": 0.8096054889,
+      "rule_specificity": 0.7577235772
+    },
+    {
+      "model": "M2",
+      "auc": 0.8613983833,
+      "auc_ci": [
+        0.8468615111,
+        0.8745285725
+      ],
+      "avg_precision": 0.6426960603,
+      "sens_at_95spec": 0.4914236707,
+      "sens_at_95spec_lead_1_12m": 0.6238159675,
+      "sens_at_95spec_lead_12_24m": 0.262295082,
+      "sens_at_99spec": 0.0454545455,
+      "sens_at_99spec_lead_1_12m": 0.0676589986,
+      "sens_at_99spec_lead_12_24m": 0.0070257611,
+      "rule_sensitivity": null,
+      "rule_specificity": null
+    },
+    {
+      "model": "M3",
+      "auc": 0.8937334691,
+      "auc_ci": [
+        0.8817469983,
+        0.9045216282
+      ],
+      "avg_precision": 0.8017304282,
+      "sens_at_95spec": 0.6440823328,
+      "sens_at_95spec_lead_1_12m": 0.8646820027,
+      "sens_at_95spec_lead_12_24m": 0.262295082,
+      "sens_at_99spec": 0.4433962264,
+      "sens_at_99spec_lead_1_12m": 0.6562922869,
+      "sens_at_99spec_lead_12_24m": 0.074941452,
+      "rule_sensitivity": null,
+      "rule_specificity": null
+    },
+    {
+      "model": "M4",
+      "auc": 0.9181664784,
+      "auc_ci": [
+        0.9076883382,
+        0.9279701386
+      ],
+      "avg_precision": 0.8403842826,
+      "sens_at_95spec": 0.7204116638,
+      "sens_at_95spec_lead_1_12m": 0.898511502,
+      "sens_at_95spec_lead_12_24m": 0.4121779859,
+      "sens_at_99spec": 0.4794168096,
+      "sens_at_99spec_lead_1_12m": 0.6684709066,
+      "sens_at_99spec_lead_12_24m": 0.1522248244,
+      "rule_sensitivity": null,
+      "rule_specificity": null
+    },
+    {
+      "model": "M5",
+      "auc": 0.9646550642,
+      "auc_ci": [
+        0.9571038266,
+        0.9718939166
+      ],
+      "avg_precision": 0.9103790355,
+      "sens_at_95spec": 0.9125214408,
+      "sens_at_95spec_lead_1_12m": 0.9932341001,
+      "sens_at_95spec_lead_12_24m": 0.7728337237,
+      "sens_at_99spec": 0.4931389365,
+      "sens_at_99spec_lead_1_12m": 0.6468200271,
+      "sens_at_99spec_lead_12_24m": 0.2271662763,
+      "rule_sensitivity": null,
+      "rule_specificity": null
+    }
+  ],
+  "brier_M5": 0.04712124043725715,
+  "brier_M3": 0.09427032129792517,
+  "calibration_M5": [
+    {
+      "decile": 0,
+      "mean_predicted": 0.001,
+      "observed": 0.0123,
+      "n": 486
+    },
+    {
+      "decile": 1,
+      "mean_predicted": 0.0019,
+      "observed": 0.0082,
+      "n": 486
+    },
+    {
+      "decile": 2,
+      "mean_predicted": 0.0029,
+      "observed": 0.0103,
+      "n": 485
+    },
+    {
+      "decile": 3,
+      "mean_predicted": 0.0046,
+      "observed": 0.0082,
+      "n": 486
+    },
+    {
+      "decile": 4,
+      "mean_predicted": 0.0072,
+      "observed": 0.0165,
+      "n": 485
+    },
+    {
+      "decile": 5,
+      "mean_predicted": 0.0125,
+      "observed": 0.0391,
+      "n": 486
+    },
+    {
+      "decile": 6,
+      "mean_predicted": 0.0332,
+      "observed": 0.0392,
+      "n": 485
+    },
+    {
+      "decile": 7,
+      "mean_predicted": 0.3913,
+      "observed": 0.4383,
+      "n": 486
+    },
+    {
+      "decile": 8,
+      "mean_predicted": 0.9253,
+      "observed": 0.8866,
+      "n": 485
+    },
+    {
+      "decile": 9,
+      "mean_predicted": 0.9868,
+      "observed": 0.9424,
+      "n": 486
+    }
+  ]
+}

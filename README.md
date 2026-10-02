@@ -12,7 +12,7 @@ TailSignal is a working model of a pet health data business. It links each pet's
 |---|---|---|
 | 1. Collect | Synthetic multi-channel generator; real-data ingest (openFDA, Austin, NYC licenses, Census CBP, PetEVAL) | ✅ Built; openFDA (1.36M reports), FDA NARMS and PetEVAL ingested and used |
 | 2. Organize | dbt on DuckDB: staging for 6 source systems, breed/diagnosis/service taxonomies, entity resolution, de-identified products, 28 data tests | ✅ Built |
-| 3. Analyze | Model A ✅ · segmentation ✅ · forecasting ✅ · Models C–D ✅ · Model A2 (EHR cohorts) ✅ · Model B (awaiting Dog Aging Project access) | In progress |
+| 3. Analyze | Model A ✅ · segmentation ✅ · forecasting ✅ · Models C–D ✅ · Model A2 (EHR cohorts) ✅ · clinic benchmarks ✅ · feline CKD ✅ · Model B (awaiting Dog Aging Project access) | In progress |
 | 4. Commercialize | Pet Health Index, versioned releases (DuckLake / Parquet), scoring API with entitlements and metering, partner portal, five-year business case | ✅ Built ([results](docs/productization_results.md)) |
 | 5. Communicate | Slide deck, executive memo and interactive dashboard (`reports/dashboard/tailsignal_dashboard.html`); technical write-ups in `docs/` | ✅ Built |
 
@@ -75,6 +75,8 @@ The isoxazoline (2018 FDA alert) control was **not** detected before the alert a
 **Clinical EHR layer** ([results](docs/simulator_extension_results.md), [spec](docs/simulator_extension_spec.md)): prescriptions, anesthesia, lab panels, real-NARMS culture results, clinical notes, and microchips on the same simulated world; 26 of 35 validation checks pass, with every miss reported. Key findings: a naive isoxazoline–seizure comparison looks protective (RR 0.33) because epileptic dogs are steered away from the drug, and excluding prior seizures recovers the planted effect; confirming a 1.5× risk needs ~23× this network; clinic death rates cannot be benchmarked at this volume but complication rates can.
 
 **Model A2: EHR drug-safety cohorts** ([results](docs/model_a2_results.md)): new-user, active-comparator studies in clinic records with text-mined outcomes. At this network's size the studies are uninformative (2 vs 0 seizures); at 10× the isoxazoline estimate is RR 1.29 (0.39–4.29) against a planted 1.5. Real FDA onset dates support a 50-day window (89% of seizures begin within it). Rare-event validation needs ~130× this network, and linking records across clinics on pet details alone fails at scale (4% precision at 10×). On real UK clinic notes (SAVSNET PetEVAL), the frozen seizure dictionary's precision falls to 30%, mostly from "fit for vaccination"-type uses of "fit".
+
+**Feline kidney disease prediction** ([results](docs/feline_ckd_results.md)): RenalTech-style early warning from routine lab panels. Two visits beat the latest creatinine (AUC 0.894 vs 0.787 on the 10× network), and adding SDMA reaches 0.965. Flagging cats 12–24 months before diagnosis at 99% specificity remains hard (23%, vs 44% published on real Banfield data).
 
 **Clinic quality benchmarks** ([results](docs/clinic_benchmarks_results.md)): risk-adjusted anesthesia, dental-charting, and antibiotic-stewardship scorecards with funnel plots, shrinkage, and rank ranges. Complication benchmarks work at current clinic volume (rank correlation with planted quality 0.97); death rates need ~5,000 procedures per clinic before they can rank clinics.
 
@@ -151,6 +153,7 @@ uv run python -m tailsignal.models.ehr_cohorts         # Model A2 on the actual 
 uv run python -m tailsignal.synth.ehr --households 90000 --out data_scale10                       # 10x scenario, ~8 min
 uv run python -m tailsignal.models.ehr_cohorts --root data_scale10 --tag 10x --no-text-eval       # ~10 min
 uv run python -m tailsignal.models.peteval_check       # real-text check (after --source peteval)
+uv run python -m tailsignal.models.feline_ckd          # feline kidney prediction (add --root data_scale10 --tag 10x)
 uv run python -m tailsignal.models.clinic_benchmarks   # clinic scorecards (add --root data_scale10 --tag 10x)
 uv run python -m tailsignal.products.release           # versioned data-product release (DuckLake, else Parquet)
 uv run uvicorn tailsignal.api.app:app --reload          # API + partner portal; docs at /docs
