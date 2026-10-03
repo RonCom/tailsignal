@@ -1,0 +1,149 @@
+{
+  "counts": {
+    "staging.stg_vet_alpha__visits": {
+      "duckdb": 18881,
+      "snowflake": 18881
+    },
+    "staging.stg_vet_beta__encounters": {
+      "duckdb": 17571,
+      "snowflake": 17571
+    },
+    "staging.stg_vet_gamma__visits": {
+      "duckdb": 16715,
+      "snowflake": 16715
+    },
+    "staging.stg_groomly__appointments": {
+      "duckdb": 62042,
+      "snowflake": 62042
+    },
+    "staging.stg_pawstay__pets": {
+      "duckdb": 6877,
+      "snowflake": 6877
+    },
+    "staging.stg_pawstay__daycare_visits": {
+      "duckdb": 719927,
+      "snowflake": 719927
+    },
+    "staging.stg_pawstay__boarding_stays": {
+      "duckdb": 30661,
+      "snowflake": 30661
+    },
+    "staging.stg_wellplan__memberships": {
+      "duckdb": 3604,
+      "snowflake": 3604
+    },
+    "staging.stg_wellplan__campaign": {
+      "duckdb": 3061,
+      "snowflake": 3061
+    },
+    "staging.stg_locations": {
+      "duckdb": 21,
+      "snowflake": 21
+    },
+    "core.dim_location": {
+      "duckdb": 21,
+      "snowflake": 21
+    },
+    "intermediate.int_pet_clusters": {
+      "duckdb": 26099,
+      "snowflake": 26099
+    },
+    "intermediate.int_breed_map": {
+      "duckdb": 114,
+      "snowflake": 114
+    },
+    "intermediate.int_source_pet_profiles": {
+      "duckdb": 26099,
+      "snowflake": 26099
+    },
+    "intermediate.int_vet_visits": {
+      "duckdb": 53167,
+      "snowflake": 53167
+    },
+    "core.dim_pet": {
+      "duckdb": 12666,
+      "snowflake": 12666
+    },
+    "core.fct_service_event": {
+      "duckdb": 865797,
+      "snowflake": 865797
+    },
+    "core.fct_wellness_membership": {
+      "duckdb": 3604,
+      "snowflake": 3604
+    },
+    "product.product_pet_cohort": {
+      "duckdb": 11614,
+      "snowflake": 11614
+    },
+    "product.product_condition_prevalence": {
+      "duckdb": 1728,
+      "snowflake": 1728
+    },
+    "product.product_service_benchmark": {
+      "duckdb": 1262,
+      "snowflake": 1262
+    },
+    "qa.qa_privacy_release": {
+      "duckdb": 4,
+      "snowflake": 4
+    }
+  },
+  "columns": {
+    "intermediate.int_breed_map": {
+      "only_duckdb": 0,
+      "only_snowflake": 0,
+      "differing": {
+        "score": 10
+      }
+    },
+    "intermediate.int_source_pet_profiles": {
+      "only_duckdb": 0,
+      "only_snowflake": 0,
+      "differing": {}
+    },
+    "intermediate.int_vet_visits": {
+      "only_duckdb": 0,
+      "only_snowflake": 0,
+      "differing": {}
+    },
+    "core.dim_pet": {
+      "only_duckdb": 0,
+      "only_snowflake": 0,
+      "differing": {}
+    },
+    "core.fct_service_event": {
+      "only_duckdb": 0,
+      "only_snowflake": 0,
+      "differing": {}
+    },
+    "core.fct_wellness_membership": {
+      "only_duckdb": 0,
+      "only_snowflake": 0,
+      "differing": {}
+    },
+    "product.product_pet_cohort": {
+      "only_duckdb": 0,
+      "only_snowflake": 0,
+      "differing": {}
+    },
+    "product.product_condition_prevalence": {
+      "only_duckdb": 0,
+      "only_snowflake": 0,
+      "differing": {}
+    },
+    "product.product_service_benchmark": {
+      "only_duckdb": 0,
+      "only_snowflake": 0,
+      "differing": {
+        "revenue_per_active_pet": 2
+      }
+    },
+    "qa.qa_privacy_release": {
+      "only_duckdb": 0,
+      "only_snowflake": 0,
+      "differing": {}
+    }
+  },
+  "match": true
+}
