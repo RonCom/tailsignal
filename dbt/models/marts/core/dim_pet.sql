@@ -49,7 +49,7 @@ birth as (
 ), agg as (
     select pet_id,
            min(household_id)                       as household_id,
-           cast(median(birth_year) as integer)     as median_birth_year,
+           cast(floor(median(birth_year)) as integer) as median_birth_year,
            min(first_seen)                         as first_seen,
            count(*)                                as n_source_records,
            {{ distinct_sorted_list('source_system') }} as source_systems
