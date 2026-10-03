@@ -182,10 +182,10 @@ def _fetch_sf(con, table: str) -> pd.DataFrame:
 def _norm(s: pd.Series) -> pd.Series:
     """Comparable form: numbers as float, arrays as sorted comma lists, everything else as text."""
     def one(v):
-        if v is None or (isinstance(v, float) and np.isnan(v)):
-            return None
         if isinstance(v, (list, tuple, np.ndarray)):
             return ",".join(sorted(str(x) for x in v))
+        if v is None or v is pd.NaT or (isinstance(v, float) and np.isnan(v)):
+            return None
         if isinstance(v, str) and v.startswith("[") and v.endswith("]"):      # Snowflake ARRAY arrives as JSON text
             try:
                 return ",".join(sorted(str(x) for x in json.loads(v)))
