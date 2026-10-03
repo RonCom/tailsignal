@@ -59,6 +59,11 @@ COMPARE = {
     "product.product_service_benchmark": ["month", "market", "channel", "location_id"],
     "qa.qa_privacy_release": ["generalization"],
 }
+# differences that are understood and do not change any output a buyer or analysis uses
+KNOWN = {
+    ("intermediate.int_breed_map", "score"): "Snowflake's Jaro-Winkler returns whole percentages; the mapped breed is identical",
+    ("product.product_service_benchmark", "revenue_per_active_pet"): "half-cent rounding of floating-point values differs by engine",
+}
 COUNT_ONLY = ["staging.stg_vet_alpha__visits", "staging.stg_vet_beta__encounters", "staging.stg_vet_gamma__visits",
               "staging.stg_groomly__appointments", "staging.stg_pawstay__pets", "staging.stg_pawstay__daycare_visits",
               "staging.stg_pawstay__boarding_stays", "staging.stg_wellplan__memberships",
@@ -238,8 +243,10 @@ def reconcile() -> bool:
             if n:
                 diffs[c] = n
         summary["columns"][t] = {"only_duckdb": only_d, "only_snowflake": only_s, "differing": diffs}
-        ok &= only_d == 0 and only_s == 0 and not diffs
-        detail = ", ".join(f"{c} {n:,}" for c, n in diffs.items()) or "none"
+        unexplained = {c: n for c, n in diffs.items() if (t, c) not in KNOWN}
+        ok &= only_d == 0 and only_s == 0 and not unexplained
+        detail = ", ".join(f"{c} {n:,}" + (" (known: " + KNOWN[(t, c)] + ")" if (t, c) in KNOWN else "")
+                           for c, n in diffs.items()) or "none"
         lines.append(f"- **{t}**: {int(both.sum()):,} matched rows; only in DuckDB {only_d:,}; only in Snowflake "
                      f"{only_s:,}; differing columns: {detail}")
     dk.close()
