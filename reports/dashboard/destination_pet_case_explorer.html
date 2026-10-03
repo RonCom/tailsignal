@@ -54,14 +54,12 @@ th:first-child,td:first-child{text-align:left;font-family:var(--f-body)}
 th{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-family:var(--f-body)}
 tr.total td{font-weight:600}
 </style>
-
 <div class="wrap">
   <header>
     <p class="eyebrow">Destination Pet · data platform business case</p>
     <h1>Destination Pet Case Explorer</h1>
-    <p class="sub">Move the company figures that are not public and watch the five-year EBITDA impact change. Defaults match the Base case in the workbook. Portfolio exercise from public information; not reviewed by Destination Pet.</p>
+    <p class="sub">Move the company figures that are not public and watch the five-year EBITDA impact change. Switch between the owned network (Case 2) and the owned network plus bought partner data (Case 3). Defaults match the Base case in the workbook. Portfolio exercise from public information; not reviewed by Destination Pet.</p>
   </header>
-
   <div class="layout">
     <aside class="panel" aria-label="Inputs">
       <div class="ctrl">
@@ -73,13 +71,22 @@ tr.total td{font-weight:600}
         </div>
         <span class="hint">Low halves operating effects and cuts prices 20%; High raises effects 40% and prices 15%.</span>
       </div>
+      <div class="ctrl">
+        <span class="group" style="border:0;padding:0">Data source</span>
+        <div class="seg" role="group" aria-label="Case">
+          <button class="case" data-c="Owned" aria-pressed="true">Owned only</button>
+          <button class="case" data-c="Blended" aria-pressed="false">Owned + partners</button>
+        </div>
+        <span class="hint">Case 3 buys de-identified records from independent vet clinics: more veterinary volume for drug-safety studies, wider coverage for licenses.</span>
+      </div>
       <span class="group">Figures to confirm with Destination Pet</span>
       <div id="controls"></div>
+      <div id="pgroup"><span class="group">Partner data (Case 3)</span>
+      <div id="controls3"></div></div>
       <span class="group">Biggest TailSignal assumption</span>
       <div id="controls2"></div>
       <button class="reset" id="reset">Reset to Base defaults</button>
     </aside>
-
     <section class="results">
       <div class="tiles" id="tiles"></div>
       <div class="panel">
@@ -96,16 +103,16 @@ tr.total td{font-weight:600}
       <div class="panel">
         <h2>Year-by-year build</h2>
         <div class="chartbox"><table id="build"></table></div>
-        <p class="note">Fixed in this view (edit in the workbook): 160 locations rolling out 15/50/85/100/100%, 7% staffing effect, 1-point vet cross-sell lift at $600 a client, 40 extra cleanings per clinic at $700, data team 5 to 12 people at $200,000, $15,000 integration per location, license gate 100,000 consenting pets, study gates 792,000 and 1.29M dog records over four years.</p>
+        <p class="note">Fixed in this view (edit in the workbook): locations roll out 15/50/85/100/100%; staffing savings and cross-sell come from resort locations (all locations minus vet clinics); 7% staffing effect, 1-point vet cross-sell lift at $600 a client, 40 extra cleanings per clinic at $700, data team 5 to 12 people at $200,000, $15,000 integration per location, license gate 100,000 consenting pets, study gates 792,000 and 1.29M dog records over four years. Case 3: partners ramp 40/80/100/100% of the slider value from Year 2, $2,000 onboarding each, 40% buy a $1,800 scorecard, 1–2 extra data staff, more licenses, reports and studies once gates are met.</p>
       </div>
     </section>
   </div>
 </div>
-
 <script>
-const DEF = {vet:40, pets:3000, labor:700000, dogs:3500, vetMargin:0.40, dentalMargin:0.45, consent:0.70, realize:0.50};
+const DEF = {locations:190, vet:30, pets:3000, labor:700000, dogs:3500, vetMargin:0.40, dentalMargin:0.45, consent:0.70, realize:0.50, partners:100, pfee:1000};
 const SLIDERS = [
-  {k:'vet', label:'Locations with a vet clinic', min:0, max:160, step:1, fmt:v=>`${v} of 160`},
+  {k:'locations', label:'Locations (all service types)', min:100, max:400, step:5, fmt:v=>v.toLocaleString(), hint:'Public: 190+ (January 2024); the website lists 152 and says "100s"'},
+  {k:'vet', label:'Locations with a vet clinic', min:0, max:120, step:1, fmt:v=>`${v}`, hint:'28 listed locations carry a veterinary name'},
   {k:'pets', label:'Pets served per location per year', min:500, max:8000, step:100, fmt:v=>v.toLocaleString()},
   {k:'labor', label:'Daycare and boarding labor cost per location', min:200000, max:1500000, step:25000, fmt:v=>'$'+(v/1000).toLocaleString()+'k'},
   {k:'dogs', label:'Dogs with vet records per clinic per year', min:500, max:8000, step:100, fmt:v=>v.toLocaleString()},
@@ -116,47 +123,52 @@ const SLIDERS = [
 const SLIDERS2 = [
   {k:'realize', label:'Share of simulated effects realized', min:0.10, max:1.00, step:0.05, fmt:v=>Math.round(v*100)+'%', hint:'Staffing savings are ~70% of Base value; the workbook uses 50%'},
 ];
+const SLIDERS3 = [
+  {k:'partners', label:'Partner vet clinics at full ramp', min:0, max:500, step:10, fmt:v=>v.toLocaleString(), hint:'About 60 on top of 30 company clinics clear the rare-study gate'},
+  {k:'pfee', label:'Data fee per partner clinic per year', min:0, max:10000, step:250, fmt:v=>'$'+v.toLocaleString()},
+];
 const SCEN = {Low:{v:0.5,p:0.8}, Base:{v:1,p:1}, High:{v:1.4,p:1.15}};
-const FIX = {locations:160, live:[0.15,0.50,0.85,1,1], staff:0.07, nonvet:0.80, xsell:0.01, vetRev:600, dentalExtra:40, dentalPrice:700,
+const FIX = {live:[0.15,0.50,0.85,1,1], pRamp:[0,0.4,0.8,1,1], pOnboard:2000, pPets:3000, pUptake:0.40, pPremium:1800,
+  licensees3:[0,2,4,5,7], reports3:[1,3,5,6,7], sCommon3:[0,0,1,2,3], sRare3:[0,0,0,1,2], pHead:[0,1,1,2,2], staff:0.07, nonvet:0.80, xsell:0.01, vetRev:600, dentalExtra:40, dentalPrice:700,
   licACV:120000, licGate:100000, licensees:[0,2,3,5,6], repPrice:40000, reports:[1,3,4,5,6], studyPrice:250000,
   gateCommon:792000, gateRare:1287000, sCommon:[0,0,1,2,2], sRare:[0,0,0,1,1], cogs:0.40, loaded:200000,
   head:[5,8,10,11,12], integ:15000, infraFixed:150000, infraLoc:600, privacy:150000, multiple:12};
-
-let X = {...DEF}, scen = 'Base';
-
-function model(x, s){
-  const {v, p} = SCEN[s], F = FIX, out = [];
+let X = {...DEF}, scen = 'Base', kase = 'Owned';
+function model(x, s, c){
+  const {v, p} = SCEN[s], F = FIX, out = [], bl = (c || kase) === 'Blended';
   for(let j=0;j<5;j++){
-    const liveLoc = Math.round(F.locations*F.live[j]);
-    const liveVet = Math.round(x.vet*F.live[j]);
-    out.push({liveLoc, liveVet});
+    const liveLoc = Math.round(x.locations*F.live[j]);
+    const liveVet = Math.round(Math.min(x.vet, x.locations)*F.live[j]);
+    const liveRes = Math.round(Math.max(0, x.locations - x.vet)*F.live[j]);
+    const partners = bl ? Math.round(x.partners*F.pRamp[j]) : 0;
+    out.push({liveLoc, liveVet, liveRes, partners});
   }
   out.forEach((y,j)=>{
-    y.pets = y.liveLoc*x.pets;
-    let vetSum = 0; for(let k=Math.max(0,j-3);k<=j;k++) vetSum += out[k].liveVet;
-    y.dogRecords = vetSum*x.dogs;
-    y.staff = y.liveLoc*x.labor*F.staff*x.realize*v;
-    y.xsell = y.liveLoc*x.pets*F.nonvet*F.xsell*F.vetRev*x.vetMargin*x.realize*v;
+    y.pets = y.liveLoc*x.pets + y.partners*F.pPets;
+    let vetSum = 0; for(let k=Math.max(0,j-3);k<=j;k++) vetSum += (out[k].liveVet + out[k].partners)*x.dogs;
+    y.dogRecords = vetSum;
+    y.staff = y.liveRes*x.labor*F.staff*x.realize*v;
+    y.xsell = y.liveRes*x.pets*F.nonvet*F.xsell*F.vetRev*x.vetMargin*x.realize*v;
     y.dental = y.liveVet*F.dentalExtra*F.dentalPrice*x.dentalMargin*x.realize*v;
     y.internal = y.staff + y.xsell + y.dental;
-    y.lic = (y.pets*x.consent >= F.licGate) ? F.licensees[j]*F.licACV*p : 0;
-    y.rep = F.reports[j]*F.repPrice*p;
-    y.sc = y.dogRecords >= F.gateCommon ? F.sCommon[j]*F.studyPrice*p : 0;
-    y.sr = y.dogRecords >= F.gateRare ? F.sRare[j]*F.studyPrice*p : 0;
-    y.external = y.lic + y.rep + y.sc + y.sr;
-    y.team = F.head[j]*F.loaded;
+    y.lic = (y.pets*x.consent >= F.licGate) ? (bl ? F.licensees3 : F.licensees)[j]*F.licACV*p : 0;
+    y.rep = (bl ? F.reports3 : F.reports)[j]*F.repPrice*p;
+    y.sc = y.dogRecords >= F.gateCommon ? (bl ? F.sCommon3 : F.sCommon)[j]*F.studyPrice*p : 0;
+    y.sr = y.dogRecords >= F.gateRare ? (bl ? F.sRare3 : F.sRare)[j]*F.studyPrice*p : 0;
+    y.prem = y.partners*F.pUptake*F.pPremium*p;
+    y.external = y.lic + y.rep + y.sc + y.sr + y.prem;
+    y.team = (F.head[j] + (bl ? F.pHead[j] : 0))*F.loaded;
     y.integ = (j===0 ? y.liveLoc : Math.max(0, y.liveLoc - out[j-1].liveLoc))*F.integ;
-    y.infra = F.infraFixed + y.liveLoc*F.infraLoc;
-    y.cost = y.team + y.integ + y.infra + F.privacy + (y.sc + y.sr)*F.cogs;
+    y.infra = F.infraFixed + (y.liveLoc + y.partners)*F.infraLoc;
+    y.pcost = y.partners*x.pfee + (j===0 ? y.partners : Math.max(0, y.partners - out[j-1].partners))*F.pOnboard;
+    y.cost = y.team + y.integ + y.infra + F.privacy + (y.sc + y.sr)*F.cogs + y.pcost;
     y.net = y.internal + y.external - y.cost;
     y.cum = (j ? out[j-1].cum : 0) + y.net;
   });
   return out;
 }
-
 const $ = s => document.querySelector(s);
 const money = v => { if (Math.abs(v) < 0.5) return '$0'; const a = Math.abs(v), sgn = v < 0 ? '−' : ''; return a >= 1e6 ? `${sgn}$${(a/1e6).toFixed(2)}M` : `${sgn}$${Math.round(a/1e3).toLocaleString()}k`; };
-
 function buildControls(list, host){
   host.innerHTML = list.map(c=>`<div class="ctrl"><label for="in-${c.k}"><span>${c.label}</span><output id="out-${c.k}"></output></label>
     <input type="range" id="in-${c.k}" min="${c.min}" max="${c.max}" step="${c.step}" value="${X[c.k]}">${c.hint?`<span class="hint">${c.hint}</span>`:''}</div>`).join('');
@@ -166,9 +178,7 @@ function buildControls(list, host){
     el.addEventListener('input', upd); $('#out-'+c.k).textContent = c.fmt(X[c.k]);
   });
 }
-
 function niceStep(range){ const raw = range/5, p = Math.pow(10, Math.floor(Math.log10(raw))); return [1,2,2.5,5,10].map(m=>m*p).find(s=>s>=raw); }
-
 function drawBars(rows){
   const W=760,H=320,L=64,R=16,T=14,B=30;
   const maxV = Math.max(...rows.map(r=>r.internal+r.external), 1), minV = Math.min(...rows.map(r=>-r.cost), ...rows.map(r=>r.net), 0);
@@ -187,7 +197,6 @@ function drawBars(rows){
   });
   const svg=$('#bars'); svg.setAttribute('viewBox',`0 0 ${W} ${H}`); svg.setAttribute('width',W); svg.innerHTML=s;
 }
-
 function drawCum(all){
   const W=760,H=260,L=64,R=70,T=14,B=30;
   const vals = Object.values(all).flatMap(r=>r.map(d=>d.cum)).concat([0]);
@@ -207,11 +216,10 @@ function drawCum(all){
   const svg=$('#cum'); svg.setAttribute('viewBox',`0 0 ${W} ${H}`); svg.setAttribute('width',W); svg.innerHTML=s;
   $('#cumlegend').innerHTML = Object.keys(all).map(k=>`<span><i style="background:${col[k]};height:3px;border-radius:0"></i>${k}${k===scen?' (selected)':''}</span>`).join('');
 }
-
-const BASE = model(DEF,'Base');
 function render(){
+  $('#pgroup').style.display = kase === 'Blended' ? '' : 'none';
   const rows = model(X, scen), all = {Low:model(X,'Low'), Base:model(X,'Base'), High:model(X,'High')};
-  const y5 = rows[4], pay = rows.findIndex(r=>r.cum>0), b5 = BASE[4];
+  const y5 = rows[4], pay = rows.findIndex(r=>r.cum>0), b5 = model(DEF,'Base')[4];
   const delta = (v, ref) => { const d = v-ref; if(Math.abs(d) < 1) return '<span class="d" style="color:var(--muted)">same as Base default</span>'; return `<span class="d" style="color:${d>0?'var(--pos)':'var(--neg)'}">${d>0?'+':''}${money(d)} vs Base default</span>`; };
   const share = y5.internal+y5.external > 0 ? Math.round(y5.staff/(y5.internal+y5.external)*100) : 0;
   $('#tiles').innerHTML = `
@@ -220,16 +228,16 @@ function render(){
     <div class="tile"><span class="v">${money(Math.max(0,y5.net)*FIX.multiple)}</span><span class="l">Enterprise value at 12× Year-5 impact</span>${delta(Math.max(0,y5.net)*12, Math.max(0,b5.net)*12)}</div>
     <div class="tile"><span class="v">${share}%</span><span class="l">Share of Year-5 value from staffing savings</span></div>`;
   drawBars(rows); drawCum(all);
-  const line = (lbl,k,cls='') => `<tr class="${cls}"><td>${lbl}</td>${rows.map(r=>`<td>${typeof r[k]==='number' && ['liveLoc','liveVet','pets','dogRecords'].indexOf(k)<0 ? money(r[k]) : typeof r[k]==='number' && Math.abs(r[k])>=1000 && k!=='pets' && k!=='dogRecords' ? money(r[k]) : r[k].toLocaleString()}</td>`).join('')}</tr>`;
+  const line = (lbl,k,cls='') => `<tr class="${cls}"><td>${lbl}</td>${rows.map(r=>`<td>${typeof r[k]==='number' && ['liveLoc','liveVet','liveRes','partners','pets','dogRecords'].indexOf(k)<0 ? money(r[k]) : typeof r[k]==='number' && Math.abs(r[k])>=1000 && k!=='pets' && k!=='dogRecords' ? money(r[k]) : r[k].toLocaleString()}</td>`).join('')}</tr>`;
   $('#build').innerHTML = `<thead><tr><th>Line</th>${rows.map((_,j)=>`<th>Year ${j+1}</th>`).join('')}</tr></thead><tbody>
-    ${line('Live locations','liveLoc')}${line('Live vet clinics','liveVet')}${line('Pets observed','pets')}${line('Dog vet records, 4-year window','dogRecords')}
+    ${line('Live locations','liveLoc')}${line('Live vet clinics','liveVet')}${line('Live resort locations','liveRes')}${kase==='Blended'?line('Partner vet clinics','partners'):''}${line('Pets observed','pets')}${line('Dog vet records, 4-year window','dogRecords')}
     ${line('Staffing savings','staff')}${line('Connected Care cross-sell','xsell')}${line('Dental capture','dental')}
-    ${line('Data licenses','lic')}${line('Research reports','rep')}${line('Drug-safety studies','sc')}${line('Rare-event studies','sr')}
+    ${line('Data licenses','lic')}${line('Research reports','rep')}${line('Drug-safety studies','sc')}${line('Rare-event studies','sr')}${kase==='Blended'?line('Scorecards sold to partners','prem')+line('Partner data fees and onboarding','pcost'):''}
     ${line('Platform cost','cost')}${line('Net EBITDA impact','net','total')}${line('Cumulative','cum','total')}</tbody>`;
 }
-
-buildControls(SLIDERS, $('#controls')); buildControls(SLIDERS2, $('#controls2'));
-document.querySelectorAll('.seg button').forEach(b=>b.addEventListener('click',()=>{ scen=b.dataset.s; document.querySelectorAll('.seg button').forEach(o=>o.setAttribute('aria-pressed',String(o===b))); render(); }));
-$('#reset').addEventListener('click',()=>{ X={...DEF}; [...SLIDERS,...SLIDERS2].forEach(c=>{ $('#in-'+c.k).value=X[c.k]; $('#out-'+c.k).textContent=c.fmt(X[c.k]); }); render(); });
+buildControls(SLIDERS, $('#controls')); buildControls(SLIDERS2, $('#controls2')); buildControls(SLIDERS3, $('#controls3'));
+document.querySelectorAll('.case').forEach(b=>b.addEventListener('click',()=>{ kase=b.dataset.c; document.querySelectorAll('.case').forEach(o=>o.setAttribute('aria-pressed',String(o===b))); render(); }));
+document.querySelectorAll('.seg button:not(.case)').forEach(b=>b.addEventListener('click',()=>{ scen=b.dataset.s; document.querySelectorAll('.seg button:not(.case)').forEach(o=>o.setAttribute('aria-pressed',String(o===b))); render(); }));
+$('#reset').addEventListener('click',()=>{ X={...DEF}; [...SLIDERS,...SLIDERS2,...SLIDERS3].forEach(c=>{ $('#in-'+c.k).value=X[c.k]; $('#out-'+c.k).textContent=c.fmt(X[c.k]); }); render(); });
 render();
 </script>

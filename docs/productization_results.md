@@ -72,17 +72,27 @@ What the model says, under these assumptions:
 3. **Data licenses are the swing line.** Eight more licenses at $120,000 would break even in Year 5 (Base). Licenses unlock only once privacy suppression falls, which needs about 100 clinics.
 4. **Validation studies arrive late.** Common side-effect studies unlock in Year 4 and rare ones in Year 5 (Base), set by the scale requirements found in Model A2. In the Base case they are 29% of Year-5 revenue ($1.25M of $4.25M).
 
-## Owned-network version: Destination Pet
+## Operator versions: Destination Pet
 
-`docs/business_case/DestinationPet_Data_Business_Case.xlsx` (built by `scripts/build_destination_pet_case.py`) reworks the case for an operator that owns every location, so there are no partner data incentives. Value comes mainly from running the business better, and it shows up as EBITDA:
+`docs/business_case/DestinationPet_Data_Business_Case.xlsx` (built by `scripts/build_destination_pet_case.py`) reworks the case for an operator that owns every location, so there are no partner data incentives. Updated 2026-10-03: 190 locations (public, January 2024: "190+ locations in more than 35 states"; the website now lists 152 and says "100s"), 30 of them vet clinics (28 listed locations carry a veterinary name). Staffing savings and cross-sell now come only from resort locations; the first version applied daycare labor savings to vet clinics too.
 
-| | Low | Base | High |
+Case 3 adds data bought from independent vet clinics: 100 partners at full ramp, $1,000 a year each plus $2,000 to onboard. Partner data adds no operating value; it adds veterinary records for drug-safety studies, wider coverage for licenses and reports, and scorecard subscriptions sold back to partners.
+
+| Base case | Case 2: owned | Case 3: owned + partner data |
+|---|---|---|
+| Net EBITDA impact, Year 5 | $2.72M | $3.14M |
+| Cumulative, Years 1–5 | $4.73M | $4.46M |
+| Payback | Year 4 | Year 4 |
+| Enterprise value at 12x | $32.6M | $37.7M |
+| Drug-safety studies reachable | Neither | Common in Year 4, rare in Year 5 |
+
+| Case 2, by scenario | Low | Base | High |
 |---|---|---|---|
-| Net EBITDA impact, Year 5 | $0.29M | $2.80M | $4.79M |
-| Payback | Not within 5 years | Year 3 | Year 2 |
-| Enterprise value at 12x | $3.5M | $33.6M | $57.5M |
+| Net EBITDA impact, Year 5 | $0.24M | $2.72M | $4.69M |
+| Payback | Not within 5 years | Year 4 | Year 3 |
+| Enterprise value at 12x | $2.9M | $32.6M | $56.3M |
 
-Staffing savings from demand forecasting are 70% of Base-case value, so a staffing pilot comes before rollout. Drug-safety studies stay out of reach of one network's veterinary volume within five years. Company inputs (vet locations, pets per location, labor cost) are placeholders flagged for confirmation. The memo version is a separate shared document.
+Staffing savings are 86% of Case 2's Year-5 internal value and 71% of its gross value, so a staffing pilot comes before rollout. Partner data pays only through drug-safety studies: with no studies sold, Case 3's Year-5 impact is $2.39M, below Case 2. At 250 locations Case 2 reaches $4.32M in Year 5 and pays back in Year 3. Company inputs (vet locations, pets per location, labor cost) are placeholders flagged for confirmation.
 
 ## Run it
 
