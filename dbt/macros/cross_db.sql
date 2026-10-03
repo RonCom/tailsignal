@@ -95,3 +95,9 @@
 {% macro ts_is_snowflake() -%}
     {{- return(target.type == 'snowflake' or var('sf_dialect_check', false)) -}}
 {%- endmacro %}
+
+{#- a number as text with exactly two decimals, matching the vet_alpha export format -#}
+{% macro money_text(x) -%}
+    {%- if ts_is_snowflake() -%} to_varchar({{ x }}, 'FM999999990.00')
+    {%- else -%} printf('%.2f', {{ x }}) {%- endif -%}
+{%- endmacro %}

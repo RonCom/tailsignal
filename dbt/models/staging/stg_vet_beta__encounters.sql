@@ -5,7 +5,7 @@ with src as (
     select v from {{ source('raw', 'vet_beta_encounters') }}
 ), charges as (
     select s.v:encounter_id::varchar as encounter_id,
-           array_to_string(array_agg(c.value:item::varchar || ':' || c.value:amount::double) within group (order by c.index), ';') as line_items,
+           array_to_string(array_agg(c.value:item::varchar || ':' || {{ money_text('c.value:amount::double') }}) within group (order by c.index), ';') as line_items,
            sum(c.value:amount::double) as amount
     from src s, lateral flatten(input => s.v:charges) c
     group by 1
@@ -67,7 +67,7 @@ select
     round(patient.weight_kg / 0.45359237, 1)                as weight_lb,
     cast(diagnoses[1].code as varchar)                      as dx_source_value,
     diagnoses[1].text                                       as dx_source_label,
-    array_to_string(list_transform(charges, c -> c.item || ':' || c.amount), ';') as line_items,
+    array_to_string(list_transform(charges, c -> c.item || ':' || {{ money_text('c.amount') }}), ';') as line_items,
     list_sum(list_transform(charges, c -> c.amount))        as amount
 from src
 {% endif %}

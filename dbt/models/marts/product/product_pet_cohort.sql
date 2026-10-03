@@ -12,7 +12,7 @@ with base as (
     select
         {{ sha256_hex("p.pet_id || '" ~ env_var('TAILSIGNAL_SALT', 'dev-salt-change-me') ~ "'") }} as pet_token,
         p.pet_id, p.species, p.breed_group, p.birth_year,
-        cast(floor(p.birth_year / 5) * 5 as varchar) || '-' || cast(floor(p.birth_year / 5) * 5 + 4 as varchar) as birth_band,
+        cast(cast(floor(p.birth_year / 5) * 5 as integer) as varchar) || '-' || cast(cast(floor(p.birth_year / 5) * 5 + 4 as integer) as varchar) as birth_band,
         coalesce(p.zip3, 'UNK') as zip3, coalesce(p.market, 'UNK') as market, coalesce(p.sex, 'U') as sex
     from {{ ref('dim_pet') }} p
     where p.species is not null
