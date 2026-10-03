@@ -10,7 +10,7 @@
 {% set k = var('k_anonymity') %}
 with base as (
     select
-        sha256(p.pet_id || '{{ env_var("TAILSIGNAL_SALT", "dev-salt-change-me") }}') as pet_token,
+        {{ sha256_hex("p.pet_id || '" ~ env_var('TAILSIGNAL_SALT', 'dev-salt-change-me') ~ "'") }} as pet_token,
         p.pet_id, p.species, p.breed_group, p.birth_year,
         cast(floor(p.birth_year / 5) * 5 as varchar) || '-' || cast(floor(p.birth_year / 5) * 5 + 4 as varchar) as birth_band,
         coalesce(p.zip3, 'UNK') as zip3, coalesce(p.market, 'UNK') as market, coalesce(p.sex, 'U') as sex
@@ -19,11 +19,11 @@ with base as (
 ), p1 as (
     select *, count(*) over (partition by species, breed_group, birth_year, zip3, sex) as n1 from base
 ), p2 as (
-    select *, case when n1 < {{ k }} then count(*) filter (where n1 < {{ k }})
+    select *, case when n1 < {{ k }} then {{ count_where('n1 < ' ~ k) }}
                    over (partition by species, breed_group, birth_band, zip3, sex) end as n2
     from p1
 ), p3 as (
-    select *, case when n1 < {{ k }} and n2 < {{ k }} then count(*) filter (where n1 < {{ k }} and n2 < {{ k }})
+    select *, case when n1 < {{ k }} and n2 < {{ k }} then {{ count_where('n1 < ' ~ k ~ ' and n2 < ' ~ k) }}
                    over (partition by species, breed_group, birth_band, market, sex) end as n3
     from p2
 ), released as (
@@ -37,15 +37,15 @@ with base as (
     where n1 >= {{ k }} or n2 >= {{ k }} or n3 >= {{ k }}
 ), usage as (
     select pet_id,
-        count(*) filter (where channel = 'vet')      as vet_visits,
-        count(*) filter (where channel = 'daycare')  as daycare_visits,
-        count(*) filter (where channel = 'boarding') as boarding_stays,
-        count(*) filter (where channel = 'grooming') as grooming_appts,
-        list(distinct condition order by condition) filter (where condition is not null and condition <> 'wellness') as conditions
+        {{ count_where("channel = 'vet'") }} as vet_visits,
+        {{ count_where("channel = 'daycare'") }} as daycare_visits,
+        {{ count_where("channel = 'boarding'") }} as boarding_stays,
+        {{ count_where("channel = 'grooming'") }} as grooming_appts,
+        {{ distinct_sorted_list('condition', "condition is not null and condition <> 'wellness'") }} as conditions
     from {{ ref('fct_service_event') }} group by pet_id
 )
 select r.pet_token, r.species, r.breed_group, r.birth_period, r.geography, r.sex, r.generalization,
        coalesce(u.vet_visits, 0) as vet_visits, coalesce(u.daycare_visits, 0) as daycare_visits,
        coalesce(u.boarding_stays, 0) as boarding_stays, coalesce(u.grooming_appts, 0) as grooming_appts,
-       coalesce(u.conditions, []) as conditions
+       coalesce(u.conditions, {{ empty_list() }}) as conditions
 from released r left join usage u using (pet_id)

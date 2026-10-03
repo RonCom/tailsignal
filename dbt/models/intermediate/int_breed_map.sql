@@ -18,8 +18,8 @@ with raw as (
     select breed_raw, breed, species, breed_group, size_class, 'fuzzy' as match_type, score
     from (
         select k.breed_raw, a.breed, a.species, a.breed_group, a.size_class,
-               jaro_winkler_similarity(k.k, a.alias_key) as score,
-               row_number() over (partition by k.breed_raw order by jaro_winkler_similarity(k.k, a.alias_key) desc) as rn
+               {{ jaro_winkler('k.k', 'a.alias_key') }} as score,
+               row_number() over (partition by k.breed_raw order by {{ jaro_winkler('k.k', 'a.alias_key') }} desc) as rn
         from keyed k cross join {{ ref('breed_aliases') }} a
         where k.breed_raw not in (select breed_raw from exact)
     ) where rn = 1 and score >= 0.90

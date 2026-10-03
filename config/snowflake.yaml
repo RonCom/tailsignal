@@ -1,0 +1,7 @@
+# Snowflake settings for `python -m tailsignal.sf`. No secrets: key-pair auth with the key outside the repo.
+# Put the account in config/snowflake.local.yaml (git-ignored):  account: <orgname-accountname>
+user: FWA_SVC
+role: TAILSIGNAL_ROLE
+warehouse: FWA_WH
+database: TAILSIGNAL
+private_key_path: ~/.snowflake/fwa_rsa_key.p8

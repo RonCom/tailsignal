@@ -25,6 +25,9 @@ dependencies = [
     "httpx>=0.28.1",
 ]
 
+[project.optional-dependencies]
+snowflake = ["dbt-snowflake>=1.9", "snowflake-connector-python[pandas]>=3.12"]
+
 [dependency-groups]
 dev = ["pytest>=8"]
 

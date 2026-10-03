@@ -14,4 +14,4 @@ select
     cast(start_date as date)                           as start_date,
     try_cast(nullif(end_date, '') as date)             as end_date,
     nullif(cancel_reason, '')                          as cancel_reason
-from read_csv('{{ var("raw_dir") }}/wellplan_memberships.csv', header = true, all_varchar = true)
+from {{ raw_csv('wellplan_memberships.csv', 'wellplan_memberships') }}

@@ -5,15 +5,16 @@ tailsignal:
       type: duckdb
       path: data/warehouse.duckdb
       threads: 4
-    # Snowflake target (fill in, then: dbt build --target snowflake). Raw files are
-    # loaded to a stage first; see docs/snowflake.md (Phase 2).
+    # Snowflake target: key-pair auth, no secrets in the repo.
+    # `python -m tailsignal.snowflake build` sets these from config/snowflake.yaml (+ .local.yaml).
     snowflake:
       type: snowflake
       account: "{{ env_var('SNOWFLAKE_ACCOUNT', '') }}"
-      user: "{{ env_var('SNOWFLAKE_USER', '') }}"
-      password: "{{ env_var('SNOWFLAKE_PASSWORD', '') }}"
-      role: "{{ env_var('SNOWFLAKE_ROLE', 'SYSADMIN') }}"
-      warehouse: "{{ env_var('SNOWFLAKE_WAREHOUSE', 'COMPUTE_WH') }}"
-      database: TAILSIGNAL
+      user: "{{ env_var('SNOWFLAKE_USER', 'FWA_SVC') }}"
+      role: "{{ env_var('SNOWFLAKE_ROLE', 'TAILSIGNAL_ROLE') }}"
+      warehouse: "{{ env_var('SNOWFLAKE_WAREHOUSE', 'FWA_WH') }}"
+      database: "{{ env_var('SNOWFLAKE_DATABASE', 'TAILSIGNAL') }}"
       schema: PUBLIC
+      authenticator: snowflake_jwt
+      private_key_path: "{{ env_var('SNOWFLAKE_PRIVATE_KEY_PATH', '') }}"
       threads: 4

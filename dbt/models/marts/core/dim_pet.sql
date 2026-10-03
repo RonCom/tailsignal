@@ -16,18 +16,19 @@ with recs as (
 select
     r.pet_id,
     any_value(r.household_id)                                                  as household_id,
-    mode(r.species)                                                            as species,
-    coalesce(mode(r.breed) filter (where r.breed <> 'Unmapped'), 'Unknown')   as breed,
-    coalesce(mode(r.breed_group) filter (where r.breed <> 'Unmapped'), 'Unknown') as breed_group,
-    arg_min(vb.birth_date, case vb.birth_date_precision when 'exact' then 1 when 'year_only' then 2 else 3 end) as birth_date,
-    coalesce(year(arg_min(vb.birth_date, case vb.birth_date_precision when 'exact' then 1 when 'year_only' then 2 else 3 end)),
+    {{ mode_where('r.species') }} as species,
+    coalesce({{ mode_where('r.breed', "r.breed <> 'Unmapped'") }}, 'Unknown') as breed,
+    coalesce({{ mode_where('r.breed_group', "r.breed <> 'Unmapped'") }}, 'Unknown') as breed_group,
+    {% set prec = "case vb.birth_date_precision when 'exact' then 1 when 'year_only' then 2 else 3 end" %}
+    {{ arg_min('vb.birth_date', prec) }} as birth_date,
+    coalesce(year({{ arg_min('vb.birth_date', prec) }}),
              cast(median(r.birth_year) as integer))                            as birth_year,
-    mode(vb.sex)                                                               as sex,
-    mode(r.market)                                                             as market,
-    mode(left(r.owner_zip, 3))                                                 as zip3,
+    {{ mode_where('vb.sex') }} as sex,
+    {{ mode_where('r.market') }} as market,
+    {{ mode_where('left(r.owner_zip, 3)') }} as zip3,
     min(r.first_seen)                                                          as first_seen,
     count(*)                                                                   as n_source_records,
-    list(distinct r.source_system order by r.source_system)                    as source_systems
+    {{ distinct_sorted_list('r.source_system') }} as source_systems
 from recs r
 left join vet_birth vb using (unique_id)
 group by r.pet_id

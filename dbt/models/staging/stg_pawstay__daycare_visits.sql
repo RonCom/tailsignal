@@ -7,4 +7,4 @@ select
     service                         as source_service,
     cast(price as double)           as amount,
     nullif(trim(staff_note), '')    as staff_note
-from read_csv('{{ var("raw_dir") }}/pawstay_daycare_visits.csv', header = true, all_varchar = true)
+from {{ raw_csv('pawstay_daycare_visits.csv', 'pawstay_daycare_visits') }}

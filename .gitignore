@@ -19,3 +19,5 @@ reports/**
 data_scale*/
 config/api_keys.local.json
 .env
+config/snowflake.local.yaml
+!reports/snowflake/reconciliation.md

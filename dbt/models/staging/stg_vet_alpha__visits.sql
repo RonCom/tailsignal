@@ -1,6 +1,6 @@
 -- Vet PIMS "alpha": flat CSV, one row per visit, client and patient denormalized.
 with src as (
-    select * from read_csv('{{ var("raw_dir") }}/vet_alpha_visits.csv', header = true, all_varchar = true)
+    select * from {{ raw_csv('vet_alpha_visits.csv', 'vet_alpha_visits') }}
 )
 select
     'vet_alpha'                                   as source_system,

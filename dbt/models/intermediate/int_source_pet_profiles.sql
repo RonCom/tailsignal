@@ -9,20 +9,20 @@ with vet as (
     {% endfor %}
 ), vet_profiles as (
     select source_system, source_pet_key,
-        arg_max(location_id, event_date) as location_id,
-        arg_max(owner_first, event_date) as owner_first, arg_max(owner_last, event_date) as owner_last,
-        arg_max(owner_phone, event_date) as owner_phone, arg_max(owner_email, event_date) as owner_email,
-        arg_max(owner_zip, event_date) as owner_zip, arg_max(pet_name, event_date) as pet_name,
-        arg_max(species, event_date) as species, arg_max(breed_raw, event_date) as breed_raw,
-        arg_max(birth_date, event_date) as birth_date, min(event_date) as first_seen
+        {{ arg_max('location_id', 'event_date') }} as location_id,
+        {{ arg_max('owner_first', 'event_date') }} as owner_first, {{ arg_max('owner_last', 'event_date') }} as owner_last,
+        {{ arg_max('owner_phone', 'event_date') }} as owner_phone, {{ arg_max('owner_email', 'event_date') }} as owner_email,
+        {{ arg_max('owner_zip', 'event_date') }} as owner_zip, {{ arg_max('pet_name', 'event_date') }} as pet_name,
+        {{ arg_max('species', 'event_date') }} as species, {{ arg_max('breed_raw', 'event_date') }} as breed_raw,
+        {{ arg_max('birth_date', 'event_date') }} as birth_date, min(event_date) as first_seen
     from vet group by 1, 2
 ), groom_profiles as (
     select source_system, source_pet_key,
-        arg_max(location_id, event_date) as location_id,
-        arg_max(owner_first, event_date) as owner_first, arg_max(owner_last, event_date) as owner_last,
-        arg_max(owner_phone, event_date) as owner_phone, arg_max(owner_email, event_date) as owner_email,
-        cast(null as varchar) as owner_zip, arg_max(pet_name, event_date) as pet_name,
-        cast(null as varchar) as species, arg_max(breed_raw, event_date) as breed_raw,
+        {{ arg_max('location_id', 'event_date') }} as location_id,
+        {{ arg_max('owner_first', 'event_date') }} as owner_first, {{ arg_max('owner_last', 'event_date') }} as owner_last,
+        {{ arg_max('owner_phone', 'event_date') }} as owner_phone, {{ arg_max('owner_email', 'event_date') }} as owner_email,
+        cast(null as varchar) as owner_zip, {{ arg_max('pet_name', 'event_date') }} as pet_name,
+        cast(null as varchar) as species, {{ arg_max('breed_raw', 'event_date') }} as breed_raw,
         cast(null as date) as birth_date, min(event_date) as first_seen
     from {{ ref('stg_groomly__appointments') }} group by 1, 2
 ), all_profiles as (

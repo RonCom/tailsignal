@@ -11,3 +11,19 @@ sources:
             data_tests: [unique, not_null]
           - name: pet_id
             data_tests: [not_null]
+
+  - name: raw
+    description: Raw partner files loaded to Snowflake by `python -m tailsignal.snowflake load` (Snowflake target only; DuckDB reads the files directly)
+    schema: raw
+    tables:
+      - name: vet_alpha_visits
+      - name: vet_beta_encounters
+        description: One VARIANT column V per JSON line
+      - name: vet_gamma_visits
+      - name: groomly_appointments
+      - name: pawstay_pets
+      - name: pawstay_daycare_visits
+      - name: pawstay_boarding_stays
+      - name: wellplan_memberships
+      - name: wellplan_campaign
+      - name: locations

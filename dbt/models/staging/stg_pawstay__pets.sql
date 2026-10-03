@@ -1,12 +1,12 @@
 -- Daycare/boarding registrations. Owner name arrives as "First Last" or "Last, First";
 -- age is free text ("3 yrs", "10 mos", "7").
 with src as (
-    select * from read_csv('{{ var("raw_dir") }}/pawstay_pets.csv', header = true, all_varchar = true)
+    select * from {{ raw_csv('pawstay_pets.csv', 'pawstay_pets') }}
 ), parsed as (
     select *,
         case when owner_name like '%,%' then trim(split_part(owner_name, ',', 2)) else split_part(owner_name, ' ', 1) end as first_raw,
         case when owner_name like '%,%' then trim(split_part(owner_name, ',', 1)) else split_part(owner_name, ' ', 2) end as last_raw,
-        try_cast(regexp_extract(age_text, '(\d+)', 1) as integer) as age_num,
+        {{ first_int('age_text') }} as age_num,
         age_text like '%mo%' as age_in_months
     from src
 )
@@ -22,8 +22,8 @@ select
     {{ norm_name('pet_name') }}                    as pet_name,
     breed                                          as breed_raw,
     cast(registered_on as date)                    as registered_on,
-    case when age_in_months then (cast(registered_on as date) - to_days(cast(age_num * 30.4 as integer)))::date
-         else (cast(registered_on as date) - to_days(cast((age_num + 0.5) * 365.25 as integer)))::date end as birth_date,
+    case when age_in_months then {{ minus_days('cast(registered_on as date)', 'cast(age_num * 30.4 as integer)') }}
+         else {{ minus_days('cast(registered_on as date)', 'cast((age_num + 0.5) * 365.25 as integer)') }} end as birth_date,
     'estimated_from_age'                           as birth_date_precision,
     cast(weight_lb as double)                      as weight_lb
 from parsed

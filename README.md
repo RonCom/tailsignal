@@ -171,6 +171,19 @@ uv run python scripts/export_portal_sample.py           # release sample for the
 uv run python scripts/build_business_case.py          # five-year business case workbook
 ```
 
+### Snowflake
+
+The same dbt project builds on Snowflake. Dialect differences live in `dbt/macros/cross_db.sql`; raw files load to a `RAW` schema; entity resolution stays in Python and its output table is copied up. A reconciliation compares every model with the DuckDB build.
+
+```powershell
+# once: run snowflake/setup.sql in Snowsight as ACCOUNTADMIN; put `account: <org-account>` in config/snowflake.local.yaml
+uv sync --extra snowflake
+uv run python -m tailsignal.sf check       # connection and schemas
+uv run python -m tailsignal.sf all         # load raw files, dbt seed/build, copy ER clusters, reconcile
+```
+
+Output: `reports/snowflake/reconciliation.md`. Offline dialect check (no connection): `dbt compile --vars '{sf_dialect_check: true}'` renders the Snowflake SQL on the DuckDB target.
+
 Explore with `duckdb data/warehouse.duckdb` or `uv run dbt docs generate --project-dir dbt --profiles-dir dbt`.
 
 ## Repo layout
