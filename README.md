@@ -179,10 +179,41 @@ The same dbt project builds on Snowflake. Dialect differences live in `dbt/macro
 # once: run snowflake/setup.sql in Snowsight as ACCOUNTADMIN; put `account: <org-account>` in config/snowflake.local.yaml
 uv sync --extra snowflake
 uv run python -m tailsignal.sf check       # connection and schemas
-uv run python -m tailsignal.sf all         # load raw files, dbt seed/build, copy ER clusters, reconcile
+uv run python -m tailsignal.sf all         # load, dbt seed/build, copy ER clusters, incremental, reconcile, masking-check
 ```
 
 Output: `reports/snowflake/reconciliation.md`. Offline dialect check (no connection): `dbt compile --vars '{sf_dialect_check: true}'` renders the Snowflake SQL on the DuckDB target.
+
+**Incremental loads (stream and task graph).** Daycare visits, the largest feed (~720K rows), also load incrementally. New visits land as daily Parquet files under `@RAW.TS_STAGE/PAWSTAY_DAYCARE_VISITS/incoming/`. The root task `RAW.TS_LOAD_DAYCARE` runs `COPY INTO`, which skips files Snowflake has already loaded. An append-only stream on `RAW.PAWSTAY_DAYCARE_VISITS` picks up the new rows, and the child task `RAW.TS_APPEND_DAYCARE_EVENTS` runs only when the stream has data. It types the rows, joins the pet clusters and service taxonomy, and inserts them into `CORE.FCT_SERVICE_EVENT`, skipping event IDs already present.
+
+```powershell
+uv run python -m tailsignal.sf incremental --days 30              # replay the last 30 days through the graph
+uv run python -m tailsignal.sf incremental --days 30 --schedule   # same, then leave the root task on a 60-minute schedule
+```
+
+The step removes the last N days from RAW and the fact table, replays them as daily files, and checks four things:
+
+- every file loaded;
+- the stream drained;
+- a second run with no new files skips the append task;
+- the appended rows match DuckDB's `fct_service_event` row by row.
+
+Output: `reports/snowflake/incremental.md`. `tests/test_sf_incremental.py` runs the task's SELECT on DuckDB and checks it against dbt's daycare rows, so the hand-written task SQL can't drift from the dbt model unnoticed. `load` replaces the RAW tables and suspends the root task; run `incremental` again afterwards.
+
+**Owner-field masking.** Owner name, email, phone and ZIP appear in six staging views and `intermediate.int_source_pet_profiles`. `dim_pet` and the product tables carry none: the `assert_no_direct_identifiers_in_products` test checks the product tables. dbt creates four masking policies in `GOVERNANCE` (`dbt/macros/governance.sql`, on-run-start). A post-hook on every model then attaches them to any `owner_*` column it finds.
+
+| Role | Sees |
+|---|---|
+| `TAILSIGNAL_ROLE` (pipeline) | clear values |
+| Any other role | `***` for names, `***@domain` for email, `***-***-1234` for phone, 3-digit ZIP + `**` |
+
+`TAILSIGNAL_ANALYST` reads staging, intermediate, core and product, but has no grant on RAW.
+
+```powershell
+uv run python -m tailsignal.sf masking-check   # policy on every owner column; analyst sees masked values; RAW refused
+```
+
+Output: `reports/snowflake/masking.md`. The roles, the `GOVERNANCE` schema and the `EXECUTE TASK` grant are in `snowflake/setup.sql`. It's safe to rerun on an existing account.
 
 Explore with `duckdb data/warehouse.duckdb` or `uv run dbt docs generate --project-dir dbt --profiles-dir dbt`.
 

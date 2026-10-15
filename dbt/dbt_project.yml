@@ -14,9 +14,16 @@ vars:
   raw_dir: "data/raw/synthetic"
   k_anonymity: 10          # minimum cell size for released products
   holdout_start: "2024-07-01"
+  pii_reader_roles: ["TAILSIGNAL_ROLE"]   # Snowflake roles that see owner fields unmasked
+
+# Snowflake only (no-ops on DuckDB): owner masking policies, attached to every model's owner_* columns
+on-run-start:
+  - "{{ create_owner_masking_policies() }}"
 
 models:
   tailsignal:
+    +post-hook:
+      - "{{ mask_owner_columns() }}"
     staging:
       +materialized: view
       +schema: staging

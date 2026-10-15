@@ -21,3 +21,5 @@ config/api_keys.local.json
 .env
 config/snowflake.local.yaml
 !reports/snowflake/reconciliation.md
+!reports/snowflake/incremental.md
+!reports/snowflake/masking.md
