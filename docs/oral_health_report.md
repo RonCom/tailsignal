@@ -5,7 +5,7 @@
 ## Headlines
 
 1. **Nearly 1 in 5 dogs seen by a vet is diagnosed with dental disease each year** (18.1% on the calibrated clinical record layer; Banfield reports 18.2% over five years, VetCompass 12.5% a year). The uncalibrated platform layer, which the breed and treatment figures below use, gives 9.4% (95% CI 9.1–9.8%); cats 10.0%. See [Re-run on the clinical record layer](#re-run-on-the-clinical-record-layer).
-2. **Toy breeds carry 2.5 times the odds** of larger dogs after adjusting for age (OR 2.49, 95% CI 2.17–2.85). Yorkshire Terriers (19%), Chihuahuas (18%), and Shih Tzus (17%) top the breed list.
+2. **Toy breeds carry 2.5 times the odds** of larger dogs after adjusting for age (OR 2.49, 95% CI 2.18–2.85). Yorkshire Terriers (19%), Chihuahuas (18%), and Shih Tzus (17%) top the breed list.
 3. **Risk climbs steadily with age**: from 4% of dogs under 2 to 15% of dogs 12 and older (adjusted OR 2.9 vs. age 2–4).
 4. **Fewer than half of diagnosed dogs get a cleaning the same year** (46%). At an average of $783 per cleaning, raising that to 60% across this network would add about 80 cleanings and roughly $63,000 a year (illustrative).
 
@@ -16,13 +16,13 @@
 | Breed size | Dog-years | Diagnosed | 95% CI |
 |---|---|---|---|
 | Toy | 2,293 | **17.7%** | 16.2–19.3% |
-| Small | 3,125 | 8.2% | 7.3–9.2% |
-| Medium | 8,248 | 9.0% | 8.4–9.6% |
-| Large | 10,573 | 8.4% | 7.8–8.9% |
+| Small | 3,129 | 8.2% | 7.2–9.2% |
+| Medium | 8,254 | 9.0% | 8.4–9.6% |
+| Large | 10,566 | 8.3% | 7.8–8.9% |
 
 | Age | <2 | 2–4 | 4–7 | 7–10 | 10–12 | 12+ |
 |---|---|---|---|---|---|---|
-| Diagnosed | 3.8% | 5.6% | 7.0% | 9.3% | 12.7% | 15.4% |
+| Diagnosed | 3.8% | 5.6% | 7.1% | 9.3% | 12.7% | 15.4% |
 
 **Breed ranking.** Each breed's rate is shrunk toward its size class (beta-binomial empirical Bayes), so small breeds with few records do not top the list by chance. Breeds with at least 30 dog-years:
 
@@ -31,8 +31,8 @@
 | Yorkshire Terrier | toy | 790 | 20.1% | **19.0%** (17.3–20.7) |
 | Chihuahua | toy | 618 | 17.8% | **17.7%** (16.1–19.5) |
 | Shih Tzu | toy | 885 | 15.5% | **16.5%** (15.0–18.0) |
-| Poodle | medium | 1,265 | 11.9% | 10.9% (9.8–12.1) |
-| Dachshund | small | 1,011 | 10.0% | 9.4% (8.2–10.6) |
+| Poodle | medium | 1,265 | 11.9% | 10.9% (9.8–12.2) |
+| Dachshund | small | 1,015 | 10.0% | 9.3% (8.2–10.6) |
 
 ## Commercial uses
 
@@ -50,7 +50,7 @@
 | Overall | 9.4% per year | 18.2% (5-year period prevalence) | 12.5% per year |
 | Smallest vs. large breeds | Toy 2.1× large | Extra-small 1.9× large (22.4% vs. 11.9%); extra-small up to 5× giant | Under 10 kg: 3.07× risk vs. 30–40 kg |
 | Small (non-toy) breeds | Same as large | **Highest** (25.7%) | Elevated |
-| Oldest vs. young adults | 12+ vs. 2–4: 2.7× | Odds rise steadily with age | 12+ vs. 2–4: 3.91× |
+| Oldest vs. young adults | 12+ vs. 2–4: 2.8× | Odds rise steadily with age | 12+ vs. 2–4: 3.91× |
 | Overweight | No effect (OR 0.94, n.s.) | **OR 1.65–2.23** | — |
 | Top breeds | Yorkie, Chihuahua, Shih Tzu | Greyhound, Shetland Sheepdog, Papillon, Toy and Miniature Poodle | Toy Poodle, King Charles Spaniel, Greyhound, Cavalier |
 
@@ -70,7 +70,7 @@ The simulator extension ([results](simulator_extension_results.md)) added a dent
 | Overall, dogs | 9.4% | 18.1% | 18.2% (5-year period) | 12.5% per year |
 | Toy vs. large | 2.1× | 2.1× (32.1% vs. 15.2%) | Extra-small 1.9× large | Under 10 kg: 3.07× |
 | Small (non-toy) vs. large | 1.0× | 1.35× (20.6%); adjusted OR 1.56 | Small highest (25.7%) | Elevated |
-| Age 12+ vs. 2–4 | 2.7× | 3.5× (31.3% vs. 8.8%) | Rises steadily | 3.91× |
+| Age 12+ vs. 2–4 | 2.8× | 3.5× (31.3% vs. 8.8%) | Rises steadily | 3.91× |
 | Overweight, adjusted OR | 0.94 (n.s.) | 1.60 (1.48–1.73) | 1.65–2.23 | — |
 | Wellness exam that year | 8.0% vs. 20.8% without | 17.7% vs. 20.2% without | Mostly found at exams | — |
 | Clinics flagged for charting | 0 (none planted) | 2 low, 2 high; both planted under-charting clinics flagged | — | — |
